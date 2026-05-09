@@ -1,0 +1,83 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background: #1a1a2e;
+    color: #e0e0e0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+    min-height: 100vh;
+}
+
+.container {
+    text-align: center;
+    max-width: 660px;
+}
+
+h1 {
+    font-size: 1.6rem;
+    margin-bottom: 6px;
+}
+
+.instructions {
+    color: #999;
+    font-size: 0.9rem;
+    margin-bottom: 16px;
+}
+
+canvas {
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+    background: #16213e;
+    cursor: crosshair;
+}
+
+.status {
+    margin-top: 12px;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.status.ready { color: #4fc3f7; }
+.status.tracing { color: #ffb74d; }
+.status.success { color: #81c784; }
+.status.fail { color: #e57373; }
+
+.controls {
+    margin-top: 14px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.controls button {
+    padding: 8px 18px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    background: #2a2a4a;
+    color: #ccc;
+    transition: background 0.2s;
+}
+
+.controls button:hover {
+    background: #3a3a6a;
+}
+
+.session-info {
+    margin-top: 14px;
+}
+
+.session-info pre {
+    background: #0f0f23;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    color: #888;
+    text-align: left;
+    display: inline-block;
+    min-width: 340px;
+}

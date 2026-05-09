@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trace-the-Tunnel</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Trace-the-Tunnel</h1>
+        <p class="instructions">Press and drag from the green dot to the red dot, staying inside the tunnel.</p>
+        <canvas id="game-canvas" width="600" height="350"></canvas>
+        <p id="status-msg" class="status ready">Ready. Press the green dot to begin.</p>
+        <div class="controls">
+            <button id="btn-reset">Next Tunnel</button>
+            <button id="btn-download">Download session JSON</button>
+        </div>
+        <div class="session-info">
+            <pre id="session-display">session_id: —
+events: 0</pre>
+        </div>
+    </div>
+    <script src="/static/game.js"></script>
+</body>
+</html>

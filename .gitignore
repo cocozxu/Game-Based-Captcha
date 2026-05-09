@@ -1,0 +1,12 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Playwright
+.playwright-mcp/
+.playwright-tmp/
+
+# macOS
+.DS_Store
