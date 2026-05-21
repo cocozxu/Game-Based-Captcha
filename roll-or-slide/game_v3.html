@@ -1,0 +1,236 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Spot the Different One — v3 (circles)</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 0; background: #111; color: #eee; display: flex; flex-direction: column; align-items: center; padding: 16px; }
+  h1 { margin: 0 0 8px; font-size: 18px; font-weight: 500; }
+  #status { min-height: 22px; margin-bottom: 8px; font-size: 14px; }
+  #status.ok { color: #6f6; }
+  #status.bad { color: #f66; }
+  #stage { background: #1a1a1a; border: 1px solid #333; cursor: pointer; }
+  .row { display: flex; gap: 8px; margin-top: 10px; align-items: center; }
+  button { background: #2a2a2a; color: #eee; border: 1px solid #444; padding: 6px 12px; cursor: pointer; font-size: 13px; }
+  button:hover { background: #333; }
+  button:disabled { opacity: 0.4; cursor: not-allowed; }
+  .hint { color: #888; font-size: 12px; margin-top: 6px; max-width: 700px; text-align: center; line-height: 1.4; }
+  .counter { color: #888; font-size: 12px; margin-left: 8px; }
+</style>
+</head>
+<body>
+  <h1>Spot the Different One — v3 (circles)</h1>
+  <div id="status">Loading…</div>
+  <canvas id="stage" width="700" height="600"></canvas>
+  <div class="row">
+    <button id="next">Next round</button>
+    <button id="pick1">Pick #1</button>
+    <button id="pick2">Pick #2</button>
+    <button id="pick3">Pick #3</button>
+    <button id="pick4">Pick #4</button>
+    <span class="counter" id="counter"></span>
+  </div>
+  <div class="hint">Click each shape to see how it behaves. Three behave one way; one is different. Pick the different one.</div>
+
+<script>
+const canvas = document.getElementById("stage");
+const ctx = canvas.getContext("2d");
+const statusEl = document.getElementById("status");
+const counterEl = document.getElementById("counter");
+const W = canvas.width, H = canvas.height;
+const TILE_W = W / 2, TILE_H = H / 2;
+
+const ANIM_DURATION = 1200;
+const AMPLITUDE = 70;
+const AMP_JITTER = 0.05;
+const COLORS = ["#e25", "#2d8", "#39f", "#fa3"];
+const CIRCLE_R = 38;
+
+let round = null;
+let animStart = [null, null, null, null];
+let trajectory = [];
+let locked = false;
+let sessionId = crypto.randomUUID();
+
+function tileBounds(i) {
+  const col = i % 2, row = (i / 2) | 0;
+  const left = col * TILE_W, top = row * TILE_H;
+  return { left, top, w: TILE_W, h: TILE_H,
+           cx: left + TILE_W / 2, cy: top + TILE_H / 2 };
+}
+
+function setStatus(text, kind) {
+  statusEl.textContent = text;
+  statusEl.className = kind || "";
+}
+
+function refreshCounter() {
+  const previews = trajectory.filter(e => e.type === "preview").length;
+  counterEl.textContent = `previews: ${previews}`;
+}
+
+function motionState(i, now) {
+  const s = round.shapes[i];
+  const t0 = animStart[i];
+  if (t0 === null) return { dx: 0, dy: 0, rot: 0, active: false };
+  const dt = now - t0;
+  if (dt >= ANIM_DURATION) { animStart[i] = null; return { dx: 0, dy: 0, rot: 0, active: false }; }
+  const d = s.amp_factor * AMPLITUDE * Math.sin((dt / ANIM_DURATION) * Math.PI * 2);
+  const dx = d * Math.cos(s.dir_angle);
+  const dy = d * Math.sin(s.dir_angle);
+  const rot = s.motion_type === "roll" ? d / s.eff_r : 0;
+  return { dx, dy, rot, active: true };
+}
+
+function drawShape(i, now) {
+  const s = round.shapes[i];
+  const { dx, dy, rot } = motionState(i, now);
+
+  ctx.save();
+  ctx.translate(s.rest_x + dx, s.rest_y + dy);
+  ctx.rotate(rot);
+
+  ctx.beginPath();
+  ctx.arc(0, 0, s.radius, 0, Math.PI * 2);
+  ctx.closePath();
+  ctx.fillStyle = COLORS[i];
+  ctx.fill();
+  ctx.strokeStyle = "#111";
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
+
+  ctx.restore();
+}
+
+function draw(now) {
+  ctx.fillStyle = "#1a1a1a";
+  ctx.fillRect(0, 0, W, H);
+
+  if (!round) { requestAnimationFrame(draw); return; }
+
+  ctx.strokeStyle = "#222";
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(TILE_W, 0); ctx.lineTo(TILE_W, H);
+  ctx.moveTo(0, TILE_H); ctx.lineTo(W, TILE_H);
+  ctx.stroke();
+
+  ctx.fillStyle = "#666";
+  ctx.font = "12px system-ui";
+  for (let i = 0; i < 4; i++) {
+    const t = tileBounds(i);
+    ctx.fillText("#" + (i + 1), t.left + 10, t.top + 18);
+  }
+
+  for (let i = 0; i < 4; i++) drawShape(i, now);
+  requestAnimationFrame(draw);
+}
+
+function hitTest(mx, my) {
+  const now = performance.now();
+  for (let i = 0; i < 4; i++) {
+    const s = round.shapes[i];
+    const { dx, dy } = motionState(i, now);
+    const tx = mx - (s.rest_x + dx);
+    const ty = my - (s.rest_y + dy);
+    if (Math.hypot(tx, ty) < s.radius) return i;
+  }
+  return -1;
+}
+
+canvas.addEventListener("click", (e) => {
+  if (!round || locked) return;
+  const rect = canvas.getBoundingClientRect();
+  const mx = (e.clientX - rect.left) * (canvas.width / rect.width);
+  const my = (e.clientY - rect.top) * (canvas.height / rect.height);
+  const hit = hitTest(mx, my);
+  if (hit < 0) return;
+  animStart[hit] = performance.now();
+  trajectory.push({ type: "preview", slot: hit, t: Date.now() });
+  refreshCounter();
+});
+
+async function submitPick(slot) {
+  if (!round || locked) return;
+  locked = true;
+  trajectory.push({ type: "pick", slot, t: Date.now() });
+  refreshCounter();
+  try {
+    const res = await fetch("/api/submit", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        session_id: sessionId,
+        seed: round.seed,
+        pick: slot,
+        trajectory,
+        source: new URLSearchParams(location.search).get("source") || "human",
+        version: "v3",
+      }),
+    }).then(r => r.json());
+    const previews = trajectory.filter(e=>e.type==="preview").length;
+    if (res.correct) {
+      setStatus(`Correct. Shape #${slot+1} was the different one. (${previews} previews)`, "ok");
+    } else {
+      setStatus(`Wrong. You picked #${slot+1}; the different one was #${res.roller_slot+1}.`, "bad");
+    }
+  } catch {
+    setStatus(`Picked #${slot+1} (offline — answer not validated).`);
+  }
+}
+
+for (let i = 0; i < 4; i++) {
+  document.getElementById("pick" + (i+1)).onclick = () => submitPick(i);
+}
+document.getElementById("next").onclick = () => loadRound();
+
+function mulberry32(seed) {
+  return function() {
+    let t = seed = (seed + 0x6D2B79F5) | 0;
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+function makeRoundLocal(seed) {
+  const rng = mulberry32(seed);
+  const rollerSlot = Math.floor(rng() * 4);
+  const roundAxis = rng() * Math.PI * 2;
+  const shapes = [];
+  for (let i = 0; i < 4; i++) {
+    const t = tileBounds(i);
+    shapes.push({
+      slot: i,
+      radius: CIRCLE_R,
+      eff_r: CIRCLE_R,
+      rest_x: t.cx,
+      rest_y: t.cy,
+      dir_angle: roundAxis + (rng() < 0.5 ? 0 : Math.PI),
+      amp_factor: 1 + (rng() * 2 - 1) * AMP_JITTER,
+      motion_type: i === rollerSlot ? "roll" : "slide",
+    });
+  }
+  return { seed, shapes };
+}
+
+async function loadRound(seed) {
+  locked = false;
+  trajectory = [];
+  animStart = [null, null, null, null];
+  refreshCounter();
+  try {
+    const url = seed ? `/api/round_v3?seed=${seed}` : "/api/round_v3";
+    round = await fetch(url).then(r => r.json());
+  } catch {
+    const s = seed || Math.floor(Math.random() * 2147483647);
+    round = makeRoundLocal(s);
+  }
+  setStatus(`Round seed=${round.seed} — click shapes to see how they behave, then pick the different one.`);
+}
+
+requestAnimationFrame(draw);
+loadRound();
+</script>
+</body>
+</html>
