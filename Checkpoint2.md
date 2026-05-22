@@ -8,7 +8,6 @@ We abandoned this route. The probe-and-refine loop turned out too cognitively he
 
 Across seven versions of this single-commit family, **the Claude Code agent solves every variant with accuracy and click count comparable to a human, differing only in latency.** This is a contrast to Trace-the-Tunnel (Checkpoint 1), where agent and human trajectories were trivially distinguishable (AUC = 1.0). Within scope, single-commit reasoning games do not produce a behavioral gap on outcome-level metrics — the gap, if any, lives in the *structure* of how the agent samples and computes between observations.
 
----
 
 ## Why reasoning games
 
@@ -24,7 +23,6 @@ From these we derived two hypotheses:
 
 **On latency as a metric.** We deliberately exclude reasoning latency from the evaluation. Latency would trivially separate populations, but the gap is dominated by MCP tool-call overhead and token generation — a hardware- and harness-dependent signal, not a reasoning signal. A CAPTCHA whose discriminator is "the agent is slow" is a moving target. The same exclusion applied to Checkpoint 1.
 
----
 
 ## Game family: Reasoning About Motion Rules
 
@@ -55,7 +53,6 @@ Four objects move on a canvas. Three follow a shared rule; one follows a differe
 
 v7 was motivated by a structural concern about v1–v6: every prior version had three identical objects and one outlier, so an agent could in principle solve them *without understanding the prompt at all* — just by finding the object that behaves differently from the other three. v7 closes that shortcut. Every dot behaves differently, so the player must actually map the named label to its motion signature.
 
----
 
 ## Results
 
@@ -79,7 +76,6 @@ v7 was motivated by a structural concern about v1–v6: every prior version had 
 
 **On H2.** The hypothesis holds *partially*. The "no prior intuition for what 'lazy' looks like" prediction is supported by finding (1): with the label in isolation, the agent confuses semantically adjacent personalities. But the gap closes (finding 2) once the agent can compare and contrast — it builds its own numerical signature for each label and disambiguates reliably. The agent does not need to *understand* "lazy" semantically; it only has to map the label to a computable motion statistic. H2 survives as a **cold-start phenomenon, not a persistent capability gap**.
 
----
 
 ## What this tells us and what comes next
 
@@ -87,7 +83,9 @@ For Trace-the-Tunnel, the agent's process was categorically different from a hum
 
 Both populations produce comparable click economies, but they reason in qualitatively different modes — a human watches and pattern-matches, the agent samples and computes. That difference is not in the click, which is why it does not show up in outcome data, but it should be visible in the *timing and structure* of what the agent does between observations: multi-second capture pauses, no cursor activity during analysis, decisions arriving all at once rather than building up. The next step is a version that forces more visible intermediate decisions — short enough for a CAPTCHA, but structured so each observation is a logged data point and the sample-and-compute loop has nowhere to hide.
 
----
+## Demo
+
+<video src="Screen%20Recording%202026-05-22%20at%203.14.11%E2%80%AFPM.mov" controls width="100%"></video>
 
 ## References
 
