@@ -85,6 +85,7 @@ Both populations produce comparable click economies, but they reason in qualitat
 
 ## Demo
 
+<video src="https://github.com/user-attachments/assets/accf14f5-0e51-4cc2-82fe-9b5d65b28424" controls width="100%"></video>
 
 ## References
 
