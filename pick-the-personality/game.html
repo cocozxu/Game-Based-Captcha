@@ -1,0 +1,338 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Pick the Personality</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 0; background: #111; color: #eee;
+         display: flex; flex-direction: column; align-items: center; padding: 16px; }
+  h1 { margin: 0 0 4px; font-size: 18px; font-weight: 500; }
+  #prompt { font-size: 18px; margin-bottom: 6px; min-height: 26px; }
+  #prompt .tag { color: #ffd44a; font-weight: 700; text-transform: uppercase;
+                 letter-spacing: 0.5px; }
+  #status { min-height: 22px; margin-bottom: 8px; font-size: 14px; }
+  #status.ok { color: #6f6; }
+  #status.bad { color: #f66; }
+  #stage { background: #1a1a1a; border: 1px solid #333; cursor: pointer; }
+  .row { display: flex; gap: 8px; margin-top: 10px; align-items: center; }
+  button { background: #2a2a2a; color: #eee; border: 1px solid #444;
+           padding: 6px 12px; cursor: pointer; font-size: 13px; }
+  button:hover { background: #333; }
+  button:disabled { opacity: 0.4; cursor: not-allowed; }
+  .hint { color: #888; font-size: 12px; margin-top: 6px; max-width: 700px;
+          text-align: center; line-height: 1.4; }
+  .counter { color: #888; font-size: 12px; margin-left: 8px; }
+</style>
+</head>
+<body>
+  <h1>Pick the Personality</h1>
+  <div id="prompt">Loading…</div>
+  <div id="status"></div>
+  <canvas id="stage" width="700" height="600"></canvas>
+  <div class="row">
+    <button id="replay">Replay</button>
+    <button id="next">Next round</button>
+    <span class="counter" id="counter"></span>
+  </div>
+  <div class="hint">
+    Watch the four dots for about 10 seconds, then click the dot that best matches the
+    personality named above. You can replay before answering.
+  </div>
+
+<script>
+const canvas = document.getElementById("stage");
+const ctx = canvas.getContext("2d");
+const promptEl = document.getElementById("prompt");
+const statusEl = document.getElementById("status");
+const counterEl = document.getElementById("counter");
+const replayBtn = document.getElementById("replay");
+const nextBtn = document.getElementById("next");
+const W = canvas.width, H = canvas.height;
+const PAD = 40;
+const DOT_R = 22;
+const ANIM_DURATION_MS = 10000;
+const STEP_HZ = 60;
+const STEP_MS = 1000 / STEP_HZ;
+
+let round = null;
+let dots = [];
+let animStart = null;
+let lastTime = null;
+let stepAcc = 0;
+let animRaf = null;
+let locked = false;
+let trajectory = [];
+let sessionId = crypto.randomUUID();
+let counts = { rounds: 0, correct: 0 };
+
+const NOUN_TAGS = new Set(["leader", "follower"]);
+function formatTag(t) { return NOUN_TAGS.has(t) ? t : `${t} one`; }
+
+function setPrompt(tagText) {
+  promptEl.replaceChildren();
+  promptEl.appendChild(document.createTextNode("Find the "));
+  const tag = document.createElement("span");
+  tag.className = "tag";
+  tag.textContent = tagText;
+  promptEl.appendChild(tag);
+  if (!NOUN_TAGS.has(tagText)) {
+    promptEl.appendChild(document.createTextNode(" one"));
+  }
+}
+
+function mulberry32(seed) {
+  return function() {
+    let t = seed += 0x6D2B79F5;
+    t = Math.imul(t ^ t >>> 15, t | 1);
+    t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+}
+
+function dist(a, b) { return Math.hypot(a.x - b.x, a.y - b.y); }
+
+function initDot(d) {
+  d.x = d.start_x;
+  d.y = d.start_y;
+  d.vx = 0;
+  d.vy = 0;
+  d.state = {};
+  d.rng = mulberry32(d.behavior_seed);
+  if (d.personality === "leader") {
+    d.state.heading = -Math.PI / 2;  // straight up
+  }
+}
+
+function separateOverlaps(dotList) {
+  const MIN_D = 2 * DOT_R + 4;
+  for (let i = 0; i < dotList.length; i++) {
+    for (let j = i + 1; j < dotList.length; j++) {
+      const a = dotList[i], b = dotList[j];
+      const dx = a.x - b.x, dy = a.y - b.y;
+      const dd = Math.hypot(dx, dy);
+      if (dd < MIN_D && dd > 0.01) {
+        const push = (MIN_D - dd) * 0.5;
+        const ux = dx / dd, uy = dy / dd;
+        a.x += ux * push; a.y += uy * push;
+        b.x -= ux * push; b.y -= uy * push;
+      }
+    }
+  }
+  for (const d of dotList) {
+    d.x = Math.max(PAD + DOT_R, Math.min(W - PAD - DOT_R, d.x));
+    d.y = Math.max(PAD + DOT_R, Math.min(H - PAD - DOT_R, d.y));
+  }
+}
+
+function stepDot(d, others) {
+  const rng = d.rng;
+  const leader = others.find(o => o.personality === "leader");
+  switch (d.personality) {
+    case "leader": {
+      // Heading was set in initDot. One fixed direction for the whole round.
+      const speed = 1.1;
+      let desVx = Math.cos(d.state.heading) * speed;
+      let desVy = Math.sin(d.state.heading) * speed;
+      // Smooth deceleration near the wall along the heading.
+      const distL = d.x - PAD - DOT_R;
+      const distR = W - PAD - DOT_R - d.x;
+      const distT = d.y - PAD - DOT_R;
+      const distB = H - PAD - DOT_R - d.y;
+      const tx = desVx !== 0 ? (desVx > 0 ? distR : distL) / Math.abs(desVx) : Infinity;
+      const ty = desVy !== 0 ? (desVy > 0 ? distB : distT) / Math.abs(desVy) : Infinity;
+      const aheadFrames = Math.min(tx, ty);
+      if (aheadFrames < 80) {
+        const scale = Math.max(0, aheadFrames / 80);
+        desVx *= scale;
+        desVy *= scale;
+      }
+      d.vx += (desVx - d.vx) * 0.08;
+      d.vy += (desVy - d.vy) * 0.08;
+      break;
+    }
+    case "follower": {
+      // Trails the leader at a fixed 60px lag along its heading — no circling,
+      // just steady following.
+      const lhx = Math.cos(leader.state.heading);
+      const lhy = Math.sin(leader.state.heading);
+      const LAG = 60;
+      const targetX = leader.x - lhx * LAG;
+      const targetY = leader.y - lhy * LAG;
+      d.vx += (targetX - d.x) * 0.025;
+      d.vy += (targetY - d.y) * 0.025;
+      d.vx *= 0.90;
+      d.vy *= 0.90;
+      break;
+    }
+    case "hyper": {
+      // Alternates bursts between right-behind and left-behind the leader.
+      const lhx = Math.cos(leader.state.heading);
+      const lhy = Math.sin(leader.state.heading);
+      const LAG = 130;
+      const SIDE = 70;
+      const anchorX = leader.x - lhx * LAG;
+      const anchorY = leader.y - lhy * LAG;
+      const px = -lhy, py = lhx;  // perpendicular to leader's heading
+      d.state.timer = (d.state.timer || 0) - 1;
+      if (d.state.timer <= 0) {
+        if (d.state.bursting) {
+          d.vx *= 0.2; d.vy *= 0.2;
+          d.state.bursting = false;
+          d.state.timer = 8 + Math.floor(rng() * 8);   // 0.13-0.27s pause
+        } else {
+          d.state.side = !d.state.side;  // toggle to opposite side
+          const sideMul = d.state.side ? 1 : -1;
+          const targetX = anchorX + px * sideMul * SIDE;
+          const targetY = anchorY + py * sideMul * SIDE;
+          const tdx = targetX - d.x, tdy = targetY - d.y;
+          const tdD = Math.hypot(tdx, tdy) || 1;
+          const speed = 2.5 + rng() * 0.6;
+          d.vx = (tdx / tdD) * speed;
+          d.vy = (tdy / tdD) * speed;
+          d.state.bursting = true;
+          d.state.timer = 18 + Math.floor(rng() * 10);  // 0.3-0.47s burst
+        }
+      }
+      d.vx *= 0.95;
+      d.vy *= 0.95;
+      break;
+    }
+    case "lazy": {
+      // Steady slow drift toward the leader — visibly following but at about
+      // half the leader's pace, so it ends up well behind by round end.
+      const tx = leader.x - d.x, ty = leader.y - d.y;
+      const tD = Math.hypot(tx, ty) || 1;
+      const desSpd = 0.85;
+      d.vx += ((tx / tD) * desSpd - d.vx) * 0.06;
+      d.vy += ((ty / tD) * desSpd - d.vy) * 0.06;
+      d.vx *= 0.95;
+      d.vy *= 0.95;
+      break;
+    }
+  }
+  d.x += d.vx;
+  d.y += d.vy;
+  d.x = Math.max(PAD + DOT_R, Math.min(W - PAD - DOT_R, d.x));
+  d.y = Math.max(PAD + DOT_R, Math.min(H - PAD - DOT_R, d.y));
+}
+
+function drawFrame() {
+  ctx.fillStyle = "#1a1a1a";
+  ctx.fillRect(0, 0, W, H);
+  for (const d of dots) {
+    ctx.beginPath();
+    ctx.arc(d.x, d.y, DOT_R, 0, 2 * Math.PI);
+    ctx.fillStyle = d.color;
+    ctx.fill();
+    if (d.selected) {
+      ctx.beginPath();
+      ctx.arc(d.x, d.y, DOT_R + 4, 0, 2 * Math.PI);
+      ctx.strokeStyle = d.correct ? "#6f6" : "#f66";
+      ctx.lineWidth = 4;
+      ctx.stroke();
+    }
+  }
+}
+
+function loop(now) {
+  if (animStart == null) { animStart = now; lastTime = now; stepAcc = 0; }
+  const delta = now - lastTime;
+  lastTime = now;
+  stepAcc += delta;
+  if (stepAcc > 500) stepAcc = 500;
+  while (stepAcc >= STEP_MS) {
+    for (const d of dots) stepDot(d, dots);
+    separateOverlaps(dots);
+    stepAcc -= STEP_MS;
+  }
+  drawFrame();
+  if (now - animStart < ANIM_DURATION_MS) {
+    animRaf = requestAnimationFrame(loop);
+  } else {
+    animRaf = null;
+  }
+}
+
+function startAnimation() {
+  if (animRaf) cancelAnimationFrame(animRaf);
+  animStart = null;
+  lastTime = null;
+  stepAcc = 0;
+  for (const d of dots) initDot(d);
+  drawFrame();
+  animRaf = requestAnimationFrame(loop);
+}
+
+async function loadRound() {
+  locked = false;
+  statusEl.textContent = "";
+  statusEl.className = "";
+  trajectory = [];
+  const r = await fetch("/api/round").then(x => x.json());
+  round = r;
+  dots = r.dots.map(d => ({ ...d, selected: false, correct: false }));
+  setPrompt(r.target_personality);
+  trajectory.push({ type: "round_start", t: performance.now(),
+                    target_personality: r.target_personality, seed: r.seed });
+  startAnimation();
+}
+
+canvas.addEventListener("click", async (e) => {
+  if (locked || !round) return;
+  const rect = canvas.getBoundingClientRect();
+  const x = (e.clientX - rect.left) * (W / rect.width);
+  const y = (e.clientY - rect.top) * (H / rect.height);
+  trajectory.push({ type: "click", x, y, t: performance.now() });
+  let hit = null;
+  for (const d of dots) {
+    if (Math.hypot(d.x - x, d.y - y) <= DOT_R + 5) { hit = d; break; }
+  }
+  if (!hit) return;
+  locked = true;
+  if (animRaf) { cancelAnimationFrame(animRaf); animRaf = null; }
+
+  const resp = await fetch("/api/submit", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      session_id: sessionId,
+      seed: round.seed,
+      pick: hit.slot,
+      trajectory,
+      source: new URLSearchParams(location.search).get("source") || "human",
+    }),
+  }).then(x => x.json());
+
+  hit.selected = true;
+  hit.correct = resp.correct;
+  if (!resp.correct) {
+    const actual = dots.find(d => d.slot === resp.target_slot);
+    if (actual) { actual.selected = true; actual.correct = true; }
+  }
+  drawFrame();
+
+  counts.rounds++;
+  if (resp.correct) counts.correct++;
+  counterEl.textContent = `${counts.correct}/${counts.rounds}`;
+  if (resp.correct) {
+    statusEl.textContent = `✓ Correct — that was the ${formatTag(round.target_personality)}.`;
+    statusEl.className = "ok";
+  } else {
+    const pickedPers = dots.find(d => d.slot === hit.slot).personality;
+    statusEl.textContent =
+      `✗ You picked the ${formatTag(pickedPers)}. The ${formatTag(round.target_personality)} is outlined in green.`;
+    statusEl.className = "bad";
+  }
+});
+
+replayBtn.addEventListener("click", () => {
+  if (!round || locked) return;
+  startAnimation();
+});
+
+nextBtn.addEventListener("click", () => { loadRound(); });
+
+loadRound();
+</script>
+</body>
+</html>
