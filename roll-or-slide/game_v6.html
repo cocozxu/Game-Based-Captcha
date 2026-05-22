@@ -1,0 +1,334 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Physics Room — v6</title>
+<style>
+  body {
+    font-family: system-ui, sans-serif;
+    margin: 0;
+    background: #111;
+    color: #eee;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+  }
+  h1 { margin: 0 0 8px; font-size: 18px; font-weight: 500; }
+  #status { min-height: 22px; margin-bottom: 8px; font-size: 14px; }
+  #status.ok  { color: #6f6; }
+  #status.bad { color: #f66; }
+  #stage { background: #1a1a1a; border: 1px solid #333; cursor: crosshair; display: block; }
+  .row { display: flex; gap: 8px; margin-top: 10px; align-items: center; justify-content: center; }
+  button {
+    background: #2a2a2a; color: #eee; border: 1px solid #444;
+    padding: 6px 14px; cursor: pointer; font-size: 13px; border-radius: 3px;
+  }
+  button:hover { background: #333; }
+  .hint { color: #777; font-size: 12px; margin-top: 8px; max-width: 700px; text-align: center; line-height: 1.5; }
+</style>
+</head>
+<body>
+  <h1>Physics Room — v6</h1>
+  <div id="status">Loading…</div>
+  <canvas id="stage" width="700" height="420"></canvas>
+  <div class="row">
+    <button id="next">Next round</button>
+  </div>
+  <div class="hint">
+    One ball behaves differently from the other three. Click directly on it to answer.
+  </div>
+
+<script>
+const canvas  = document.getElementById("stage");
+const ctx     = canvas.getContext("2d");
+const statusEl = document.getElementById("status");
+const W = canvas.width, H = canvas.height;
+
+const GRAVITY  = 650;   // px/s² baseline
+const BALL_R   = 22;
+const TRAIL_LEN = 28;
+const COLORS   = ["#e25", "#2d8", "#39f", "#fa3"];
+
+let round      = null;
+let balls      = [];
+let locked     = false;
+let sessionId  = crypto.randomUUID();
+let animStart  = null;
+let prevNow    = null;
+let events     = [];   // click events with full context
+let mouseMoves = [];   // sampled cursor path
+let lastSample = 0;
+let mouseX = W / 2, mouseY = H / 2;
+
+// ── Physics ──────────────────────────────────────────────────────────────────
+
+class Ball {
+  constructor(shape) {
+    this.slot  = shape.slot;
+    this.x     = shape.x0 * W;
+    this.y     = shape.y0 * H;
+    this.vx    = shape.vx0;
+    this.vy    = shape.vy0;
+    this.grav  = shape.grav;
+    this.ela   = shape.ela;
+    this.drift = shape.drift;
+    this.color = COLORS[shape.slot];
+    this.trail = [];   // [{x, y}]
+  }
+
+  step(dt) {
+    dt = Math.min(dt, 1 / 30);
+
+    this.vy += GRAVITY * this.grav * dt;
+    this.vx += this.drift * dt;
+
+    // Light air drag (keeps drifter from accelerating forever)
+    this.vx *= Math.pow(0.995, dt * 60);
+    this.vy *= Math.pow(0.999, dt * 60);
+
+    this.x += this.vx * dt;
+    this.y += this.vy * dt;
+
+    // Wall bounces
+    if (this.x - BALL_R < 0)   { this.x = BALL_R;     this.vx =  Math.abs(this.vx) * this.ela; }
+    if (this.x + BALL_R > W)   { this.x = W - BALL_R; this.vx = -Math.abs(this.vx) * this.ela; }
+    if (this.y - BALL_R < 0)   { this.y = BALL_R;     this.vy =  Math.abs(this.vy) * this.ela; }
+    if (this.y + BALL_R > H)   { this.y = H - BALL_R; this.vy = -Math.abs(this.vy) * this.ela; }
+
+    this.trail.push({ x: this.x, y: this.y });
+    if (this.trail.length > TRAIL_LEN) this.trail.shift();
+  }
+
+  draw(highlight) {
+    // Trail
+    for (let i = 0; i < this.trail.length; i++) {
+      const f = i / this.trail.length;
+      const r = BALL_R * f * 0.55;
+      if (r < 1) continue;
+      ctx.beginPath();
+      ctx.arc(this.trail[i].x, this.trail[i].y, r, 0, Math.PI * 2);
+      ctx.fillStyle = this.color + Math.round(f * 60).toString(16).padStart(2, "0");
+      ctx.fill();
+    }
+
+    // Shadow
+    ctx.beginPath();
+    ctx.arc(this.x + 2, this.y + 3, BALL_R, 0, Math.PI * 2);
+    ctx.fillStyle = "rgba(0,0,0,0.25)";
+    ctx.fill();
+
+    // Ball body
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, BALL_R, 0, Math.PI * 2);
+    ctx.fillStyle = this.color;
+    ctx.fill();
+
+    if (highlight) {
+      ctx.strokeStyle = "#fff";
+      ctx.lineWidth = 3;
+      ctx.stroke();
+    } else {
+      ctx.strokeStyle = "#1a1a1a";
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    }
+
+    // Number label
+    ctx.fillStyle = "rgba(255,255,255,0.85)";
+    ctx.font = "bold 13px system-ui";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText(String(this.slot + 1), this.x, this.y);
+  }
+
+  contains(px, py) {
+    return Math.hypot(px - this.x, py - this.y) < BALL_R;
+  }
+}
+
+// ── Rendering loop ────────────────────────────────────────────────────────────
+
+let selectedSlot = null;
+
+function draw(now) {
+  if (!round) { requestAnimationFrame(draw); return; }
+
+  if (animStart === null) animStart = now;
+  if (prevNow   === null) prevNow   = now;
+  const dt = (now - prevNow) / 1000;
+  prevNow = now;
+
+  // Physics step
+  if (!locked) {
+    for (const b of balls) b.step(dt);
+  }
+
+  // Render
+  ctx.fillStyle = "#1a1a1a";
+  ctx.fillRect(0, 0, W, H);
+
+  // Floor line
+  ctx.strokeStyle = "#242424";
+  ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(0, H - 1); ctx.lineTo(W, H - 1); ctx.stroke();
+
+  for (const b of balls) b.draw(selectedSlot === b.slot);
+
+  // Elapsed time badge
+  const elapsed = (now - animStart) / 1000;
+  ctx.fillStyle = "#2e2e2e";
+  ctx.font = "11px system-ui";
+  ctx.textAlign = "right";
+  ctx.textBaseline = "bottom";
+  ctx.fillText(`${elapsed.toFixed(1)}s`, W - 6, H - 4);
+
+  // Hover ring on nearest ball when not locked
+  if (!locked) {
+    let nearest = null, nearD = Infinity;
+    for (const b of balls) {
+      const d = Math.hypot(mouseX - b.x, mouseY - b.y);
+      if (d < BALL_R * 2.5 && d < nearD) { nearD = d; nearest = b; }
+    }
+    if (nearest) {
+      ctx.beginPath();
+      ctx.arc(nearest.x, nearest.y, BALL_R + 6, 0, Math.PI * 2);
+      ctx.strokeStyle = nearest.color + "55";
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    }
+  }
+
+  // Behavioral mouse sample at ~50 Hz
+  const wall = Date.now();
+  if (!locked && wall - lastSample >= 20) {
+    events.push({ type: "hover", x: Math.round(mouseX), y: Math.round(mouseY), t: wall,
+                  elapsed_ms: Math.round(now - animStart) });
+    lastSample = wall;
+  }
+
+  requestAnimationFrame(draw);
+}
+
+// ── Input ─────────────────────────────────────────────────────────────────────
+
+function canvasXY(e) {
+  const r = canvas.getBoundingClientRect();
+  return {
+    cx: (e.clientX - r.left) * (W / r.width),
+    cy: (e.clientY - r.top)  * (H / r.height),
+  };
+}
+
+canvas.addEventListener("mousemove", e => {
+  const { cx, cy } = canvasXY(e);
+  mouseX = cx; mouseY = cy;
+
+  const wall = Date.now();
+  if (!mouseMoves.length || wall - mouseMoves[mouseMoves.length - 1].t > 50) {
+    mouseMoves.push({ x: Math.round(cx), y: Math.round(cy), t: wall });
+    if (mouseMoves.length > 500) mouseMoves.shift();
+  }
+});
+
+canvas.addEventListener("click", async e => {
+  if (!round || locked) return;
+  const { cx, cy } = canvasXY(e);
+  const elapsed = animStart !== null ? performance.now() - animStart : 0;
+
+  // Find hit ball (smallest distance within radius)
+  let hit = null, hitD = Infinity;
+  for (const b of balls) {
+    const d = Math.hypot(cx - b.x, cy - b.y);
+    if (d < BALL_R && d < hitD) { hitD = d; hit = b; }
+  }
+
+  // Log the click regardless of hit
+  const ev = {
+    type:       "click",
+    slot:       hit ? hit.slot : -1,
+    cx:         Math.round(cx),
+    cy:         Math.round(cy),
+    bx:         hit ? Math.round(hit.x) : null,
+    by:         hit ? Math.round(hit.y) : null,
+    offset:     hit ? Math.round(hitD) : null,
+    bvx:        hit ? Math.round(hit.vx) : null,
+    bvy:        hit ? Math.round(hit.vy) : null,
+    elapsed_ms: Math.round(elapsed),
+    t:          Date.now(),
+  };
+  events.push(ev);
+
+  if (!hit) {
+    setStatus("Missed — click directly on a ball.", "");
+    return;
+  }
+
+  locked = true;
+  selectedSlot = hit.slot;
+
+  try {
+    const res = await fetch("/api/submit", {
+      method:  "POST",
+      headers: { "Content-Type": "application/json" },
+      body:    JSON.stringify({
+        session_id:  sessionId,
+        seed:        round.seed,
+        pick:        hit.slot,
+        events,
+        mouse_moves: mouseMoves,
+        source:      new URLSearchParams(location.search).get("source") || "human",
+        version:     "v6",
+      }),
+    }).then(r => r.json());
+
+    if (res.correct) {
+      setStatus(`Correct! Ball #${hit.slot + 1} was the ${res.anomaly_type}. (${(elapsed / 1000).toFixed(1)}s)`, "ok");
+    } else {
+      selectedSlot = res.anomaly_slot;
+      setStatus(`Wrong. You clicked #${hit.slot + 1}; the ${res.anomaly_type} was #${res.anomaly_slot + 1}.`, "bad");
+    }
+  } catch {
+    setStatus(`Clicked #${hit.slot + 1} (offline — not validated).`);
+  }
+});
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+
+function setStatus(text, kind) {
+  statusEl.textContent = text;
+  statusEl.className   = kind || "";
+}
+
+document.getElementById("next").onclick = () => loadRound();
+
+async function loadRound(seed) {
+  round        = null;
+  balls        = [];
+  locked       = false;
+  selectedSlot = null;
+  events       = [];
+  mouseMoves   = [];
+  animStart    = null;
+  prevNow      = null;
+  lastSample   = 0;
+  setStatus("Loading…");
+
+  try {
+    const url  = seed != null ? `/api/round_v6?seed=${seed}` : "/api/round_v6";
+    const data = await fetch(url).then(r => r.json());
+    round = data;
+    balls = data.shapes.map(s => new Ball(s));
+  } catch {
+    setStatus("Failed to load round.", "bad");
+    return;
+  }
+
+  setStatus(`Seed ${round.seed} — one ball behaves differently. Click it.`);
+}
+
+requestAnimationFrame(draw);
+loadRound();
+</script>
+</body>
+</html>

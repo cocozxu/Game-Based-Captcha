@@ -1,0 +1,284 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Race Watcher — v5</title>
+<style>
+  body {
+    font-family: system-ui, sans-serif;
+    margin: 0;
+    background: #111;
+    color: #eee;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+  }
+  h1 { margin: 0 0 8px; font-size: 18px; font-weight: 500; }
+  #status { min-height: 22px; margin-bottom: 8px; font-size: 14px; }
+  #status.ok { color: #6f6; }
+  #status.bad { color: #f66; }
+  #stage { background: #1a1a1a; border: 1px solid #333; cursor: default; display: block; }
+  .row { display: flex; gap: 8px; margin-top: 10px; align-items: center; flex-wrap: wrap; justify-content: center; }
+  button {
+    background: #2a2a2a;
+    color: #eee;
+    border: 1px solid #444;
+    padding: 6px 14px;
+    cursor: pointer;
+    font-size: 13px;
+    border-radius: 3px;
+  }
+  button:hover { background: #333; }
+  button:disabled { opacity: 0.4; cursor: not-allowed; }
+  .hint {
+    color: #777;
+    font-size: 12px;
+    margin-top: 8px;
+    max-width: 700px;
+    text-align: center;
+    line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+  <h1>Race Watcher — v5</h1>
+  <div id="status">Loading…</div>
+  <canvas id="stage" width="700" height="360"></canvas>
+  <div class="row">
+    <button id="next">Next round</button>
+    <button id="pick1">Pick #1</button>
+    <button id="pick2">Pick #2</button>
+    <button id="pick3">Pick #3</button>
+    <button id="pick4">Pick #4</button>
+  </div>
+  <div class="hint">
+    Watch the four objects race across their tracks.
+    Three move the same way — one moves differently. Pick the odd one out.
+  </div>
+
+<script>
+const canvas = document.getElementById("stage");
+const ctx    = canvas.getContext("2d");
+const statusEl = document.getElementById("status");
+const W = canvas.width, H = canvas.height;
+
+const LABEL_W    = 60;
+const VPAD       = 20;
+const TRACK_LEFT = LABEL_W + 16;
+const TRACK_RIGHT = W - 16;
+const TRACK_W    = TRACK_RIGHT - TRACK_LEFT;
+const N_OBJECTS  = 4;
+const TRACK_H    = (H - VPAD * 2) / N_OBJECTS;  // 80px
+const BALL_R     = 13;
+const CYCLE_MS   = 2600;
+const COLORS     = ["#e25", "#2d8", "#39f", "#fa3"];
+
+let round       = null;
+let locked      = false;
+let sessionId   = crypto.randomUUID();
+let animStart   = null;
+let trajectory  = [];
+let hoverLog    = [];   // {row, t, anim_t, cycle} at ~50 Hz
+let mouseMoves  = [];
+let hoverRow    = -1;
+let lastSample  = 0;
+
+function trackCY(slot) {
+  return VPAD + slot * TRACK_H + TRACK_H / 2;
+}
+
+function setStatus(text, kind) {
+  statusEl.textContent = text;
+  statusEl.className = kind || "";
+}
+
+function lerp(a, b, t) { return a + (b - a) * t; }
+
+function interpolate(kf, t) {
+  const n  = kf.length - 1;
+  const fi = t * n;
+  const i  = Math.min(Math.floor(fi), n - 1);
+  return lerp(kf[i], kf[i + 1], fi - i);
+}
+
+function draw(now) {
+  ctx.fillStyle = "#1a1a1a";
+  ctx.fillRect(0, 0, W, H);
+
+  if (!round) { requestAnimationFrame(draw); return; }
+
+  if (animStart === null) animStart = now;
+  const elapsed    = now - animStart;
+  const t          = (elapsed % CYCLE_MS) / CYCLE_MS;
+  const cycleCount = Math.floor(elapsed / CYCLE_MS);
+
+  // Hover sampling at ~50 Hz
+  const wall = Date.now();
+  if (!locked && wall - lastSample >= 20) {
+    hoverLog.push({ row: hoverRow, t: wall, anim_t: +t.toFixed(3), cycle: cycleCount });
+    lastSample = wall;
+  }
+
+  ctx.textAlign   = "center";
+  ctx.textBaseline = "middle";
+
+  for (let s = 0; s < N_OBJECTS; s++) {
+    const cy    = trackCY(s);
+    const kf    = round.shapes[s].keyframes;
+    const pos   = interpolate(kf, t);
+    const ballX = TRACK_LEFT + pos * TRACK_W;
+
+    // Row hover highlight
+    if (!locked && hoverRow === s) {
+      ctx.fillStyle = COLORS[s] + "0d";
+      ctx.fillRect(LABEL_W, VPAD + s * TRACK_H, W - LABEL_W, TRACK_H);
+    }
+
+    // Track line
+    ctx.strokeStyle = COLORS[s] + "22";
+    ctx.lineWidth   = 2;
+    ctx.beginPath();
+    ctx.moveTo(TRACK_LEFT, cy);
+    ctx.lineTo(TRACK_RIGHT, cy);
+    ctx.stroke();
+
+    // Start / end markers
+    ctx.strokeStyle = "#2e2e2e";
+    ctx.lineWidth   = 1;
+    [TRACK_LEFT, TRACK_RIGHT].forEach(x => {
+      ctx.beginPath();
+      ctx.moveTo(x, cy - 8); ctx.lineTo(x, cy + 8);
+      ctx.stroke();
+    });
+
+    // Ball
+    ctx.beginPath();
+    ctx.arc(ballX, cy, BALL_R, 0, Math.PI * 2);
+    ctx.fillStyle   = COLORS[s];
+    ctx.fill();
+    ctx.strokeStyle = "#1a1a1a";
+    ctx.lineWidth   = 1.5;
+    ctx.stroke();
+
+    // Object label
+    ctx.fillStyle = COLORS[s];
+    ctx.font      = "bold 13px system-ui";
+    ctx.fillText(`#${s + 1}`, LABEL_W / 2, cy);
+  }
+
+  // Left separator
+  ctx.strokeStyle = "#2a2a2a";
+  ctx.lineWidth   = 1;
+  ctx.beginPath();
+  ctx.moveTo(LABEL_W, 0); ctx.lineTo(LABEL_W, H);
+  ctx.stroke();
+
+  // Cycle badge
+  ctx.fillStyle   = "#2e2e2e";
+  ctx.font        = "11px system-ui";
+  ctx.textAlign   = "right";
+  ctx.textBaseline = "bottom";
+  ctx.fillText(`cycle ${cycleCount + 1}`, W - 6, H - 4);
+
+  requestAnimationFrame(draw);
+}
+
+canvas.addEventListener("mousemove", e => {
+  const rect = canvas.getBoundingClientRect();
+  const mx   = (e.clientX - rect.left) * (W / rect.width);
+  const my   = (e.clientY - rect.top)  * (H / rect.height);
+
+  if (mx < LABEL_W) {
+    hoverRow = -1;
+  } else {
+    const r = Math.floor((my - VPAD) / TRACK_H);
+    hoverRow = (r >= 0 && r < N_OBJECTS) ? r : -1;
+  }
+
+  const wall = Date.now();
+  if (!mouseMoves.length || wall - mouseMoves[mouseMoves.length - 1].t > 50) {
+    mouseMoves.push({ x: Math.round(mx), y: Math.round(my), t: wall });
+    if (mouseMoves.length > 400) mouseMoves.shift();
+  }
+});
+
+canvas.addEventListener("mouseleave", () => { hoverRow = -1; });
+
+async function submitPick(slot) {
+  if (!round || locked) return;
+  locked = true;
+
+  const elapsed    = performance.now() - animStart;
+  const cycleCount = Math.floor(elapsed / CYCLE_MS);
+  const animT      = (elapsed % CYCLE_MS) / CYCLE_MS;
+
+  trajectory.push({
+    type:       "pick",
+    slot,
+    t:          Date.now(),
+    elapsed_ms: Math.round(elapsed),
+    cycle:      cycleCount,
+    anim_t:     +animT.toFixed(3),
+  });
+
+  try {
+    const res = await fetch("/api/submit", {
+      method:  "POST",
+      headers: { "Content-Type": "application/json" },
+      body:    JSON.stringify({
+        session_id:  sessionId,
+        seed:        round.seed,
+        pick:        slot,
+        trajectory,
+        hover_log:   hoverLog,
+        mouse_moves: mouseMoves,
+        source:      new URLSearchParams(location.search).get("source") || "human",
+        version:     "v5",
+      }),
+    }).then(r => r.json());
+
+    if (res.correct) {
+      setStatus(
+        `Correct! #${slot + 1} was the odd one out. ` +
+        `(cycle ${cycleCount + 1}, ${Math.round(elapsed / 1000 * 10) / 10}s)`, "ok");
+    } else {
+      setStatus(`Wrong. You picked #${slot + 1}; the odd one was #${res.anomaly_slot + 1}.`, "bad");
+    }
+  } catch {
+    setStatus(`Picked #${slot + 1} (offline — not validated).`);
+  }
+}
+
+for (let i = 0; i < 4; i++) {
+  document.getElementById(`pick${i + 1}`).onclick = () => submitPick(i);
+}
+document.getElementById("next").onclick = () => loadRound();
+
+async function loadRound(seed) {
+  round      = null;
+  locked     = false;
+  trajectory = [];
+  hoverLog   = [];
+  mouseMoves = [];
+  hoverRow   = -1;
+  animStart  = null;
+  lastSample = 0;
+  setStatus("Loading…");
+
+  try {
+    const url = seed != null ? `/api/round_v5?seed=${seed}` : "/api/round_v5";
+    round = await fetch(url).then(r => r.json());
+  } catch {
+    setStatus("Failed to load round.", "bad");
+    return;
+  }
+
+  setStatus(`Seed ${round.seed} — watch the objects race, then pick the odd one out.`);
+}
+
+requestAnimationFrame(draw);
+loadRound();
+</script>
+</body>
+</html>
