@@ -1,0 +1,20 @@
+All 10 tunnels completed (~75s total). Here is the per-tunnel state summary as returned by `runAll(3)`:
+
+| Tunnel | Slot 0 | Slot 1 | Slot 2 | Bank size |
+|--------|--------|--------|--------|-----------|
+| 0 | done_success | done_success | done_success | 18 |
+| 1 | done_success | done_success | **fail_after_retries** | 18 |
+| 2 | done_success | done_success | done_success | 18 |
+| 3 | done_success | done_success | done_success | 17 |
+| 4 | done_success | done_success | done_success | 17 |
+| 5 | done_success | done_success | done_success | 17 |
+| 6 | done_success | done_success | done_success | 17 |
+| 7 | done_success | done_success | done_success | 16 |
+| 8 | done_success | done_success | done_success | 17 |
+| 9 | done_success | done_success | done_success | 17 |
+
+**Aggregate:** 29 / 30 attempts succeeded (96.7%). The only non-success was tunnel 1 slot 2, which exhausted its 4 retries (`fail_after_retries`). Slots 0 and 1 of tunnel 1 both succeeded using source session `22ae9ec7-9e85-44d2-a1a4-a9783cfb49b9` — the seeded RNG for slot 2 happened to pick traces that failed four times in a row.
+
+**Event-count parity:** for every successful run except tunnel 7 slot 0 (source 189 → live 188), `live_event_count` exactly matched `source_event_count`, confirming the dispatched event stream is being recorded faithfully and the game terminates on the source's final mouseup.
+
+All 29 successful sessions were saved to `data/replay/` (paths returned in each `save.path`).

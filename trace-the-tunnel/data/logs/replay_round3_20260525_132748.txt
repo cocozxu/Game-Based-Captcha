@@ -1,0 +1,21 @@
+Run complete. All saves landed in `data/replay/` per the server-forced path. Here is the per-tunnel state summary from `runAll(3)`:
+
+| Tunnel | Bank | Attempt 1 | Attempt 2 | Attempt 3 | Success |
+|--------|------|-----------|-----------|-----------|---------|
+| 0 | 18 | done_success | done_success | done_success | 3/3 |
+| 1 | 18 | done_success | done_success | **fail_after_retries** | 2/3 |
+| 2 | 18 | done_success | done_success | done_success | 3/3 |
+| 3 | 17 | done_success | done_success | done_success | 3/3 |
+| 4 | 17 | done_success | done_success | done_success | 3/3 |
+| 5 | 17 | done_success | done_success | done_success | 3/3 |
+| 6 | 17 | done_success | done_success | done_success | 3/3 |
+| 7 | 16 | done_success | done_success | done_success | 3/3 |
+| 8 | 17 | done_success | done_success | done_success | 3/3 |
+| 9 | 17 | done_success | done_success | done_success | 3/3 |
+
+**Aggregate: 29/30 successes (96.7%)** across 10 tunnels × 3 attempts.
+
+Notes from the raw result:
+- `live_event_count` matched `source_event_count` exactly on every successful run except tunnel 7 attempt 1 (188 vs 189 — one tail event after the game terminated).
+- The one failure was tunnel 1 slot 2, which exhausted its inner 4 retries (so it actually replayed 4 distinct sampled human traces back-to-back without solving) — meaning that slot's RNG path happened to land on traces that the live geometry rejected.
+- 29 trajectories were saved to `data/replay/...json` (status `ok`); the failed slot produced no save, consistent with `runOnce` only saving on `done_success`.

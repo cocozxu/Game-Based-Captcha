@@ -1,0 +1,745 @@
+{
+  "experiment": "replay_v2",
+  "timestamp": "20260525_144901",
+  "rounds": 3,
+  "max_attempts": 3,
+  "base_seed": 1,
+  "headless": false,
+  "server_url": "http://localhost:5050",
+  "allowlist_path": "/Users/jc/Desktop/348k_final/Game-Based-Captcha/trace-the-tunnel/experiments_replay/allowed_sessions_v1b.json",
+  "allowlist_sha": "d6e87ce75456",
+  "script_path": "/Users/jc/Desktop/348k_final/Game-Based-Captcha/trace-the-tunnel/experiments_replay_v2/run_replay_v2.py",
+  "script_sha": "a9ace3381bdc",
+  "git_sha": "581c2f59fd80f63f4f11735ebad905d578596348",
+  "rounds_data": [
+    {
+      "round": 1,
+      "results": [
+        {
+          "tunnel_id": 0,
+          "slot": 0,
+          "state": "done_success",
+          "attempts": [
+            {
+              "tunnel_id": 0,
+              "state": "done_success",
+              "save": {
+                "path": "replay_v2/80ef75b6-f873-478a-a261-8396b5807a6d.json",
+                "status": "ok"
+              },
+              "source_session": "0f085a5c-4bc7-4650-94de-3aec05e98647",
+              "source_event_count": 168,
+              "bank_size": 3,
+              "seed": 1,
+              "attempt": 0
+            }
+          ]
+        },
+        {
+          "tunnel_id": 1,
+          "slot": 0,
+          "state": "done_success",
+          "attempts": [
+            {
+              "tunnel_id": 1,
+              "state": "done_success",
+              "save": {
+                "path": "replay_v2/b909d739-073f-45d8-9715-d091fc54105b.json",
+                "status": "ok"
+              },
+              "source_session": "e77810ce-f7fc-46fe-a805-f2cb24dfd763",
+              "source_event_count": 184,
+              "bank_size": 3,
+              "seed": 7920,
+              "attempt": 0
+            }
+          ]
+        },
+        {
+          "tunnel_id": 2,
+          "slot": 0,
+          "state": "done_success",
+          "attempts": [
+            {
+              "tunnel_id": 2,
+              "state": "done_fail",
+              "save": null,
+              "source_session": "3e29c082-ff1d-4720-b9c1-c56190581531",
+              "source_event_count": 153,
+              "bank_size": 3,
+              "seed": 15839,
+              "attempt": 0
+            },
+            {
+              "tunnel_id": 2,
+              "state": "ready",
+              "save": null,
+              "source_session": "2ff3d005-66e4-47e5-8a93-d1685001aaca",
+              "source_event_count": 161,
+              "bank_size": 3,
+              "seed": 15870,
+              "attempt": 1
+            },
+            {
+              "tunnel_id": 2,
+              "state": "done_success",
+              "save": {
+                "path": "replay_v2/92cb577e-afa9-45cf-9bc1-668548398d01.json",
+                "status": "ok"
+              },
+              "source_session": "2ff3d005-66e4-47e5-8a93-d1685001aaca",
+              "source_event_count": 161,
+              "bank_size": 3,
+              "seed": 15901,
+              "attempt": 2
+            }
+          ]
+        },
+        {
+          "tunnel_id": 3,
+          "slot": 0,
+          "state": "done_success",
+          "attempts": [
+            {
+              "tunnel_id": 3,
+              "state": "done_success",
+              "save": {
+                "path": "replay_v2/20a6f9e3-1712-4722-a254-aeba0ee10544.json",
+                "status": "ok"
+              },
+              "source_session": "02612c62-c385-479f-839e-95b35fbf2506",
+              "source_event_count": 129,
+              "bank_size": 3,
+              "seed": 23758,
+              "attempt": 0
+            }
+          ]
+        },
+        {
+          "tunnel_id": 4,
+          "slot": 0,
+          "state": "fail_after_retries",
+          "attempts": [
+            {
+              "tunnel_id": 4,
+              "state": "done_fail",
+              "save": null,
+              "source_session": "a2e4089b-9076-413b-94c1-26aeedda6066",
+              "source_event_count": 128,
+              "bank_size": 3,
+              "seed": 31677,
+              "attempt": 0
+            },
+            {
+              "tunnel_id": 4,
+              "state": "ready",
+              "save": null,
+              "source_session": "8d3a0046-3215-49b1-a528-dc493e5b4303",
+              "source_event_count": 175,
+              "bank_size": 3,
+              "seed": 31708,
+              "attempt": 1
+            },
+            {
+              "tunnel_id": 4,
+              "state": "done_fail",
+              "save": null,
+              "source_session": "8d3a0046-3215-49b1-a528-dc493e5b4303",
+              "source_event_count": 175,
+              "bank_size": 3,
+              "seed": 31739,
+              "attempt": 2
+            }
+          ]
+        },
+        {
+          "tunnel_id": 5,
+          "slot": 0,
+          "state": "done_success",
+          "attempts": [
+            {
+              "tunnel_id": 5,
+              "state": "ready",
+              "save": null,
+              "source_session": "4a8aea2c-03ce-421d-a70d-282ae3b6dbc1",
+              "source_event_count": 137,
+              "bank_size": 3,
+              "seed": 39596,
+              "attempt": 0
+            },
+            {
+              "tunnel_id": 5,
+              "state": "done_success",
+              "save": {
+                "path": "replay_v2/0a66be94-d2ec-4194-8029-58c84cf5ccba.json",
+                "status": "ok"
+              },
+              "source_session": "4a8aea2c-03ce-421d-a70d-282ae3b6dbc1",
+              "source_event_count": 137,
+              "bank_size": 3,
+              "seed": 39627,
+              "attempt": 1
+            }
+          ]
+        },
+        {
+          "tunnel_id": 6,
+          "slot": 0,
+          "state": "done_success",
+          "attempts": [
+            {
+              "tunnel_id": 6,
+              "state": "done_fail",
+              "save": null,
+              "source_session": "cdddd311-d400-430d-b672-7a3e46fa601a",
+              "source_event_count": 158,
+              "bank_size": 3,
+              "seed": 47515,
+              "attempt": 0
+            },
+            {
+              "tunnel_id": 6,
+              "state": "ready",
+              "save": null,
+              "source_session": "57f12bc2-80dd-4dfc-8303-f739c55a70ec",
+              "source_event_count": 135,
+              "bank_size": 3,
+              "seed": 47546,
+              "attempt": 1
+            },
+            {
+              "tunnel_id": 6,
+              "state": "done_success",
+              "save": {
+                "path": "replay_v2/ef7a5dcd-fc39-4bf5-bb42-23ff3e4af91f.json",
+                "status": "ok"
+              },
+              "source_session": "57f12bc2-80dd-4dfc-8303-f739c55a70ec",
+              "source_event_count": 135,
+              "bank_size": 3,
+              "seed": 47577,
+              "attempt": 2
+            }
+          ]
+        },
+        {
+          "tunnel_id": 7,
+          "slot": 0,
+          "state": "done_success",
+          "attempts": [
+            {
+              "tunnel_id": 7,
+              "state": "done_success",
+              "save": {
+                "path": "replay_v2/b75a2055-fc44-4645-a40d-f7b73b005247.json",
+                "status": "ok"
+              },
+              "source_session": "8f50ddbc-b1c7-4604-be1f-41b8d723e142",
+              "source_event_count": 137,
+              "bank_size": 3,
+              "seed": 55434,
+              "attempt": 0
+            }
+          ]
+        },
+        {
+          "tunnel_id": 8,
+          "slot": 0,
+          "state": "done_success",
+          "attempts": [
+            {
+              "tunnel_id": 8,
+              "state": "done_success",
+              "save": {
+                "path": "replay_v2/dac295df-e3fa-48cc-8cd0-b0e83111ba84.json",
+                "status": "ok"
+              },
+              "source_session": "076265eb-8cf5-40ce-b5f5-20b2c5079185",
+              "source_event_count": 168,
+              "bank_size": 3,
+              "seed": 63353,
+              "attempt": 0
+            }
+          ]
+        },
+        {
+          "tunnel_id": 9,
+          "slot": 0,
+          "state": "done_success",
+          "attempts": [
+            {
+              "tunnel_id": 9,
+              "state": "done_success",
+              "save": {
+                "path": "replay_v2/6ba478db-4b7a-41ab-8f78-d1a2ce5da79e.json",
+                "status": "ok"
+              },
+              "source_session": "3fbec583-1564-4cc0-b115-66a01b34325e",
+              "source_event_count": 190,
+              "bank_size": 3,
+              "seed": 71272,
+              "attempt": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "results": [
+        {
+          "tunnel_id": 0,
+          "slot": 1,
+          "state": "done_success",
+          "attempts": [
+            {
+              "tunnel_id": 0,
+              "state": "done_success",
+              "save": {
+                "path": "replay_v2/34891218-0cb4-4dab-a746-415a15273d5c.json",
+                "status": "ok"
+              },
+              "source_session": "3901cd97-87b4-4728-91d1-4a3e9b952dcf",
+              "source_event_count": 151,
+              "bank_size": 3,
+              "seed": 98,
+              "attempt": 0
+            }
+          ]
+        },
+        {
+          "tunnel_id": 1,
+          "slot": 1,
+          "state": "done_success",
+          "attempts": [
+            {
+              "tunnel_id": 1,
+              "state": "done_success",
+              "save": {
+                "path": "replay_v2/a4d9627a-fb04-46c1-94fb-ff1527ba1cf2.json",
+                "status": "ok"
+              },
+              "source_session": "e77810ce-f7fc-46fe-a805-f2cb24dfd763",
+              "source_event_count": 184,
+              "bank_size": 3,
+              "seed": 8017,
+              "attempt": 0
+            }
+          ]
+        },
+        {
+          "tunnel_id": 2,
+          "slot": 1,
+          "state": "done_success",
+          "attempts": [
+            {
+              "tunnel_id": 2,
+              "state": "done_success",
+              "save": {
+                "path": "replay_v2/0eab6e22-1800-49d1-b852-a1a7528a8a1b.json",
+                "status": "ok"
+              },
+              "source_session": "3e29c082-ff1d-4720-b9c1-c56190581531",
+              "source_event_count": 153,
+              "bank_size": 3,
+              "seed": 15936,
+              "attempt": 0
+            }
+          ]
+        },
+        {
+          "tunnel_id": 3,
+          "slot": 1,
+          "state": "done_success",
+          "attempts": [
+            {
+              "tunnel_id": 3,
+              "state": "done_success",
+              "save": {
+                "path": "replay_v2/283fa1c2-c28d-45bd-bbe0-5ba2f5545de3.json",
+                "status": "ok"
+              },
+              "source_session": "02612c62-c385-479f-839e-95b35fbf2506",
+              "source_event_count": 129,
+              "bank_size": 3,
+              "seed": 23855,
+              "attempt": 0
+            }
+          ]
+        },
+        {
+          "tunnel_id": 4,
+          "slot": 1,
+          "state": "done_success",
+          "attempts": [
+            {
+              "tunnel_id": 4,
+              "state": "done_success",
+              "save": {
+                "path": "replay_v2/aba057e0-cebe-48db-af44-bca7a1a50c29.json",
+                "status": "ok"
+              },
+              "source_session": "7f888e78-6a2d-4976-97d2-8e53fa06cf6e",
+              "source_event_count": 145,
+              "bank_size": 3,
+              "seed": 31774,
+              "attempt": 0
+            }
+          ]
+        },
+        {
+          "tunnel_id": 5,
+          "slot": 1,
+          "state": "done_success",
+          "attempts": [
+            {
+              "tunnel_id": 5,
+              "state": "done_success",
+              "save": {
+                "path": "replay_v2/281f41ae-053a-45c7-b6e9-0eff8b1fc6f7.json",
+                "status": "ok"
+              },
+              "source_session": "b1b8139e-3041-4bc3-906d-795ec186b7bc",
+              "source_event_count": 156,
+              "bank_size": 3,
+              "seed": 39693,
+              "attempt": 0
+            }
+          ]
+        },
+        {
+          "tunnel_id": 6,
+          "slot": 1,
+          "state": "done_success",
+          "attempts": [
+            {
+              "tunnel_id": 6,
+              "state": "done_fail",
+              "save": null,
+              "source_session": "cdddd311-d400-430d-b672-7a3e46fa601a",
+              "source_event_count": 158,
+              "bank_size": 3,
+              "seed": 47612,
+              "attempt": 0
+            },
+            {
+              "tunnel_id": 6,
+              "state": "ready",
+              "save": null,
+              "source_session": "cdddd311-d400-430d-b672-7a3e46fa601a",
+              "source_event_count": 158,
+              "bank_size": 3,
+              "seed": 47643,
+              "attempt": 1
+            },
+            {
+              "tunnel_id": 6,
+              "state": "done_success",
+              "save": {
+                "path": "replay_v2/7015217c-f4d7-46b8-8b37-b40803cfe7b0.json",
+                "status": "ok"
+              },
+              "source_session": "a647e828-2f63-498d-a08f-b78ff6b4eab6",
+              "source_event_count": 146,
+              "bank_size": 3,
+              "seed": 47674,
+              "attempt": 2
+            }
+          ]
+        },
+        {
+          "tunnel_id": 7,
+          "slot": 1,
+          "state": "done_success",
+          "attempts": [
+            {
+              "tunnel_id": 7,
+              "state": "done_success",
+              "save": {
+                "path": "replay_v2/234fee3c-f35c-4561-bec3-470776d4a7e6.json",
+                "status": "ok"
+              },
+              "source_session": "ea7a6a58-d698-4b65-ae3c-f1d5c2c97595",
+              "source_event_count": 150,
+              "bank_size": 3,
+              "seed": 55531,
+              "attempt": 0
+            }
+          ]
+        },
+        {
+          "tunnel_id": 8,
+          "slot": 1,
+          "state": "done_success",
+          "attempts": [
+            {
+              "tunnel_id": 8,
+              "state": "done_success",
+              "save": {
+                "path": "replay_v2/47c45398-a3ef-42b5-aefe-890f768ffc30.json",
+                "status": "ok"
+              },
+              "source_session": "890e87d1-bf3c-4e18-a4aa-bb940e39d81a",
+              "source_event_count": 208,
+              "bank_size": 3,
+              "seed": 63450,
+              "attempt": 0
+            }
+          ]
+        },
+        {
+          "tunnel_id": 9,
+          "slot": 1,
+          "state": "done_success",
+          "attempts": [
+            {
+              "tunnel_id": 9,
+              "state": "done_success",
+              "save": {
+                "path": "replay_v2/3e76757e-2b93-41f2-88a1-4fb791db8934.json",
+                "status": "ok"
+              },
+              "source_session": "65d26251-5fc1-4ff2-8812-381d32665d4b",
+              "source_event_count": 162,
+              "bank_size": 3,
+              "seed": 71369,
+              "attempt": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "results": [
+        {
+          "tunnel_id": 0,
+          "slot": 2,
+          "state": "done_success",
+          "attempts": [
+            {
+              "tunnel_id": 0,
+              "state": "done_success",
+              "save": {
+                "path": "replay_v2/8e35a3ec-4855-4571-8832-8f4635b78498.json",
+                "status": "ok"
+              },
+              "source_session": "3901cd97-87b4-4728-91d1-4a3e9b952dcf",
+              "source_event_count": 151,
+              "bank_size": 3,
+              "seed": 195,
+              "attempt": 0
+            }
+          ]
+        },
+        {
+          "tunnel_id": 1,
+          "slot": 2,
+          "state": "done_success",
+          "attempts": [
+            {
+              "tunnel_id": 1,
+              "state": "done_success",
+              "save": {
+                "path": "replay_v2/5ff49dbf-9dfb-4f7f-a002-3ca9eda0d9a0.json",
+                "status": "ok"
+              },
+              "source_session": "3d5cc3ac-2e75-487f-b9ed-c94cebcc413c",
+              "source_event_count": 170,
+              "bank_size": 3,
+              "seed": 8114,
+              "attempt": 0
+            }
+          ]
+        },
+        {
+          "tunnel_id": 2,
+          "slot": 2,
+          "state": "done_success",
+          "attempts": [
+            {
+              "tunnel_id": 2,
+              "state": "done_success",
+              "save": {
+                "path": "replay_v2/e204ea93-d927-4afb-a6fe-140756c0c46b.json",
+                "status": "ok"
+              },
+              "source_session": "d9827ddf-cc63-4b22-800f-c44d7ddedd8f",
+              "source_event_count": 158,
+              "bank_size": 3,
+              "seed": 16033,
+              "attempt": 0
+            }
+          ]
+        },
+        {
+          "tunnel_id": 3,
+          "slot": 2,
+          "state": "done_success",
+          "attempts": [
+            {
+              "tunnel_id": 3,
+              "state": "done_success",
+              "save": {
+                "path": "replay_v2/3fca863d-695f-41f2-926e-8781652bd818.json",
+                "status": "ok"
+              },
+              "source_session": "02612c62-c385-479f-839e-95b35fbf2506",
+              "source_event_count": 129,
+              "bank_size": 3,
+              "seed": 23952,
+              "attempt": 0
+            }
+          ]
+        },
+        {
+          "tunnel_id": 4,
+          "slot": 2,
+          "state": "fail_after_retries",
+          "attempts": [
+            {
+              "tunnel_id": 4,
+              "state": "done_fail",
+              "save": null,
+              "source_session": "8d3a0046-3215-49b1-a528-dc493e5b4303",
+              "source_event_count": 175,
+              "bank_size": 3,
+              "seed": 31871,
+              "attempt": 0
+            },
+            {
+              "tunnel_id": 4,
+              "state": "ready",
+              "save": null,
+              "source_session": "7f888e78-6a2d-4976-97d2-8e53fa06cf6e",
+              "source_event_count": 145,
+              "bank_size": 3,
+              "seed": 31902,
+              "attempt": 1
+            },
+            {
+              "tunnel_id": 4,
+              "state": "done_fail",
+              "save": null,
+              "source_session": "a2e4089b-9076-413b-94c1-26aeedda6066",
+              "source_event_count": 128,
+              "bank_size": 3,
+              "seed": 31933,
+              "attempt": 2
+            }
+          ]
+        },
+        {
+          "tunnel_id": 5,
+          "slot": 2,
+          "state": "done_success",
+          "attempts": [
+            {
+              "tunnel_id": 5,
+              "state": "ready",
+              "save": null,
+              "source_session": "4a8aea2c-03ce-421d-a70d-282ae3b6dbc1",
+              "source_event_count": 137,
+              "bank_size": 3,
+              "seed": 39790,
+              "attempt": 0
+            },
+            {
+              "tunnel_id": 5,
+              "state": "done_success",
+              "save": {
+                "path": "replay_v2/4b3a5fbe-b83d-494e-81fd-d681a590cc86.json",
+                "status": "ok"
+              },
+              "source_session": "05c48230-2a09-4e7a-958b-06a46ed28bfd",
+              "source_event_count": 137,
+              "bank_size": 3,
+              "seed": 39821,
+              "attempt": 1
+            }
+          ]
+        },
+        {
+          "tunnel_id": 6,
+          "slot": 2,
+          "state": "done_success",
+          "attempts": [
+            {
+              "tunnel_id": 6,
+              "state": "done_success",
+              "save": {
+                "path": "replay_v2/05c9341f-b4ff-4f9c-bb14-0aa484573ea8.json",
+                "status": "ok"
+              },
+              "source_session": "57f12bc2-80dd-4dfc-8303-f739c55a70ec",
+              "source_event_count": 135,
+              "bank_size": 3,
+              "seed": 47709,
+              "attempt": 0
+            }
+          ]
+        },
+        {
+          "tunnel_id": 7,
+          "slot": 2,
+          "state": "done_success",
+          "attempts": [
+            {
+              "tunnel_id": 7,
+              "state": "done_success",
+              "save": {
+                "path": "replay_v2/30331c71-524f-4e7c-81e3-5770e22250a1.json",
+                "status": "ok"
+              },
+              "source_session": "d659b2b9-e128-454b-82fe-31c9bd2823c3",
+              "source_event_count": 177,
+              "bank_size": 3,
+              "seed": 55628,
+              "attempt": 0
+            }
+          ]
+        },
+        {
+          "tunnel_id": 8,
+          "slot": 2,
+          "state": "done_success",
+          "attempts": [
+            {
+              "tunnel_id": 8,
+              "state": "done_success",
+              "save": {
+                "path": "replay_v2/a41a359f-5f7f-449c-82e4-f28609b5f17c.json",
+                "status": "ok"
+              },
+              "source_session": "076265eb-8cf5-40ce-b5f5-20b2c5079185",
+              "source_event_count": 168,
+              "bank_size": 3,
+              "seed": 63547,
+              "attempt": 0
+            }
+          ]
+        },
+        {
+          "tunnel_id": 9,
+          "slot": 2,
+          "state": "done_success",
+          "attempts": [
+            {
+              "tunnel_id": 9,
+              "state": "done_success",
+              "save": {
+                "path": "replay_v2/768815cb-77f6-4caa-b78c-473a4323f05a.json",
+                "status": "ok"
+              },
+              "source_session": "65d26251-5fc1-4ff2-8812-381d32665d4b",
+              "source_event_count": 162,
+              "bank_size": 3,
+              "seed": 71466,
+              "attempt": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

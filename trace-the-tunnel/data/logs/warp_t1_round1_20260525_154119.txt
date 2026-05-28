@@ -1,0 +1,52 @@
+All 10 tunnels ran. Tunnel 1 short-circuited to `skipped_error` as expected; tunnels 0 and 2–9 produced 3 successful saves each (27 successes total). Every source was tunnel 1, confirming the t1-only allowlist held.
+
+### runAll(3) per-tunnel summary
+
+**Tunnel 0** — 3× `done_success`
+- slot 0: src `954e611c…`, src_tunnel=1, n_outside=7, n_projected=7
+- slot 1: src `8013f8d5…`, src_tunnel=1, n_outside=27, n_projected=27
+- slot 2: src `dc9ead35…`, src_tunnel=1, n_outside=24, n_projected=24
+
+**Tunnel 1** — `skipped_error` on slot 0 (expected: no cross-tunnel source available)
+
+**Tunnel 2** — 3× `done_success`
+- slot 0: src `22ae9ec7…`, src_tunnel=1, n_outside=11, n_projected=11
+- slot 1: src `e77810ce…`, src_tunnel=1, n_outside=0, n_projected=0
+- slot 2: src `062e8703…`, src_tunnel=1, n_outside=11, n_projected=11
+
+**Tunnel 3** — 3× `done_success`
+- slot 0: src `4d69290f…`, src_tunnel=1, n_outside=8, n_projected=8
+- slot 1: src `22ae9ec7…`, src_tunnel=1, n_outside=11, n_projected=11
+- slot 2: src `062e8703…`, src_tunnel=1, n_outside=11, n_projected=11
+
+**Tunnel 4** — 3× `done_success`
+- slot 0: src `dc9ead35…`, src_tunnel=1, n_outside=24, n_projected=24
+- slot 1: src `4d69290f…`, src_tunnel=1, n_outside=8, n_projected=8
+- slot 2: src `954e611c…`, src_tunnel=1, n_outside=7, n_projected=7
+
+**Tunnel 5** — 3× `done_success`
+- slot 0: src `dc9ead35…`, src_tunnel=1, n_outside=24, n_projected=24
+- slot 1: src `dc9ead35…`, src_tunnel=1, n_outside=24, n_projected=24
+- slot 2: src `bdca8950…`, src_tunnel=1, n_outside=22, n_projected=22
+
+**Tunnel 6** — 3× `done_success`
+- slot 0: src `8013f8d5…`, src_tunnel=1, n_outside=27, n_projected=27
+- slot 1: src `8013f8d5…`, src_tunnel=1, n_outside=27, n_projected=27
+- slot 2: src `210a70e8…`, src_tunnel=1, n_outside=1, n_projected=1
+
+**Tunnel 7** — 3× `done_success`
+- slot 0: src `210a70e8…`, src_tunnel=1, n_outside=1, n_projected=1
+- slot 1: src `e77810ce…`, src_tunnel=1, n_outside=0, n_projected=0
+- slot 2: src `062e8703…`, src_tunnel=1, n_outside=11, n_projected=11
+
+**Tunnel 8** — 3× `done_success`
+- slot 0: src `e77810ce…`, src_tunnel=1, n_outside=0, n_projected=0
+- slot 1: src `8013f8d5…`, src_tunnel=1, n_outside=27, n_projected=27
+- slot 2: src `954e611c…`, src_tunnel=1, n_outside=7, n_projected=7
+
+**Tunnel 9** — 3× `done_success`
+- slot 0: src `1c0e3c79…`, src_tunnel=1, n_outside=1, n_projected=1
+- slot 1: src `e77810ce…`, src_tunnel=1, n_outside=0, n_projected=0
+- slot 2: src `954e611c…`, src_tunnel=1, n_outside=7, n_projected=7
+
+All 27 saves were written under `warp_t1/` as expected. Source bank covered 9 distinct tunnel-1 sessions: `954e611c`, `8013f8d5`, `dc9ead35`, `22ae9ec7`, `e77810ce`, `062e8703`, `4d69290f`, `bdca8950`, `210a70e8`, `1c0e3c79`.

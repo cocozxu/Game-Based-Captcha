@@ -17,6 +17,11 @@ TUNNEL_CONFIG_PATH = os.path.join(os.path.dirname(__file__), "tunnel_config.json
 # every save is forced into data/<EXPERIMENT>/ and the source field is overwritten.
 EXPERIMENT = None
 
+# Optional whitelist for /api/human_bank. When non-None, only sessions whose
+# session_id is in this set are returned. Used to enforce disjoint source/eval
+# splits in the replay-v1b experiment.
+ALLOWED_SESSIONS = None
+
 # ---------------------------------------------------------------------------
 # Tunnel config: a fixed pool of seeds so humans and agents play the same set
 # ---------------------------------------------------------------------------
@@ -61,6 +66,73 @@ def get_mode():
     """Lets the harness verify the server is running with the expected experiment."""
     return jsonify({"experiment": EXPERIMENT})
 
+@app.route("/api/human_bank/<int:tunnel_id>", methods=["GET"])
+def get_human_bank(tunnel_id):
+    """Return all completed human trajectories for a given tunnel_id.
+
+    Used by the replay experiment so the agent can sample real human traces
+    keyed to the live tunnel and dispatch them back into the canvas.
+    """
+    human_dir = os.path.join(DATA_DIR, "human")
+    if not os.path.isdir(human_dir):
+        return jsonify([])
+    out = []
+    for fname in sorted(os.listdir(human_dir)):
+        if not fname.endswith(".json"):
+            continue
+        try:
+            with open(os.path.join(human_dir, fname)) as f:
+                d = json.load(f)
+        except Exception:
+            continue
+        if not d.get("completed"):
+            continue
+        if d.get("tunnel_id") != tunnel_id:
+            continue
+        sid = d.get("session_id")
+        if ALLOWED_SESSIONS is not None and sid not in ALLOWED_SESSIONS:
+            continue
+        out.append({
+            "session_id": sid,
+            "tunnel_id": d.get("tunnel_id"),
+            "events": d.get("events", []),
+        })
+    return jsonify(out)
+
+@app.route("/api/human_trace_full/<session_id>", methods=["GET"])
+def get_human_trace_full(session_id):
+    """Return a single completed human trajectory by session_id, including
+    its control_points so the warp solver can reconstruct the source tunnel's
+    centerline. Only sessions in the allowlist are returned (when set);
+    otherwise any completed human trace can be fetched.
+
+    Used by the warp experiment so the agent can sample one source trace
+    and warp it onto a different live tunnel's centerline.
+    """
+    human_dir = os.path.join(DATA_DIR, "human")
+    if not os.path.isdir(human_dir):
+        return jsonify({"error": "no human data"}), 404
+    if ALLOWED_SESSIONS is not None and session_id not in ALLOWED_SESSIONS:
+        return jsonify({"error": "session not in allowlist"}), 404
+    fpath = os.path.join(human_dir, f"{session_id}.json")
+    if not os.path.isfile(fpath):
+        return jsonify({"error": "session not found"}), 404
+    try:
+        with open(fpath) as f:
+            d = json.load(f)
+    except Exception as e:
+        return jsonify({"error": f"failed to load: {e}"}), 500
+    if not d.get("completed"):
+        return jsonify({"error": "session not completed"}), 404
+    return jsonify({
+        "session_id": d.get("session_id"),
+        "tunnel_id": d.get("tunnel_id"),
+        "control_points": d.get("control_points", []),
+        "tunnel_width": d.get("tunnel_width"),
+        "canvas_size": d.get("canvas_size"),
+        "events": d.get("events", []),
+    })
+
 @app.route("/api/save_trajectory", methods=["POST"])
 def save_trajectory():
     data = request.json
@@ -75,7 +147,7 @@ def save_trajectory():
         source = EXPERIMENT
         data["source"] = EXPERIMENT
     else:
-        source = data.get("source", "unknown")
+        source = data.get("source") or "unknown"
 
     sub_dir = os.path.join(DATA_DIR, source)
     os.makedirs(sub_dir, exist_ok=True)
@@ -98,12 +170,24 @@ if __name__ == "__main__":
              "Refuses source='human'. Leave unset for human collection.",
     )
     parser.add_argument("--port", type=int, default=5050)
+    parser.add_argument(
+        "--allowed-sessions",
+        default=None,
+        help="Path to a JSON file containing a list of session_ids. When set, "
+             "/api/human_bank only returns sessions whose id is in this list. "
+             "Used to enforce a disjoint source/eval split for replay experiments.",
+    )
     args = parser.parse_args()
 
     if args.experiment == "human":
         parser.error("--experiment cannot be 'human' (that folder is reserved for human data)")
 
     EXPERIMENT = args.experiment
+
+    if args.allowed_sessions:
+        with open(args.allowed_sessions) as f:
+            ALLOWED_SESSIONS = set(json.load(f))
+        print(f"[bank] /api/human_bank restricted to {len(ALLOWED_SESSIONS)} session_ids from {args.allowed_sessions}")
 
     os.makedirs(os.path.join(DATA_DIR, "human"), exist_ok=True)
     if EXPERIMENT:

@@ -1,0 +1,21 @@
+## v1c Replay Results — Per-Tunnel State Summary
+
+| Tunnel | Bank | Results |
+|--------|------|---------|
+| **0** | empty | 1× `skipped_empty_bank` |
+| **1** | empty | 1× `skipped_empty_bank` |
+| **2** | 1 trace | 3× `done_success` → saved to `replay_v1c/` |
+| **3** | 1 trace | 3× `done_success` → saved to `replay_v1c/` |
+| **4** | empty | 1× `skipped_empty_bank` |
+| **5** | 1 trace | 3× `fail_after_retries` (all 4 attempts per slot failed) |
+| **6** | empty | 1× `skipped_empty_bank` |
+| **7** | 1 trace | 3× `done_success` → saved to `replay_v1c/` |
+| **8** | 1 trace | 3× `done_success` → saved to `replay_v1c/` |
+| **9** | empty | 1× `skipped_empty_bank` |
+
+### Aggregate
+- **Empty-bank tunnels (0, 1, 4, 6, 9):** all 5 short-circuited with exactly one `skipped_empty_bank` entry — matches the experiment's expectation.
+- **Covered tunnels with successful replay (2, 3, 7, 8):** 12 saves total to `data/replay_v1c/`.
+- **Covered but failing tunnel (5):** the single source trace for tunnel 5 did not yield a `done_success` across 12 total attempts (4 retries × 3 slots). All three slots terminated as `fail_after_retries`. This is unexpected relative to the pre-stated outcome of "5 of 10 tunnels (2, 3, 5, 7, 8) will produce successful saves" — tunnel 5's replay is failing despite a non-empty bank.
+
+The 5 skipped tunnels each have exactly one `skipped_empty_bank` entry, as expected.

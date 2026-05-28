@@ -1,0 +1,16 @@
+## Per-tunnel state summary (v1b, 3 attempts each)
+
+| Tunnel | A1 | A2 | A3 | Successes |
+|--------|----|----|----|-----------|
+| 0 | done_success | done_success | done_success | 3/3 |
+| 1 | done_success | done_success | done_success | 3/3 |
+| 2 | done_success | done_success | done_success | 3/3 |
+| 3 | done_success | done_success | done_success | 3/3 |
+| 4 | **fail_after_retries** | done_success | **fail_after_retries** | 1/3 |
+| 5 | done_success | done_success | done_success | 3/3 |
+| 6 | done_success | done_success | done_success | 3/3 |
+| 7 | done_success | done_success | done_success | 3/3 |
+| 8 | done_success | done_success | done_success | 3/3 |
+| 9 | done_success | done_success | done_success | 3/3 |
+
+**Overall: 28/30 successful replays.** All saves were forced to `replay_v1b/` as expected. The only failures were tunnel 4 slots 0 and 2 (each exhausted 4 internal retries inside `runMany` without reaching `done_success`); slot 1 on tunnel 4 succeeded using source `7f888e78-…` (145 events). Bank size was 3 for every tunnel, confirming the disjoint 3-per-tunnel source set.

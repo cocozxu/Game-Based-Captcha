@@ -1,0 +1,39 @@
+You are running the v1b variant of the replay experiment on the browser
+game at http://localhost:5050.
+
+This is the same in-page-dispatch replay strategy as the v1 run
+(experiments_replay/replay_solver.js installs window.__replay). The only
+difference is that the server's /api/human_bank/<tunnel_id> endpoint has
+been pre-filtered to a small disjoint source set (3 per tunnel, 30
+total), so the trajectories used as sources here are excluded from the
+eval-time human distribution.
+
+Do exactly the following, in order:
+
+  1. browser_navigate to http://localhost:5050 and wait for the canvas
+     to appear.
+
+  2. Read experiments_replay/replay_solver.js with the Read tool.
+
+  3. Inject its contents into the page via browser_evaluate. After this
+     `typeof window.__replay` should be 'object'.
+
+  4. Run all 10 tunnels with 3 attempts each:
+
+       await window.__replay.runAll(3)
+
+     Each tunnel's bank will contain 3 source traces (verified before
+     this run); the solver samples one per attempt.
+
+  5. Report the per-tunnel state summary returned by the call. Do not
+     fabricate numbers — only what runAll returned.
+
+Rules:
+- Do not modify replay_solver.js.
+- Do not call solver routines from experiments/ (that is the visual
+  agent).
+- Do not write to data/human/. Saves are forced to data/replay_v1b/
+  by the server in experiment mode.
+
+Tools available: browser_navigate, browser_evaluate, browser_run_code_unsafe,
+browser_snapshot, browser_click, Read, Bash.

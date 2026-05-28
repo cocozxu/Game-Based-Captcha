@@ -1,0 +1,49 @@
+You are running the t1-only variant of the warp experiment on the
+browser game at http://localhost:5050.
+
+This uses the same solver as warp_v1 (in-page setTimeout + MouseEvent
++ dispatchEvent, with arc-length warping onto the live centerline).
+The only change is the source bank: the server's allowlist is restricted
+to 10 completed human traces all from tunnel_id = 1. Combined with the
+solver's cross-tunnel constraint, this means:
+
+  - Live tunnel 1: the candidate pool is empty (the only allowlisted
+    sources are themselves tunnel 1, which is excluded). The solver
+    will return an error for tunnel 1 on the first attempt and
+    runMany will short-circuit it as `skipped_error`. This is the
+    expected behaviour — do not try to bypass.
+  - Live tunnels 0, 2..9: the candidate pool is the same 10 tunnel-1
+    sources for every live tunnel. Each attempt picks one of those 10
+    and warps it onto the live tunnel's geometry.
+
+Do exactly the following, in order:
+
+  1. browser_navigate to http://localhost:5050 and wait for the canvas
+     to appear.
+
+  2. Read experiments_warp/warp_solver.js with the Read tool.
+
+  3. Inject its contents into the page via browser_evaluate. After this
+     `typeof window.__warp` should be 'object'.
+
+  4. Run all 10 tunnels with 3 attempts each:
+
+       await window.__warp.runAll(3)
+
+     Expected: 9 of 10 tunnels (everything except tunnel 1) should
+     produce successful saves; tunnel 1 returns `skipped_error` on its
+     first slot.
+
+  5. Report the per-tunnel state summary returned by the call. Include
+     `source_session`, `source_tunnel`, and `n_outside` / `n_projected`
+     fields if present. Do not fabricate numbers — only what runAll
+     returned.
+
+Rules:
+- Do not modify warp_solver.js.
+- Do not call solver routines from experiments/ or experiments_replay/.
+- Do not write to data/human/. Saves are forced to data/warp_t1/ by
+  the server in experiment mode.
+
+Tools available: browser_navigate, browser_evaluate, browser_run_code_unsafe,
+browser_snapshot, browser_click, Read, Bash.

@@ -1,0 +1,21 @@
+## Per-tunnel state summary (from `runAll(3)`)
+
+| Tunnel | Slot 0 | Slot 1 | Slot 2 | Notes |
+|--------|--------|--------|--------|-------|
+| 0 | skipped_empty_bank | — | — | empty bank (expected) |
+| 1 | skipped_empty_bank | — | — | empty bank (expected) |
+| 2 | done_success | done_success | done_success | bank_size=1, source `df8b963a…` |
+| 3 | done_success | done_success | done_success | bank_size=1, source `9a9fa261…` |
+| 4 | skipped_empty_bank | — | — | empty bank (expected) |
+| 5 | **fail_after_retries** | **fail_after_retries** | **fail_after_retries** | bank present but replay never reached `done_success` |
+| 6 | skipped_empty_bank | — | — | empty bank (expected) |
+| 7 | done_success | done_success | done_success | bank_size=1, source `27c13020…` |
+| 8 | done_success | done_success | done_success | bank_size=1, source `076265eb…` |
+| 9 | skipped_empty_bank | — | — | empty bank (expected) |
+
+### Counts
+- **Skipped (empty bank):** 5 tunnels — 0, 1, 4, 6, 9 — each with exactly one `skipped_empty_bank` entry. ✅ Matches expectation.
+- **Successful saves:** 4 tunnels × 3 attempts = **12 saves** written to `data/replay_v1c/` (tunnels 2, 3, 7, 8).
+- **Unexpected:** Tunnel 5 had a non-empty bank (the empty-bank short-circuit didn't fire) but all 3 slots came back `fail_after_retries` — i.e. the canned source trajectory never put the live game into `done_success` within the 4-attempt budget. This diverges from the expected "5 of 10 successful". The console log shows 19 errors during the run, likely tied to those failures.
+
+All 12 successful saves were written under `replay_v1c/` as the server forces in experiment mode. No solver code or paths were modified.

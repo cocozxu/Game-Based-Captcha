@@ -1,0 +1,16 @@
+Run finished in ~67 s. All saves landed in `data/replay_v1b/`. Per-tunnel state summary returned by `runAll(3)`:
+
+| Tunnel | Bank | Attempt 1 | Attempt 2 | Attempt 3 | Successes |
+|--------|------|-----------|-----------|-----------|-----------|
+| 0 | 3 | done_success | done_success | done_success | 3/3 |
+| 1 | 3 | done_success | done_success | done_success | 3/3 |
+| 2 | 3 | done_success | done_success | done_success | 3/3 |
+| 3 | 3 | done_success | done_success | done_success | 3/3 |
+| 4 | 3 | **fail_after_retries** | done_success | **fail_after_retries** | 1/3 |
+| 5 | 3 | done_success | done_success | done_success | 3/3 |
+| 6 | 3 | done_success | done_success | done_success | 3/3 |
+| 7 | 3 | done_success | done_success | done_success | 3/3 |
+| 8 | 3 | done_success | done_success | done_success | 3/3 |
+| 9 | 3 | done_success | done_success | done_success | 3/3 |
+
+**Aggregate: 28/30 saved successes (93.3%).** Tunnel 4 was the only outlier — slots 0 and 2 hit `fail_after_retries` (each tried the inner solver up to 4 times without `done_success`), while slot 1 succeeded with source session `7f888e78…`. All 28 successful runs wrote trajectories under `data/replay_v1b/…json` as expected; `live_event_count` matched `source_event_count` in every case except two tunnel-5 attempts (155 vs 156 — one trailing event after `done_success`).

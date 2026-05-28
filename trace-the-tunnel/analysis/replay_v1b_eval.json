@@ -1,0 +1,158 @@
+{
+  "experiment": "replay_v1b",
+  "allowlist": "experiments_replay/allowed_sessions_v1b.json",
+  "n_bank_session_ids": 30,
+  "n_eval_humans": 142,
+  "n_replay_trajectories": 84,
+  "disjoint": {
+    "LR": {
+      "auc": 0.993796109993293,
+      "acc": 0.9690265486725663,
+      "f1": 0.9581054787506401
+    },
+    "RF": {
+      "auc": 0.9978621730382293,
+      "acc": 0.9867256637168141,
+      "f1": 0.9828571428571429
+    },
+    "GB": {
+      "auc": 0.9893108651911469,
+      "acc": 0.9823008849557522,
+      "f1": 0.9767965367965369
+    }
+  },
+  "context": {
+    "human_vs_visual": {
+      "LR": {
+        "auc": 0.9998268298314477,
+        "acc": 0.9924242424242424,
+        "f1": 0.991823112223613
+      },
+      "RF": {
+        "auc": 0.9998845532209651,
+        "acc": 0.9924242424242424,
+        "f1": 0.9916630481980026
+      },
+      "GB": {
+        "auc": 0.9874451627799584,
+        "acc": 0.9734848484848485,
+        "f1": 0.9717214545392625
+      }
+    },
+    "human_vs_replay": {
+      "LR": {
+        "auc": 0.9682279724860793,
+        "acc": 0.9254385964912281,
+        "f1": 0.8971638655462184
+      },
+      "RF": {
+        "auc": 0.9941451031772027,
+        "acc": 0.9649122807017544,
+        "f1": 0.9535861912332502
+      },
+      "GB": {
+        "auc": 0.9936537831641008,
+        "acc": 0.9736842105263158,
+        "f1": 0.965994305994306
+      }
+    }
+  },
+  "top_features_disjoint": [
+    {
+      "feature": "dt_mean",
+      "importance": 0.3911256367897466
+    },
+    {
+      "feature": "jerk_std",
+      "importance": 0.10742989063049983
+    },
+    {
+      "feature": "dt_std",
+      "importance": 0.10291159472848234
+    },
+    {
+      "feature": "dt_max",
+      "importance": 0.04599791935127357
+    },
+    {
+      "feature": "accel_std",
+      "importance": 0.02962237235745545
+    },
+    {
+      "feature": "curvature_mean",
+      "importance": 0.026891720504242596
+    },
+    {
+      "feature": "speed_mean",
+      "importance": 0.026607796155507034
+    },
+    {
+      "feature": "accel_mean",
+      "importance": 0.02643006696872024
+    },
+    {
+      "feature": "speed_median",
+      "importance": 0.02574792913767111
+    },
+    {
+      "feature": "n_points",
+      "importance": 0.0220425643960785
+    }
+  ],
+  "per_source_means": {
+    "centerline_dev_mean": {
+      "human": 11.049,
+      "replay": 11.2023,
+      "replay_v1b": 10.4921,
+      "visual": 17.7301
+    },
+    "centerline_dev_std": {
+      "human": 6.7615,
+      "replay": 6.939,
+      "replay_v1b": 6.4748,
+      "visual": 10.2107
+    },
+    "dt_mean": {
+      "human": 8.4744,
+      "replay": 9.1488,
+      "replay_v1b": 9.463,
+      "visual": 7.2919
+    },
+    "dt_std": {
+      "human": 0.9406,
+      "replay": 1.0571,
+      "replay_v1b": 1.8089,
+      "visual": 0.6915
+    },
+    "speed_mean": {
+      "human": 0.4934,
+      "replay": 0.4525,
+      "replay_v1b": 0.4565,
+      "visual": 0.6425
+    },
+    "speed_std": {
+      "human": 0.2362,
+      "replay": 0.2,
+      "replay_v1b": 0.2128,
+      "visual": 0.1534
+    },
+    "duration_ms": {
+      "human": 1336.8106,
+      "replay": 1455.9058,
+      "replay_v1b": 1476.4179,
+      "visual": 1102.7049
+    },
+    "direction_changes": {
+      "human": 8.1338,
+      "replay": 6.8488,
+      "replay_v1b": 7.4643,
+      "visual": 23.5574
+    },
+    "tremor_power_8_12hz": {
+      "human": 4.5696,
+      "replay": 2.657,
+      "replay_v1b": 2.8996,
+      "visual": 3.5565
+    }
+  }
+}

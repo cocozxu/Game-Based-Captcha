@@ -365,7 +365,7 @@
       control_points: controlPoints,
       tunnel_width: TUNNEL_WIDTH,
       canvas_size: { width: CANVAS_W, height: CANVAS_H },
-      source: "human",
+      source: null,
       completed: state === "done_success",
       fail_reason: failReason,
       boundary_violations: boundaryViolations,
@@ -429,8 +429,6 @@
     draw();
   }
 
-  // --- Expose internals for Playwright agent access ------------------------
-  // The agent can read these to know where to drag.
   window.__tunnelGame = {
     getSegments: () => segments,
     getControlPoints: () => controlPoints,

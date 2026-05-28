@@ -1,0 +1,55 @@
+All 30 attempts (10 tunnels × 3) returned `state: "done_success"`. Every attempt's `source_tunnel` differs from its live `tunnelId` (cross-tunnel constraint satisfied by the solver). Every attempt also had `n_outside: 0` and `n_projected: 0`, meaning no warped point landed outside the live tunnel width, so the simple clip never fired.
+
+Per-tunnel summary (live tid → 3 attempts as `source_session / source_tunnel · n_outside / n_projected`):
+
+**Tunnel 0**
+- `a647e828-…b6eab6 / src_tid=6` · 0 / 0
+- `4a8aea2c-…2ae3b6dbc1 / src_tid=5` · 0 / 0
+- `890e87d1-…b940e39d81a / src_tid=8` · 0 / 0
+
+**Tunnel 1**
+- `3e29c082-…190581531 / src_tid=2` · 0 / 0
+- `3e29c082-…190581531 / src_tid=2` · 0 / 0
+- `fe16bf19-…f7e5e610688 / src_tid=3` · 0 / 0
+
+**Tunnel 2**
+- `7f888e78-…3fa06cf6e / src_tid=4` · 0 / 0
+- `98b9a6b7-…d73b65b6d / src_tid=9` · 0 / 0
+- `0f085a5c-…c05e98647 / src_tid=0` · 0 / 0
+
+**Tunnel 3**
+- `8d3a0046-…93e4303 / src_tid=4` · 0 / 0
+- `8d3a0046-…93e4303 / src_tid=4` · 0 / 0
+- `0f085a5c-…c05e98647 / src_tid=0` · 0 / 0
+
+**Tunnel 4**
+- `890e87d1-…b940e39d81a / src_tid=8` · 0 / 0
+- `d9827ddf-…d7ddedd8f / src_tid=2` · 0 / 0
+- `cdddd311-…46fa601a / src_tid=6` · 0 / 0
+
+**Tunnel 5**
+- `890e87d1-…b940e39d81a / src_tid=8` · 0 / 0
+- `0f085a5c-…c05e98647 / src_tid=0` · 0 / 0
+- `076265eb-…2c5079185 / src_tid=8` · 0 / 0
+
+**Tunnel 6**
+- `8d3a0046-…93e4303 / src_tid=4` · 0 / 0
+- `e77810ce-…b24dfd763 / src_tid=1` · 0 / 0
+- `2ff3d005-…685001aaca / src_tid=2` · 0 / 0
+
+**Tunnel 7**
+- `e77810ce-…b24dfd763 / src_tid=1` · 0 / 0
+- `98b9a6b7-…d73b65b6d / src_tid=9` · 0 / 0
+- `8016f555-…a4bd42b3e / src_tid=0` · 0 / 0
+
+**Tunnel 8**
+- `98b9a6b7-…d73b65b6d / src_tid=9` · 0 / 0
+- `65d26251-…d32665d4b / src_tid=9` · 0 / 0
+- `b1b8139e-…ec186b7bc / src_tid=5` · 0 / 0
+
+**Tunnel 9**
+- `3d5cc3ac-…cebcc413c / src_tid=1` · 0 / 0
+- `890e87d1-…b940e39d81a / src_tid=8` · 0 / 0
+- `b1b8139e-…ec186b7bc / src_tid=5` · 0 / 0
+
+Run complete: 30/30 saved to `data/warp_v1/` (paths returned by `/api/save_trajectory`), all cross-tunnel, no out-of-tunnel projections.

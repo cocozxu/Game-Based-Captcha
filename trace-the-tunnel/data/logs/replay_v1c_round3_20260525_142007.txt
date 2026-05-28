@@ -1,0 +1,19 @@
+`runAll(3)` completed. Per-tunnel state summary as returned (no fabrication):
+
+| Tunnel | Slot 0 | Slot 1 | Slot 2 |
+|---|---|---|---|
+| **0** | skipped_empty_bank | — | — |
+| **1** | skipped_empty_bank | — | — |
+| **2** | done_success (bank_size=1) | done_success | done_success |
+| **3** | done_success (bank_size=1) | done_success | done_success |
+| **4** | skipped_empty_bank | — | — |
+| **5** | **fail_after_retries** | fail_after_retries | fail_after_retries |
+| **6** | skipped_empty_bank | — | — |
+| **7** | done_success (bank_size=1) | done_success | done_success |
+| **8** | done_success (bank_size=1) | done_success | done_success |
+| **9** | skipped_empty_bank | — | — |
+
+Aggregate:
+- **4 tunnels** (2, 3, 7, 8) — all 3 replay slots saved to `replay_v1c/` (12 saves total).
+- **5 tunnels** (0, 1, 4, 6, 9) — exactly one `skipped_empty_bank` entry each, as expected.
+- **1 deviation**: tunnel **5** has a non-empty bank but all 3 slots returned `fail_after_retries` (4 retries each failed to reach `done_success`). This does not match the prompt's prediction of "5 of 10 tunnels (2, 3, 5, 7, 8) will produce successful saves" — only 4 did. The source trace for tunnel 5 is not replaying cleanly under the current geometry.

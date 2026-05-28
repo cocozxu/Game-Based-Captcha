@@ -1,0 +1,36 @@
+All 10 tunnels ran with 3 attempts each. Tunnel 1 returned `skipped_error` (expected — empty cross-tunnel pool). The other 9 tunnels each produced 3 successful saves to `data/warp_t1/`. Every source was tunnel 1, as constrained.
+
+## Per-tunnel summary
+
+| Live tid | Slot | State | source_session | source_tunnel | n_outside | n_projected |
+|---|---|---|---|---|---|---|
+| **0** | 0 | done_success | 954e611c…7794e | 1 | 7 | 7 |
+| **0** | 1 | done_success | 8013f8d5…84a6b | 1 | 27 | 27 |
+| **0** | 2 | done_success | dc9ead35…c3b99 | 1 | 24 | 24 |
+| **1** | 0 | **skipped_error** | — | — | — | — |
+| **2** | 0 | done_success | 22ae9ec7…b49b9 | 1 | 11 | 11 |
+| **2** | 1 | done_success | e77810ce…b24d763 | 1 | 0 | 0 |
+| **2** | 2 | done_success | 062e8703…7cac7e | 1 | 11 | 11 |
+| **3** | 0 | done_success | 4d69290f…f9b0ec8 | 1 | 8 | 8 |
+| **3** | 1 | done_success | 22ae9ec7…b49b9 | 1 | 11 | 11 |
+| **3** | 2 | done_success | 062e8703…7cac7e | 1 | 11 | 11 |
+| **4** | 0 | done_success | dc9ead35…c3b99 | 1 | 24 | 24 |
+| **4** | 1 | done_success | 4d69290f…f9b0ec8 | 1 | 8 | 8 |
+| **4** | 2 | done_success | 954e611c…7794e | 1 | 7 | 7 |
+| **5** | 0 | done_success | dc9ead35…c3b99 | 1 | 24 | 24 |
+| **5** | 1 | done_success | dc9ead35…c3b99 | 1 | 24 | 24 |
+| **5** | 2 | done_success | bdca8950…6afa74 | 1 | 22 | 22 |
+| **6** | 0 | done_success | 8013f8d5…84a6b | 1 | 27 | 27 |
+| **6** | 1 | done_success | 8013f8d5…84a6b | 1 | 27 | 27 |
+| **6** | 2 | done_success | 210a70e8…a78200a | 1 | 1 | 1 |
+| **7** | 0 | done_success | 210a70e8…a78200a | 1 | 1 | 1 |
+| **7** | 1 | done_success | e77810ce…b24d763 | 1 | 0 | 0 |
+| **7** | 2 | done_success | 062e8703…7cac7e | 1 | 11 | 11 |
+| **8** | 0 | done_success | e77810ce…b24d763 | 1 | 0 | 0 |
+| **8** | 1 | done_success | 8013f8d5…84a6b | 1 | 27 | 27 |
+| **8** | 2 | done_success | 954e611c…7794e | 1 | 7 | 7 |
+| **9** | 0 | done_success | 1c0e3c79…dd5633 | 1 | 1 | 1 |
+| **9** | 1 | done_success | e77810ce…b24d763 | 1 | 0 | 0 |
+| **9** | 2 | done_success | 954e611c…7794e | 1 | 7 | 7 |
+
+**Totals:** 27/30 saves succeeded across 9 tunnels; tunnel 1 short-circuited as expected. All saves written to `warp_t1/`. Every `source_tunnel` is 1 (confirming the allowlist restriction). 7 distinct tunnel-1 sources were drawn from the bank of 10.

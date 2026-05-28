@@ -1,0 +1,50 @@
+You are running the v1c variant of the replay experiment on the browser
+game at http://localhost:5050.
+
+Same in-page-dispatch replay strategy as v1 / v1b
+(experiments_replay/replay_solver.js installs window.__replay). The
+difference here is that the server's bank has been pre-restricted to
+only 5 total source traces — one each on tunnel_ids 2, 3, 5, 7, 8.
+Tunnels 0, 1, 4, 6, 9 will return an empty bank intentionally.
+
+The solver handles this: if /api/human_bank/<tid> returns an empty
+list, runOnce reports `error: "empty bank ..."` and runMany short-
+circuits the slot ("skipped_empty_bank") instead of retrying. This is
+expected behaviour — do not try to work around it.
+
+Do exactly the following, in order:
+
+  1. browser_navigate to http://localhost:5050 and wait for the canvas
+     to appear.
+
+  2. Read experiments_replay/replay_solver.js with the Read tool.
+
+  3. Inject its contents into the page via browser_evaluate. After
+     this, `typeof window.__replay` should be 'object'.
+
+  4. Run all 10 tunnels with 3 attempts each:
+
+       await window.__replay.runAll(3)
+
+     Expected: 5 of 10 tunnels (2, 3, 5, 7, 8) will produce successful
+     saves; the other 5 will return "skipped_empty_bank" on their
+     first slot and skip the rest. This is the point of the
+     experiment.
+
+  5. Report the per-tunnel state summary returned by the call. Do not
+     fabricate numbers — only what runAll returned. The 5 skipped
+     tunnels should each have exactly one entry of state
+     "skipped_empty_bank".
+
+Rules:
+- Do not modify replay_solver.js.
+- Do not call solver routines from experiments/ (that is the visual
+  agent).
+- Do not attempt to bypass the empty-bank restriction by writing your
+  own path-synthesis fallback for the uncovered tunnels — the empty
+  banks are the experiment.
+- Do not write to data/human/. Saves are forced to data/replay_v1c/
+  by the server in experiment mode.
+
+Tools available: browser_navigate, browser_evaluate, browser_run_code_unsafe,
+browser_snapshot, browser_click, Read, Bash.

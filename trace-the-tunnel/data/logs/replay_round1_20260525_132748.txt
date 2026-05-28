@@ -1,0 +1,16 @@
+All 10 tunnels completed in 70.3 s. Per-tunnel state summary (3 attempts each):
+
+| Tunnel | Attempt 1 | Attempt 2 | Attempt 3 | Bank size |
+|--------|-----------|-----------|-----------|-----------|
+| 0 | done_success | done_success | done_success | 18 |
+| 1 | done_success | done_success | **fail_after_retries** | 18 |
+| 2 | done_success | done_success | done_success | 18 |
+| 3 | done_success | done_success | done_success | 17 |
+| 4 | done_success | done_success | done_success | 17 |
+| 5 | done_success | done_success | done_success | 17 |
+| 6 | done_success | **fail_after_retries** | done_success | 17 |
+| 7 | done_success | done_success | done_success | 16 |
+| 8 | done_success | done_success | done_success | 17 |
+| 9 | done_success | done_success | done_success | 17 |
+
+**Aggregate:** 28/30 attempts succeeded (93.3%). The two failures (tunnel 1 slot 2, tunnel 6 slot 1) exhausted 4 internal retries within `runMany` without reaching `done_success`. All successful attempts saved to `data/replay/` (28 files written). For successes, `live_event_count` matched `source_event_count` exactly, except tunnel 7 attempt 1 (188 live vs 189 source — last event skipped after the terminal state was reached).

@@ -1,0 +1,32 @@
+Run complete. As expected, 9/10 tunnels saved successfully and tunnel 1 short-circuited as `skipped_error`. Every successful source had `source_tunnel = 1`, confirming the t1-only bank constraint. Summary per tunnel:
+
+**Tunnel 0** — 3/3 success → saves `0867428a`, `116b36c7`, `d41cdae7`
+- src `954e611c` (166 ev) · `8013f8d5` (189 ev) · `dc9ead35` (196 ev); n_outside/n_projected: 7/7, 27/27, 24/24
+
+**Tunnel 1** — `skipped_error` on slot 0 (no cross-tunnel source available; pool empty by design)
+
+**Tunnel 2** — 3/3 → `8f513866`, `0716d2e7`, `e222da37`
+- src `22ae9ec7` (173) · `e77810ce` (184) · `062e8703` (167); outside/projected: 11/11, 0/0, 11/11
+
+**Tunnel 3** — 3/3 → `f34c5e2f`, `bca6bbfc`, `5a0db9b9`
+- src `4d69290f` (172) · `22ae9ec7` (173) · `062e8703` (167); 8/8, 11/11, 11/11
+
+**Tunnel 4** — 3/3 → `063ae2cb`, `39eb63b4`, `a61279f0`
+- src `dc9ead35` (196) · `4d69290f` (172) · `954e611c` (166); 24/24, 8/8, 7/7
+
+**Tunnel 5** — 3/3 → `ed6505e5`, `59d4d94f`, `0be5c8ac`
+- src `dc9ead35` (×2) · `bdca8950` (210); 24/24, 24/24, 22/22
+
+**Tunnel 6** — 3/3 → `8d769bc7`, `c458dcb5`, `525675e9`
+- src `8013f8d5` (×2) · `210a70e8` (176); 27/27, 27/27, 1/1
+
+**Tunnel 7** — 3/3 → `d4f4ff3d`, `c0a9a113`, `e177b90c`
+- src `210a70e8` · `e77810ce` · `062e8703`; 1/1, 0/0, 11/11
+
+**Tunnel 8** — 3/3 → `8eac324c`, `6c0c20bf`, `ce447bc6`
+- src `e77810ce` · `8013f8d5` · `954e611c`; 0/0, 27/27, 7/7
+
+**Tunnel 9** — 3/3 → `ae4c184b`, `56a2bdb7`, `43d589f5`
+- src `1c0e3c79` (188) · `e77810ce` · `954e611c`; 1/1, 0/0, 7/7
+
+Total: 27 successful saves under `warp_t1/`, 1 expected skip. All sources confirmed `source_tunnel = 1`.
