@@ -136,13 +136,19 @@
   let tunnelPool = [];   // [{tunnel_id, seed}, ...]
   let tunnelIndex = 0;   // which tunnel we're currently on
   let currentTunnelId = null;
+  let exposeDebug = false; // set from /api/mode at startup
 
   async function fetchTunnelPool() {
     try {
-      const resp = await fetch("/api/tunnels");
-      const data = await resp.json();
-      tunnelPool = data.tunnels || [];
-      console.log(`[tunnel] loaded ${tunnelPool.length} tunnels from server`);
+      const [tunnelsResp, modeResp] = await Promise.all([
+        fetch("/api/tunnels"),
+        fetch("/api/mode"),
+      ]);
+      const tunnelsData = await tunnelsResp.json();
+      const modeData = await modeResp.json();
+      tunnelPool = tunnelsData.tunnels || [];
+      exposeDebug = !!modeData.expose_debug;
+      console.log(`[tunnel] loaded ${tunnelPool.length} tunnels from server, expose_debug=${exposeDebug}`);
     } catch (e) {
       console.warn("[tunnel] server unavailable, using random seeds");
       // fallback: generate some random tunnels locally
@@ -179,8 +185,9 @@
       `  {x:${e.x.toFixed(1)}, y:${e.y.toFixed(1)}, t:${e.timestamp.toFixed(1)}, type:${e.event_type}}`
     ).join("\n");
 
+    const seedField = exposeDebug ? `  seed: ${tunnelSeed}` : "";
     sessionDisplay.textContent =
-      `session_id: ${sessionId}\ntunnel_id: ${currentTunnelId ?? "?"} / ${tunnelPool.length}  seed: ${tunnelSeed}\nevents: ${events.length}\n--- first events ---\n${first3 || "  (none)"}\n--- last events ---\n${last3 || "  (none)"}`;
+      `session_id: ${sessionId}\ntunnel_id: ${currentTunnelId ?? "?"} / ${tunnelPool.length}${seedField}\nevents: ${events.length}\n--- first events ---\n${first3 || "  (none)"}\n--- last events ---\n${last3 || "  (none)"}`;
   }
 
   // --- Drawing -------------------------------------------------------------
@@ -429,39 +436,44 @@
     draw();
   }
 
-  window.__tunnelGame = {
-    getSegments: () => segments,
-    getControlPoints: () => controlPoints,
-    getCenterline: () => centerlinePts,
-    getTunnelWidth: () => TUNNEL_WIDTH,
-    getStartPos: () => startPos(),
-    getEndPos: () => endPos(),
-    getState: () => state,
-    getSessionData: () => buildSessionJSON(),
-    getCanvasRect: () => canvas.getBoundingClientRect(),
-    getTunnelId: () => currentTunnelId,
-    getTunnelIndex: () => tunnelIndex,
-    getTunnelPool: () => tunnelPool,
-    loadTunnel: (id) => {
-      // Allow agent/caller to jump to a specific tunnel by id
-      const entry = tunnelPool.find(t => t.tunnel_id === id);
-      if (entry) {
-        currentTunnelId = entry.tunnel_id;
-        tunnelSeed = entry.seed;
-        sessionId = crypto.randomUUID();
-        events = [];
-        tracePoints = [];
-        boundaryViolations = 0;
-        failReason = null;
-        state = "ready";
-        generateTunnel(tunnelSeed);
-        draw();
-        return true;
-      }
-      return false;
-    },
-  };
+  function mountDebugHooks() {
+    window.__tunnelGame = {
+      getSegments: () => segments,
+      getControlPoints: () => controlPoints,
+      getCenterline: () => centerlinePts,
+      getTunnelWidth: () => TUNNEL_WIDTH,
+      getStartPos: () => startPos(),
+      getEndPos: () => endPos(),
+      getState: () => state,
+      getSessionData: () => buildSessionJSON(),
+      getCanvasRect: () => canvas.getBoundingClientRect(),
+      getTunnelId: () => currentTunnelId,
+      getTunnelIndex: () => tunnelIndex,
+      getTunnelPool: () => tunnelPool,
+      loadTunnel: (id) => {
+        // Allow agent/caller to jump to a specific tunnel by id
+        const entry = tunnelPool.find(t => t.tunnel_id === id);
+        if (entry) {
+          currentTunnelId = entry.tunnel_id;
+          tunnelSeed = entry.seed;
+          sessionId = crypto.randomUUID();
+          events = [];
+          tracePoints = [];
+          boundaryViolations = 0;
+          failReason = null;
+          state = "ready";
+          generateTunnel(tunnelSeed);
+          draw();
+          return true;
+        }
+        return false;
+      },
+    };
+  }
 
   // --- Init ----------------------------------------------------------------
-  fetchTunnelPool().then(() => reset());
+  fetchTunnelPool().then(() => {
+    if (exposeDebug) mountDebugHooks();
+    reset();
+  });
 })();

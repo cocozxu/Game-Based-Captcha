@@ -1,0 +1,241 @@
+{
+  "experiment": "gen_haiku_split_a",
+  "split_id": "split_a",
+  "model": "haiku",
+  "demo": [
+    0,
+    1,
+    4
+  ],
+  "test": [
+    2,
+    3,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "traces_per_test_tunnel": 10,
+  "started": 1780173812.32164,
+  "finished": 1780173813.2753239,
+  "counts": {
+    "success": 0,
+    "solver_error": 21,
+    "malformed": 0,
+    "captcha_reject": 0
+  },
+  "n_attempts": 21,
+  "attempts": [
+    {
+      "tunnel_id": 2,
+      "seed": 0,
+      "stage": "solver_error",
+      "reason": "KeyError: 0\nTraceback (most recent call last):\n  File \"/Users/jc/Desktop/348k_final/Game-Based-Captcha/trace-the-tunnel/experiments_generalize/run_solver.py\", line 192, in run_attempt\n    events = fut.result(timeout=timeout_s)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jc/.pyenv/versions/3.11.7/lib/python3.11/concurrent/futures/_base.py\", line 449, in result\n    return self.__get_result()\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jc/.pyenv/versions/3.11.7/lib/python3.11/concurrent/futures/_base.py\", line 401, in __get_result\n    raise self._exception\nKeyError: 0\n",
+      "saved": null,
+      "n_dispatched": null,
+      "n_events": null,
+      "duration_s": 0.002
+    },
+    {
+      "tunnel_id": 2,
+      "seed": 1,
+      "stage": "solver_error",
+      "reason": "KeyError: 0\nTraceback (most recent call last):\n  File \"/Users/jc/Desktop/348k_final/Game-Based-Captcha/trace-the-tunnel/experiments_generalize/run_solver.py\", line 192, in run_attempt\n    events = fut.result(timeout=timeout_s)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jc/.pyenv/versions/3.11.7/lib/python3.11/concurrent/futures/_base.py\", line 456, in result\n    return self.__get_result()\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jc/.pyenv/versions/3.11.7/lib/python3.11/concurrent/futures/_base.py\", line 401, in __get_result\n    raise self._exception\nKeyError: 0\n",
+      "saved": null,
+      "n_dispatched": null,
+      "n_events": null,
+      "duration_s": 0.0
+    },
+    {
+      "tunnel_id": 2,
+      "seed": 2,
+      "stage": "solver_error",
+      "reason": "KeyError: 0\nTraceback (most recent call last):\n  File \"/Users/jc/Desktop/348k_final/Game-Based-Captcha/trace-the-tunnel/experiments_generalize/run_solver.py\", line 192, in run_attempt\n    events = fut.result(timeout=timeout_s)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jc/.pyenv/versions/3.11.7/lib/python3.11/concurrent/futures/_base.py\", line 456, in result\n    return self.__get_result()\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jc/.pyenv/versions/3.11.7/lib/python3.11/concurrent/futures/_base.py\", line 401, in __get_result\n    raise self._exception\nKeyError: 0\n",
+      "saved": null,
+      "n_dispatched": null,
+      "n_events": null,
+      "duration_s": 0.0
+    },
+    {
+      "tunnel_id": 3,
+      "seed": 0,
+      "stage": "solver_error",
+      "reason": "KeyError: 0\nTraceback (most recent call last):\n  File \"/Users/jc/Desktop/348k_final/Game-Based-Captcha/trace-the-tunnel/experiments_generalize/run_solver.py\", line 192, in run_attempt\n    events = fut.result(timeout=timeout_s)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jc/.pyenv/versions/3.11.7/lib/python3.11/concurrent/futures/_base.py\", line 456, in result\n    return self.__get_result()\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jc/.pyenv/versions/3.11.7/lib/python3.11/concurrent/futures/_base.py\", line 401, in __get_result\n    raise self._exception\nKeyError: 0\n",
+      "saved": null,
+      "n_dispatched": null,
+      "n_events": null,
+      "duration_s": 0.0
+    },
+    {
+      "tunnel_id": 3,
+      "seed": 1,
+      "stage": "solver_error",
+      "reason": "KeyError: 0\nTraceback (most recent call last):\n  File \"/Users/jc/Desktop/348k_final/Game-Based-Captcha/trace-the-tunnel/experiments_generalize/run_solver.py\", line 192, in run_attempt\n    events = fut.result(timeout=timeout_s)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jc/.pyenv/versions/3.11.7/lib/python3.11/concurrent/futures/_base.py\", line 456, in result\n    return self.__get_result()\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jc/.pyenv/versions/3.11.7/lib/python3.11/concurrent/futures/_base.py\", line 401, in __get_result\n    raise self._exception\nKeyError: 0\n",
+      "saved": null,
+      "n_dispatched": null,
+      "n_events": null,
+      "duration_s": 0.0
+    },
+    {
+      "tunnel_id": 3,
+      "seed": 2,
+      "stage": "solver_error",
+      "reason": "KeyError: 0\nTraceback (most recent call last):\n  File \"/Users/jc/Desktop/348k_final/Game-Based-Captcha/trace-the-tunnel/experiments_generalize/run_solver.py\", line 192, in run_attempt\n    events = fut.result(timeout=timeout_s)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jc/.pyenv/versions/3.11.7/lib/python3.11/concurrent/futures/_base.py\", line 456, in result\n    return self.__get_result()\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jc/.pyenv/versions/3.11.7/lib/python3.11/concurrent/futures/_base.py\", line 401, in __get_result\n    raise self._exception\nKeyError: 0\n",
+      "saved": null,
+      "n_dispatched": null,
+      "n_events": null,
+      "duration_s": 0.0
+    },
+    {
+      "tunnel_id": 5,
+      "seed": 0,
+      "stage": "solver_error",
+      "reason": "KeyError: 0\nTraceback (most recent call last):\n  File \"/Users/jc/Desktop/348k_final/Game-Based-Captcha/trace-the-tunnel/experiments_generalize/run_solver.py\", line 192, in run_attempt\n    events = fut.result(timeout=timeout_s)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jc/.pyenv/versions/3.11.7/lib/python3.11/concurrent/futures/_base.py\", line 456, in result\n    return self.__get_result()\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jc/.pyenv/versions/3.11.7/lib/python3.11/concurrent/futures/_base.py\", line 401, in __get_result\n    raise self._exception\nKeyError: 0\n",
+      "saved": null,
+      "n_dispatched": null,
+      "n_events": null,
+      "duration_s": 0.0
+    },
+    {
+      "tunnel_id": 5,
+      "seed": 1,
+      "stage": "solver_error",
+      "reason": "KeyError: 0\nTraceback (most recent call last):\n  File \"/Users/jc/Desktop/348k_final/Game-Based-Captcha/trace-the-tunnel/experiments_generalize/run_solver.py\", line 192, in run_attempt\n    events = fut.result(timeout=timeout_s)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jc/.pyenv/versions/3.11.7/lib/python3.11/concurrent/futures/_base.py\", line 456, in result\n    return self.__get_result()\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jc/.pyenv/versions/3.11.7/lib/python3.11/concurrent/futures/_base.py\", line 401, in __get_result\n    raise self._exception\nKeyError: 0\n",
+      "saved": null,
+      "n_dispatched": null,
+      "n_events": null,
+      "duration_s": 0.0
+    },
+    {
+      "tunnel_id": 5,
+      "seed": 2,
+      "stage": "solver_error",
+      "reason": "KeyError: 0\nTraceback (most recent call last):\n  File \"/Users/jc/Desktop/348k_final/Game-Based-Captcha/trace-the-tunnel/experiments_generalize/run_solver.py\", line 192, in run_attempt\n    events = fut.result(timeout=timeout_s)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jc/.pyenv/versions/3.11.7/lib/python3.11/concurrent/futures/_base.py\", line 456, in result\n    return self.__get_result()\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jc/.pyenv/versions/3.11.7/lib/python3.11/concurrent/futures/_base.py\", line 401, in __get_result\n    raise self._exception\nKeyError: 0\n",
+      "saved": null,
+      "n_dispatched": null,
+      "n_events": null,
+      "duration_s": 0.0
+    },
+    {
+      "tunnel_id": 6,
+      "seed": 0,
+      "stage": "solver_error",
+      "reason": "KeyError: 0\nTraceback (most recent call last):\n  File \"/Users/jc/Desktop/348k_final/Game-Based-Captcha/trace-the-tunnel/experiments_generalize/run_solver.py\", line 192, in run_attempt\n    events = fut.result(timeout=timeout_s)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jc/.pyenv/versions/3.11.7/lib/python3.11/concurrent/futures/_base.py\", line 456, in result\n    return self.__get_result()\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jc/.pyenv/versions/3.11.7/lib/python3.11/concurrent/futures/_base.py\", line 401, in __get_result\n    raise self._exception\nKeyError: 0\n",
+      "saved": null,
+      "n_dispatched": null,
+      "n_events": null,
+      "duration_s": 0.0
+    },
+    {
+      "tunnel_id": 6,
+      "seed": 1,
+      "stage": "solver_error",
+      "reason": "KeyError: 0\nTraceback (most recent call last):\n  File \"/Users/jc/Desktop/348k_final/Game-Based-Captcha/trace-the-tunnel/experiments_generalize/run_solver.py\", line 192, in run_attempt\n    events = fut.result(timeout=timeout_s)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jc/.pyenv/versions/3.11.7/lib/python3.11/concurrent/futures/_base.py\", line 456, in result\n    return self.__get_result()\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jc/.pyenv/versions/3.11.7/lib/python3.11/concurrent/futures/_base.py\", line 401, in __get_result\n    raise self._exception\nKeyError: 0\n",
+      "saved": null,
+      "n_dispatched": null,
+      "n_events": null,
+      "duration_s": 0.0
+    },
+    {
+      "tunnel_id": 6,
+      "seed": 2,
+      "stage": "solver_error",
+      "reason": "KeyError: 0\nTraceback (most recent call last):\n  File \"/Users/jc/Desktop/348k_final/Game-Based-Captcha/trace-the-tunnel/experiments_generalize/run_solver.py\", line 192, in run_attempt\n    events = fut.result(timeout=timeout_s)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jc/.pyenv/versions/3.11.7/lib/python3.11/concurrent/futures/_base.py\", line 456, in result\n    return self.__get_result()\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jc/.pyenv/versions/3.11.7/lib/python3.11/concurrent/futures/_base.py\", line 401, in __get_result\n    raise self._exception\nKeyError: 0\n",
+      "saved": null,
+      "n_dispatched": null,
+      "n_events": null,
+      "duration_s": 0.0
+    },
+    {
+      "tunnel_id": 7,
+      "seed": 0,
+      "stage": "solver_error",
+      "reason": "KeyError: 0\nTraceback (most recent call last):\n  File \"/Users/jc/Desktop/348k_final/Game-Based-Captcha/trace-the-tunnel/experiments_generalize/run_solver.py\", line 192, in run_attempt\n    events = fut.result(timeout=timeout_s)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jc/.pyenv/versions/3.11.7/lib/python3.11/concurrent/futures/_base.py\", line 456, in result\n    return self.__get_result()\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jc/.pyenv/versions/3.11.7/lib/python3.11/concurrent/futures/_base.py\", line 401, in __get_result\n    raise self._exception\nKeyError: 0\n",
+      "saved": null,
+      "n_dispatched": null,
+      "n_events": null,
+      "duration_s": 0.0
+    },
+    {
+      "tunnel_id": 7,
+      "seed": 1,
+      "stage": "solver_error",
+      "reason": "KeyError: 0\nTraceback (most recent call last):\n  File \"/Users/jc/Desktop/348k_final/Game-Based-Captcha/trace-the-tunnel/experiments_generalize/run_solver.py\", line 192, in run_attempt\n    events = fut.result(timeout=timeout_s)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jc/.pyenv/versions/3.11.7/lib/python3.11/concurrent/futures/_base.py\", line 456, in result\n    return self.__get_result()\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jc/.pyenv/versions/3.11.7/lib/python3.11/concurrent/futures/_base.py\", line 401, in __get_result\n    raise self._exception\nKeyError: 0\n",
+      "saved": null,
+      "n_dispatched": null,
+      "n_events": null,
+      "duration_s": 0.0
+    },
+    {
+      "tunnel_id": 7,
+      "seed": 2,
+      "stage": "solver_error",
+      "reason": "KeyError: 0\nTraceback (most recent call last):\n  File \"/Users/jc/Desktop/348k_final/Game-Based-Captcha/trace-the-tunnel/experiments_generalize/run_solver.py\", line 192, in run_attempt\n    events = fut.result(timeout=timeout_s)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jc/.pyenv/versions/3.11.7/lib/python3.11/concurrent/futures/_base.py\", line 456, in result\n    return self.__get_result()\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jc/.pyenv/versions/3.11.7/lib/python3.11/concurrent/futures/_base.py\", line 401, in __get_result\n    raise self._exception\nKeyError: 0\n",
+      "saved": null,
+      "n_dispatched": null,
+      "n_events": null,
+      "duration_s": 0.0
+    },
+    {
+      "tunnel_id": 8,
+      "seed": 0,
+      "stage": "solver_error",
+      "reason": "KeyError: 0\nTraceback (most recent call last):\n  File \"/Users/jc/Desktop/348k_final/Game-Based-Captcha/trace-the-tunnel/experiments_generalize/run_solver.py\", line 192, in run_attempt\n    events = fut.result(timeout=timeout_s)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jc/.pyenv/versions/3.11.7/lib/python3.11/concurrent/futures/_base.py\", line 456, in result\n    return self.__get_result()\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jc/.pyenv/versions/3.11.7/lib/python3.11/concurrent/futures/_base.py\", line 401, in __get_result\n    raise self._exception\nKeyError: 0\n",
+      "saved": null,
+      "n_dispatched": null,
+      "n_events": null,
+      "duration_s": 0.0
+    },
+    {
+      "tunnel_id": 8,
+      "seed": 1,
+      "stage": "solver_error",
+      "reason": "KeyError: 0\nTraceback (most recent call last):\n  File \"/Users/jc/Desktop/348k_final/Game-Based-Captcha/trace-the-tunnel/experiments_generalize/run_solver.py\", line 192, in run_attempt\n    events = fut.result(timeout=timeout_s)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jc/.pyenv/versions/3.11.7/lib/python3.11/concurrent/futures/_base.py\", line 456, in result\n    return self.__get_result()\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jc/.pyenv/versions/3.11.7/lib/python3.11/concurrent/futures/_base.py\", line 401, in __get_result\n    raise self._exception\nKeyError: 0\n",
+      "saved": null,
+      "n_dispatched": null,
+      "n_events": null,
+      "duration_s": 0.0
+    },
+    {
+      "tunnel_id": 8,
+      "seed": 2,
+      "stage": "solver_error",
+      "reason": "KeyError: 0\nTraceback (most recent call last):\n  File \"/Users/jc/Desktop/348k_final/Game-Based-Captcha/trace-the-tunnel/experiments_generalize/run_solver.py\", line 192, in run_attempt\n    events = fut.result(timeout=timeout_s)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jc/.pyenv/versions/3.11.7/lib/python3.11/concurrent/futures/_base.py\", line 456, in result\n    return self.__get_result()\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jc/.pyenv/versions/3.11.7/lib/python3.11/concurrent/futures/_base.py\", line 401, in __get_result\n    raise self._exception\nKeyError: 0\n",
+      "saved": null,
+      "n_dispatched": null,
+      "n_events": null,
+      "duration_s": 0.0
+    },
+    {
+      "tunnel_id": 9,
+      "seed": 0,
+      "stage": "solver_error",
+      "reason": "KeyError: 0\nTraceback (most recent call last):\n  File \"/Users/jc/Desktop/348k_final/Game-Based-Captcha/trace-the-tunnel/experiments_generalize/run_solver.py\", line 192, in run_attempt\n    events = fut.result(timeout=timeout_s)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jc/.pyenv/versions/3.11.7/lib/python3.11/concurrent/futures/_base.py\", line 456, in result\n    return self.__get_result()\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jc/.pyenv/versions/3.11.7/lib/python3.11/concurrent/futures/_base.py\", line 401, in __get_result\n    raise self._exception\nKeyError: 0\n",
+      "saved": null,
+      "n_dispatched": null,
+      "n_events": null,
+      "duration_s": 0.0
+    },
+    {
+      "tunnel_id": 9,
+      "seed": 1,
+      "stage": "solver_error",
+      "reason": "KeyError: 0\nTraceback (most recent call last):\n  File \"/Users/jc/Desktop/348k_final/Game-Based-Captcha/trace-the-tunnel/experiments_generalize/run_solver.py\", line 192, in run_attempt\n    events = fut.result(timeout=timeout_s)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jc/.pyenv/versions/3.11.7/lib/python3.11/concurrent/futures/_base.py\", line 456, in result\n    return self.__get_result()\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jc/.pyenv/versions/3.11.7/lib/python3.11/concurrent/futures/_base.py\", line 401, in __get_result\n    raise self._exception\nKeyError: 0\n",
+      "saved": null,
+      "n_dispatched": null,
+      "n_events": null,
+      "duration_s": 0.0
+    },
+    {
+      "tunnel_id": 9,
+      "seed": 2,
+      "stage": "solver_error",
+      "reason": "KeyError: 0\nTraceback (most recent call last):\n  File \"/Users/jc/Desktop/348k_final/Game-Based-Captcha/trace-the-tunnel/experiments_generalize/run_solver.py\", line 192, in run_attempt\n    events = fut.result(timeout=timeout_s)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jc/.pyenv/versions/3.11.7/lib/python3.11/concurrent/futures/_base.py\", line 456, in result\n    return self.__get_result()\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/Users/jc/.pyenv/versions/3.11.7/lib/python3.11/concurrent/futures/_base.py\", line 401, in __get_result\n    raise self._exception\nKeyError: 0\n",
+      "saved": null,
+      "n_dispatched": null,
+      "n_events": null,
+      "duration_s": 0.0
+    }
+  ]
+}

@@ -1,0 +1,563 @@
+{
+  "experiment": "replay_cdp",
+  "started": 1780035895.097923,
+  "finished": 1780036160.042915,
+  "per_tunnel": 8,
+  "seed": 42,
+  "n_saved": 79,
+  "results": [
+    {
+      "tunnel_id": 0,
+      "slot": 0,
+      "source_session": "0f085a5c-4bc7-4650-94de-3aec05e98647",
+      "saved": "fd0539e4-024f-4f77-8b97-b1d0e0f358c8.json",
+      "n_dispatched": 168
+    },
+    {
+      "tunnel_id": 0,
+      "slot": 1,
+      "source_session": "0f085a5c-4bc7-4650-94de-3aec05e98647",
+      "saved": "e086971d-18df-44d0-a177-7f9e7b63d336.json",
+      "n_dispatched": 168
+    },
+    {
+      "tunnel_id": 0,
+      "slot": 2,
+      "source_session": "0f085a5c-4bc7-4650-94de-3aec05e98647",
+      "saved": "80afd1aa-f235-4c9e-8889-5ab3d9fea514.json",
+      "n_dispatched": 168
+    },
+    {
+      "tunnel_id": 0,
+      "slot": 3,
+      "source_session": "0f085a5c-4bc7-4650-94de-3aec05e98647",
+      "saved": "5f49ec5b-1405-4876-b0de-ba783d00cc99.json",
+      "n_dispatched": 168
+    },
+    {
+      "tunnel_id": 0,
+      "slot": 4,
+      "source_session": "0f085a5c-4bc7-4650-94de-3aec05e98647",
+      "saved": "04abd0d3-e1a4-4862-b342-f914262525bb.json",
+      "n_dispatched": 168
+    },
+    {
+      "tunnel_id": 0,
+      "slot": 5,
+      "source_session": "0f085a5c-4bc7-4650-94de-3aec05e98647",
+      "saved": "c3ce6aa2-7d1b-4dde-bf94-9c0d064970e7.json",
+      "n_dispatched": 168
+    },
+    {
+      "tunnel_id": 0,
+      "slot": 6,
+      "source_session": "0f085a5c-4bc7-4650-94de-3aec05e98647",
+      "saved": "2d69f3a6-5f3f-411f-b7fd-7ac5755be96a.json",
+      "n_dispatched": 168
+    },
+    {
+      "tunnel_id": 0,
+      "slot": 7,
+      "source_session": "0f085a5c-4bc7-4650-94de-3aec05e98647",
+      "saved": "e5d5c379-fefc-47e4-b3e6-483ac4d5594a.json",
+      "n_dispatched": 168
+    },
+    {
+      "tunnel_id": 1,
+      "slot": 0,
+      "source_session": "25cfab38-6cd6-45ae-a72f-4e63c5e6b7d2",
+      "saved": "0710c64a-8010-48d0-b4a8-0cd64c1e1983.json",
+      "n_dispatched": 157
+    },
+    {
+      "tunnel_id": 1,
+      "slot": 1,
+      "source_session": "e77810ce-f7fc-46fe-a805-f2cb24dfd763",
+      "saved": "a38355b3-78be-4c34-9a3c-3f4001da9001.json",
+      "n_dispatched": 184
+    },
+    {
+      "tunnel_id": 1,
+      "slot": 2,
+      "source_session": "e77810ce-f7fc-46fe-a805-f2cb24dfd763",
+      "saved": "e4ebd3bb-3783-47e2-b0d9-0834f819b1ef.json",
+      "n_dispatched": 184
+    },
+    {
+      "tunnel_id": 1,
+      "slot": 3,
+      "source_session": "25cfab38-6cd6-45ae-a72f-4e63c5e6b7d2",
+      "saved": "c69524d9-ed2a-40fd-83dc-9eb56b4ec28a.json",
+      "n_dispatched": 157
+    },
+    {
+      "tunnel_id": 1,
+      "slot": 4,
+      "source_session": "e77810ce-f7fc-46fe-a805-f2cb24dfd763",
+      "saved": "169f2e21-2f12-471a-93b6-e332cf6267fb.json",
+      "n_dispatched": 184
+    },
+    {
+      "tunnel_id": 1,
+      "slot": 5,
+      "source_session": "25cfab38-6cd6-45ae-a72f-4e63c5e6b7d2",
+      "saved": "75ecd23b-a321-4d2c-8c40-254ef85faa70.json",
+      "n_dispatched": 157
+    },
+    {
+      "tunnel_id": 1,
+      "slot": 6,
+      "source_session": "e77810ce-f7fc-46fe-a805-f2cb24dfd763",
+      "saved": "4c9eb83b-343e-491e-9917-c86e23497168.json",
+      "n_dispatched": 184
+    },
+    {
+      "tunnel_id": 1,
+      "slot": 7,
+      "source_session": "e77810ce-f7fc-46fe-a805-f2cb24dfd763",
+      "saved": "6aab1a77-c910-41e3-8349-e9173463f68c.json",
+      "n_dispatched": 184
+    },
+    {
+      "tunnel_id": 2,
+      "slot": 0,
+      "source_session": "d9827ddf-cc63-4b22-800f-c44d7ddedd8f",
+      "saved": "8136fc9d-2ed9-49f0-8a43-5f033acede06.json",
+      "n_dispatched": 158
+    },
+    {
+      "tunnel_id": 2,
+      "slot": 1,
+      "source_session": "d9827ddf-cc63-4b22-800f-c44d7ddedd8f",
+      "saved": "ec22d6c8-4d27-49b2-9999-0c024ea2b5cc.json",
+      "n_dispatched": 158
+    },
+    {
+      "tunnel_id": 2,
+      "slot": 2,
+      "source_session": "3e29c082-ff1d-4720-b9c1-c56190581531",
+      "saved": "f50a617a-bed4-4d5d-9935-761ce8b2a84c.json",
+      "n_dispatched": 153
+    },
+    {
+      "tunnel_id": 2,
+      "slot": 3,
+      "source_session": "2ff3d005-66e4-47e5-8a93-d1685001aaca",
+      "saved": "5e509d58-afed-4c71-b9e6-607ea68b2e29.json",
+      "n_dispatched": 161
+    },
+    {
+      "tunnel_id": 2,
+      "slot": 4,
+      "source_session": "3e29c082-ff1d-4720-b9c1-c56190581531",
+      "saved": "e12f5994-435c-4947-befc-98d8a906059e.json",
+      "n_dispatched": 153
+    },
+    {
+      "tunnel_id": 2,
+      "slot": 5,
+      "source_session": "d9827ddf-cc63-4b22-800f-c44d7ddedd8f",
+      "saved": "4ad44cb2-d535-457a-8e1d-ec366ed025f2.json",
+      "n_dispatched": 158
+    },
+    {
+      "tunnel_id": 2,
+      "slot": 6,
+      "source_session": "3e29c082-ff1d-4720-b9c1-c56190581531",
+      "saved": "490b0427-1e47-4114-9a4f-a087dee4130d.json",
+      "n_dispatched": 153
+    },
+    {
+      "tunnel_id": 2,
+      "slot": 7,
+      "source_session": "2ff3d005-66e4-47e5-8a93-d1685001aaca",
+      "saved": "1147d01b-dc7a-4ac9-bf98-b959a3566434.json",
+      "n_dispatched": 161
+    },
+    {
+      "tunnel_id": 3,
+      "slot": 0,
+      "source_session": "02612c62-c385-479f-839e-95b35fbf2506",
+      "saved": "c64d037b-4343-45e0-bcfb-ff00cfd1b03c.json",
+      "n_dispatched": 129
+    },
+    {
+      "tunnel_id": 3,
+      "slot": 1,
+      "source_session": "fe16bf19-9e26-4f62-bdc3-0f7e5e610688",
+      "saved": "abf89b44-a805-42a7-90a6-c6df2d881dd4.json",
+      "n_dispatched": 150
+    },
+    {
+      "tunnel_id": 3,
+      "slot": 2,
+      "source_session": "046f1712-2dda-44ef-bc21-8128d910a59a",
+      "saved": "d3b5e883-1376-43db-a3cf-0f912d1b2d75.json",
+      "n_dispatched": 169
+    },
+    {
+      "tunnel_id": 3,
+      "slot": 3,
+      "source_session": "046f1712-2dda-44ef-bc21-8128d910a59a",
+      "saved": "3d800287-be99-425a-8121-e2af281a2da2.json",
+      "n_dispatched": 169
+    },
+    {
+      "tunnel_id": 3,
+      "slot": 4,
+      "source_session": "046f1712-2dda-44ef-bc21-8128d910a59a",
+      "saved": "d336f255-87f4-45e0-a6f9-ce24b59a7caa.json",
+      "n_dispatched": 169
+    },
+    {
+      "tunnel_id": 3,
+      "slot": 5,
+      "source_session": "02612c62-c385-479f-839e-95b35fbf2506",
+      "saved": "1e56f02b-6571-4e71-8917-13cfb68a9f95.json",
+      "n_dispatched": 129
+    },
+    {
+      "tunnel_id": 3,
+      "slot": 6,
+      "source_session": "02612c62-c385-479f-839e-95b35fbf2506",
+      "saved": "c38c9fdc-886a-476f-90ce-3fe41f6979e7.json",
+      "n_dispatched": 129
+    },
+    {
+      "tunnel_id": 3,
+      "slot": 7,
+      "source_session": "046f1712-2dda-44ef-bc21-8128d910a59a",
+      "saved": "1bd02971-03d5-436a-879a-0e189b6fbff7.json",
+      "n_dispatched": 169
+    },
+    {
+      "tunnel_id": 4,
+      "slot": 0,
+      "source_session": "7f888e78-6a2d-4976-97d2-8e53fa06cf6e",
+      "saved": "1d0765b4-2b3d-46e7-9a43-18228ece8149.json",
+      "n_dispatched": 145
+    },
+    {
+      "tunnel_id": 4,
+      "slot": 1,
+      "source_session": "7f888e78-6a2d-4976-97d2-8e53fa06cf6e",
+      "saved": "f02eff48-e6a9-483f-a537-2612c3e6e210.json",
+      "n_dispatched": 145
+    },
+    {
+      "tunnel_id": 4,
+      "slot": 2,
+      "source_session": "7f888e78-6a2d-4976-97d2-8e53fa06cf6e",
+      "saved": "c17d101c-131c-44bb-9722-bb315f48a742.json",
+      "n_dispatched": 145
+    },
+    {
+      "tunnel_id": 4,
+      "slot": 3,
+      "source_session": "7f888e78-6a2d-4976-97d2-8e53fa06cf6e",
+      "saved": "7e628413-166f-4983-9c77-e27397c572fc.json",
+      "n_dispatched": 145
+    },
+    {
+      "tunnel_id": 4,
+      "slot": 4,
+      "source_session": "7f888e78-6a2d-4976-97d2-8e53fa06cf6e",
+      "saved": "12c01e41-5f3c-4475-8d4f-49c1f435fcb2.json",
+      "n_dispatched": 145
+    },
+    {
+      "tunnel_id": 4,
+      "slot": 5,
+      "source_session": "7f888e78-6a2d-4976-97d2-8e53fa06cf6e",
+      "saved": "d7922262-b95c-44b1-8c0f-b486d4e9b428.json",
+      "n_dispatched": 145
+    },
+    {
+      "tunnel_id": 4,
+      "slot": 6,
+      "source_session": "7f888e78-6a2d-4976-97d2-8e53fa06cf6e",
+      "saved": "410a9669-3e50-4d69-bde4-ab478b8a3ac7.json",
+      "n_dispatched": 145
+    },
+    {
+      "tunnel_id": 5,
+      "slot": 0,
+      "source_session": "05c48230-2a09-4e7a-958b-06a46ed28bfd",
+      "saved": "9625654a-5963-452a-a288-ee413202aa96.json",
+      "n_dispatched": 137
+    },
+    {
+      "tunnel_id": 5,
+      "slot": 1,
+      "source_session": "b1b8139e-3041-4bc3-906d-795ec186b7bc",
+      "saved": "a3fe810b-c9c4-4d8a-8d31-6fe19104bb49.json",
+      "n_dispatched": 156
+    },
+    {
+      "tunnel_id": 5,
+      "slot": 2,
+      "source_session": "4a8aea2c-03ce-421d-a70d-282ae3b6dbc1",
+      "saved": "8fd69326-9d3e-4717-ac22-9df76053e9a6.json",
+      "n_dispatched": 137
+    },
+    {
+      "tunnel_id": 5,
+      "slot": 3,
+      "source_session": "b1b8139e-3041-4bc3-906d-795ec186b7bc",
+      "saved": "48da15fb-9117-4b2f-8c40-841d09dfa2d6.json",
+      "n_dispatched": 156
+    },
+    {
+      "tunnel_id": 5,
+      "slot": 4,
+      "source_session": "b1b8139e-3041-4bc3-906d-795ec186b7bc",
+      "saved": "841ca5a1-6be7-4c0a-945c-d39d294ce4b3.json",
+      "n_dispatched": 156
+    },
+    {
+      "tunnel_id": 5,
+      "slot": 5,
+      "source_session": "b1b8139e-3041-4bc3-906d-795ec186b7bc",
+      "saved": "85a16dbc-2b20-48e3-b5ec-fb6ec6b1d564.json",
+      "n_dispatched": 156
+    },
+    {
+      "tunnel_id": 5,
+      "slot": 6,
+      "source_session": "05c48230-2a09-4e7a-958b-06a46ed28bfd",
+      "saved": "0c2043b4-c80e-41fb-a90b-d4988d07d82d.json",
+      "n_dispatched": 137
+    },
+    {
+      "tunnel_id": 5,
+      "slot": 7,
+      "source_session": "b1b8139e-3041-4bc3-906d-795ec186b7bc",
+      "saved": "79d6755e-ddcb-460c-a34c-5d237f8b86e4.json",
+      "n_dispatched": 156
+    },
+    {
+      "tunnel_id": 6,
+      "slot": 0,
+      "source_session": "57f12bc2-80dd-4dfc-8303-f739c55a70ec",
+      "saved": "ac4d1ac7-8dc1-437b-ba82-50d944573536.json",
+      "n_dispatched": 135
+    },
+    {
+      "tunnel_id": 6,
+      "slot": 1,
+      "source_session": "57f12bc2-80dd-4dfc-8303-f739c55a70ec",
+      "saved": "2dab2022-68f0-4335-b48b-13d189877a72.json",
+      "n_dispatched": 135
+    },
+    {
+      "tunnel_id": 6,
+      "slot": 2,
+      "source_session": "a647e828-2f63-498d-a08f-b78ff6b4eab6",
+      "saved": "e163d5b4-6f94-4d9c-86bd-7bdecee66035.json",
+      "n_dispatched": 146
+    },
+    {
+      "tunnel_id": 6,
+      "slot": 3,
+      "source_session": "a647e828-2f63-498d-a08f-b78ff6b4eab6",
+      "saved": "44f6857e-e4f0-4422-8f68-235fa009c6b1.json",
+      "n_dispatched": 146
+    },
+    {
+      "tunnel_id": 6,
+      "slot": 4,
+      "source_session": "a647e828-2f63-498d-a08f-b78ff6b4eab6",
+      "saved": "f51aa07f-f87c-484f-b422-c21f585f7533.json",
+      "n_dispatched": 146
+    },
+    {
+      "tunnel_id": 6,
+      "slot": 5,
+      "source_session": "57f12bc2-80dd-4dfc-8303-f739c55a70ec",
+      "saved": "b32d0dec-7809-4669-873b-56fcf8d0b525.json",
+      "n_dispatched": 135
+    },
+    {
+      "tunnel_id": 6,
+      "slot": 6,
+      "source_session": "57f12bc2-80dd-4dfc-8303-f739c55a70ec",
+      "saved": "ff0c8a58-ec02-4288-b125-f5fb7ef3e332.json",
+      "n_dispatched": 135
+    },
+    {
+      "tunnel_id": 6,
+      "slot": 7,
+      "source_session": "57f12bc2-80dd-4dfc-8303-f739c55a70ec",
+      "saved": "ae15a5be-2e19-47fb-81fb-5ca6f12b7f78.json",
+      "n_dispatched": 135
+    },
+    {
+      "tunnel_id": 7,
+      "slot": 0,
+      "source_session": "d659b2b9-e128-454b-82fe-31c9bd2823c3",
+      "saved": "074c8db0-fc80-45f8-8f19-ae4e44b54444.json",
+      "n_dispatched": 177
+    },
+    {
+      "tunnel_id": 7,
+      "slot": 1,
+      "source_session": "d659b2b9-e128-454b-82fe-31c9bd2823c3",
+      "saved": "58b65f67-2608-4132-8a28-c9878669cd63.json",
+      "n_dispatched": 177
+    },
+    {
+      "tunnel_id": 7,
+      "slot": 2,
+      "source_session": "d659b2b9-e128-454b-82fe-31c9bd2823c3",
+      "saved": "4512d891-231f-40eb-8e9f-2d640af3de0b.json",
+      "n_dispatched": 177
+    },
+    {
+      "tunnel_id": 7,
+      "slot": 3,
+      "source_session": "8f50ddbc-b1c7-4604-be1f-41b8d723e142",
+      "saved": "c109d0af-31ef-4704-a924-b9dfd71ddc68.json",
+      "n_dispatched": 137
+    },
+    {
+      "tunnel_id": 7,
+      "slot": 4,
+      "source_session": "8f50ddbc-b1c7-4604-be1f-41b8d723e142",
+      "saved": "a6f94c80-d16b-4f95-bbcb-155880cf02c4.json",
+      "n_dispatched": 137
+    },
+    {
+      "tunnel_id": 7,
+      "slot": 5,
+      "source_session": "ea7a6a58-d698-4b65-ae3c-f1d5c2c97595",
+      "saved": "9e9abf9b-d17e-4079-b66d-d9d7d93627e8.json",
+      "n_dispatched": 150
+    },
+    {
+      "tunnel_id": 7,
+      "slot": 6,
+      "source_session": "ea7a6a58-d698-4b65-ae3c-f1d5c2c97595",
+      "saved": "7bc34245-454c-470c-b6c1-b6f91329392e.json",
+      "n_dispatched": 150
+    },
+    {
+      "tunnel_id": 7,
+      "slot": 7,
+      "source_session": "d659b2b9-e128-454b-82fe-31c9bd2823c3",
+      "saved": "f4175323-02c9-44d4-ac7c-fa64711e4e7e.json",
+      "n_dispatched": 177
+    },
+    {
+      "tunnel_id": 8,
+      "slot": 0,
+      "source_session": "076265eb-8cf5-40ce-b5f5-20b2c5079185",
+      "saved": "6cd2a3ab-afce-4df3-b150-931381eb2078.json",
+      "n_dispatched": 168
+    },
+    {
+      "tunnel_id": 8,
+      "slot": 1,
+      "source_session": "a3c76530-6284-49bf-a136-4e0582403f1d",
+      "saved": "16b63fe2-7209-437a-a02c-fe6c1ee40f89.json",
+      "n_dispatched": 175
+    },
+    {
+      "tunnel_id": 8,
+      "slot": 2,
+      "source_session": "890e87d1-bf3c-4e18-a4aa-bb940e39d81a",
+      "saved": "3f07bfeb-bde0-4fd0-a693-78afb13ba92a.json",
+      "n_dispatched": 208
+    },
+    {
+      "tunnel_id": 8,
+      "slot": 3,
+      "source_session": "890e87d1-bf3c-4e18-a4aa-bb940e39d81a",
+      "saved": "6f9b8dbb-198c-435f-b0fb-b6edeea39855.json",
+      "n_dispatched": 208
+    },
+    {
+      "tunnel_id": 8,
+      "slot": 4,
+      "source_session": "a3c76530-6284-49bf-a136-4e0582403f1d",
+      "saved": "0ae56d3f-19cc-4c7e-ac81-cdc756586cc4.json",
+      "n_dispatched": 175
+    },
+    {
+      "tunnel_id": 8,
+      "slot": 5,
+      "source_session": "890e87d1-bf3c-4e18-a4aa-bb940e39d81a",
+      "saved": "25b3f9a7-6483-4c43-858a-270b98016c4f.json",
+      "n_dispatched": 208
+    },
+    {
+      "tunnel_id": 8,
+      "slot": 6,
+      "source_session": "076265eb-8cf5-40ce-b5f5-20b2c5079185",
+      "saved": "f84a906d-9838-4d02-9ecd-1547a129bc2e.json",
+      "n_dispatched": 168
+    },
+    {
+      "tunnel_id": 8,
+      "slot": 7,
+      "source_session": "890e87d1-bf3c-4e18-a4aa-bb940e39d81a",
+      "saved": "f0a2bd46-66f2-492d-95ca-79a75363ff25.json",
+      "n_dispatched": 208
+    },
+    {
+      "tunnel_id": 9,
+      "slot": 0,
+      "source_session": "3fbec583-1564-4cc0-b115-66a01b34325e",
+      "saved": "45af448b-8be0-45ed-89fa-0b93c9ef4730.json",
+      "n_dispatched": 190
+    },
+    {
+      "tunnel_id": 9,
+      "slot": 1,
+      "source_session": "3fbec583-1564-4cc0-b115-66a01b34325e",
+      "saved": "9889e6bc-03b9-4f0f-bf86-c00bbb8e388e.json",
+      "n_dispatched": 190
+    },
+    {
+      "tunnel_id": 9,
+      "slot": 2,
+      "source_session": "65d26251-5fc1-4ff2-8812-381d32665d4b",
+      "saved": "953602bb-dcfe-4b71-9c82-a4612ed0b4fc.json",
+      "n_dispatched": 162
+    },
+    {
+      "tunnel_id": 9,
+      "slot": 3,
+      "source_session": "65d26251-5fc1-4ff2-8812-381d32665d4b",
+      "saved": "cdb4a8fc-bb8e-4e38-8162-1a9ca0eb8102.json",
+      "n_dispatched": 162
+    },
+    {
+      "tunnel_id": 9,
+      "slot": 4,
+      "source_session": "3fbec583-1564-4cc0-b115-66a01b34325e",
+      "saved": "fde7a557-c5c6-4391-82e6-34131f5e6ca6.json",
+      "n_dispatched": 190
+    },
+    {
+      "tunnel_id": 9,
+      "slot": 5,
+      "source_session": "3fbec583-1564-4cc0-b115-66a01b34325e",
+      "saved": "21aa05dc-009a-4b85-b4c4-cef664c64c98.json",
+      "n_dispatched": 190
+    },
+    {
+      "tunnel_id": 9,
+      "slot": 6,
+      "source_session": "3fbec583-1564-4cc0-b115-66a01b34325e",
+      "saved": "0b17a45d-097e-4dee-bb8f-9abc3a7f794d.json",
+      "n_dispatched": 190
+    },
+    {
+      "tunnel_id": 9,
+      "slot": 7,
+      "source_session": "3fbec583-1564-4cc0-b115-66a01b34325e",
+      "saved": "d945dbfb-3e72-45ed-92bd-b21af60ddf72.json",
+      "n_dispatched": 190
+    }
+  ]
+}

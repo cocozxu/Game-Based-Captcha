@@ -1,0 +1,1293 @@
+{
+  "session_id": "80320cf9-4c91-452a-ba66-9ab950cdbec9",
+  "tunnel_id": 0,
+  "tunnel_seed": 1373158607,
+  "control_points": [
+    {
+      "x": 50,
+      "y": 56.813412124756724
+    },
+    {
+      "x": 87.5,
+      "y": 15
+    },
+    {
+      "x": 137.5,
+      "y": 311.80867444258183
+    },
+    {
+      "x": 175,
+      "y": 190.5597073608078
+    },
+    {
+      "x": 175,
+      "y": 190.5597073608078
+    },
+    {
+      "x": 212.5,
+      "y": 69.31074027903378
+    },
+    {
+      "x": 262.5,
+      "y": 281.7991735681426
+    },
+    {
+      "x": 300,
+      "y": 147.75314171565697
+    },
+    {
+      "x": 300,
+      "y": 147.75314171565697
+    },
+    {
+      "x": 337.5,
+      "y": 15
+    },
+    {
+      "x": 387.5,
+      "y": 182.85040060349274
+    },
+    {
+      "x": 425,
+      "y": 73.20801868336275
+    },
+    {
+      "x": 425,
+      "y": 73.20801868336275
+    },
+    {
+      "x": 462.5,
+      "y": 15
+    },
+    {
+      "x": 512.5,
+      "y": 295.41505135188345
+    },
+    {
+      "x": 550,
+      "y": 229.27100969245657
+    }
+  ],
+  "tunnel_width": 38,
+  "canvas_size": {
+    "width": 600,
+    "height": 350
+  },
+  "source": "gen_sonnet_split_b",
+  "completed": true,
+  "fail_reason": null,
+  "boundary_violations": 0,
+  "start_time": 411713.1083060157,
+  "end_time": 413428.4945304375,
+  "duration_ms": 1715.386224421789,
+  "viewport": {
+    "width": 1024,
+    "height": 768
+  },
+  "events": [
+    {
+      "x": 49.44643152898317,
+      "y": 56.0614163541305,
+      "timestamp": 411713.1083060157,
+      "event_type": "mousedown",
+      "inside_tunnel": true
+    },
+    {
+      "x": 50.59908832007591,
+      "y": 55.53198668349768,
+      "timestamp": 411845.19258983474,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 51.79138891123421,
+      "y": 55.36967795000305,
+      "timestamp": 411854.68095694756,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 52.14296324223818,
+      "y": 54.25836716670227,
+      "timestamp": 411864.60428399564,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 53.17960221572724,
+      "y": 53.83541854863901,
+      "timestamp": 411874.1536285713,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 53.96131233171906,
+      "y": 52.72932841558952,
+      "timestamp": 411885.31905965816,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 55.7822040095582,
+      "y": 53.92456455084556,
+      "timestamp": 411897.5614983119,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 56.940816465903595,
+      "y": 53.17666688139073,
+      "timestamp": 411908.8880485441,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 58.542468575700354,
+      "y": 52.48750017916478,
+      "timestamp": 411920.67002701905,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 60.6676227480969,
+      "y": 52.67981680620554,
+      "timestamp": 411933.3777777884,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 63.35571809945168,
+      "y": 53.651670799079994,
+      "timestamp": 411944.26454971987,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 66.56149194791107,
+      "y": 55.43519592613677,
+      "timestamp": 411954.6629054111,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 69.65699585212315,
+      "y": 58.37199163834808,
+      "timestamp": 411964.13738404016,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 72.31745593595781,
+      "y": 62.21538109652988,
+      "timestamp": 411971.7927299884,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 75.21713996873785,
+      "y": 66.07751244896355,
+      "timestamp": 411981.77009905403,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 77.18805870690187,
+      "y": 70.48057609569145,
+      "timestamp": 411988.7607990699,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 79.49768920339073,
+      "y": 74.4541458072141,
+      "timestamp": 411998.23409221735,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 81.36953675012057,
+      "y": 78.45888995670697,
+      "timestamp": 412006.8454598903,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 82.1743044570519,
+      "y": 82.89194660268254,
+      "timestamp": 412016.61280848755,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 83.58459039305347,
+      "y": 87.10210397146363,
+      "timestamp": 412024.9882724437,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 85.7641646847801,
+      "y": 91.2866882037217,
+      "timestamp": 412032.470646628,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 87.99546230789798,
+      "y": 95.97345878650657,
+      "timestamp": 412041.2017980025,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 90.10384804647623,
+      "y": 101.30567410185364,
+      "timestamp": 412048.88123059523,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 91.67843662450235,
+      "y": 107.39140626408971,
+      "timestamp": 412056.9425739606,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 94.78496303165093,
+      "y": 113.19642098274403,
+      "timestamp": 412065.2185035647,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 97.82711713168771,
+      "y": 119.14663377742181,
+      "timestamp": 412073.2733116921,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 99.92010953376092,
+      "y": 125.33324569748154,
+      "timestamp": 412081.24393683166,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 102.87851173675489,
+      "y": 130.82226765170606,
+      "timestamp": 412088.48997829657,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 105.10890485193278,
+      "y": 136.15986922026514,
+      "timestamp": 412096.43779678445,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 106.37253040928908,
+      "y": 141.48875423319748,
+      "timestamp": 412102.24600718945,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 107.75326570372704,
+      "y": 146.54653899074535,
+      "timestamp": 412110.2482682502,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 109.520666960124,
+      "y": 151.45428698699365,
+      "timestamp": 412117.12885970285,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 111.17271841026195,
+      "y": 156.63806102934774,
+      "timestamp": 412126.5850174332,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 115.24046565260733,
+      "y": 161.1984810023116,
+      "timestamp": 412136.23414305475,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 117.21122683618637,
+      "y": 167.03372051635677,
+      "timestamp": 412142.37275252014,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 120.63938484144671,
+      "y": 172.55315833579868,
+      "timestamp": 412150.85529608524,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 124.51993984800492,
+      "y": 177.95019404686627,
+      "timestamp": 412159.08597076224,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 127.11270092764312,
+      "y": 183.75221474195536,
+      "timestamp": 412166.3621049623,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 129.28293010009077,
+      "y": 189.35230063627114,
+      "timestamp": 412175.44802332675,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 131.88724314097158,
+      "y": 194.1541124771602,
+      "timestamp": 412183.5370731639,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 134.57909611634625,
+      "y": 198.22721535722326,
+      "timestamp": 412190.3161503545,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 136.4522324311556,
+      "y": 202.1192680089123,
+      "timestamp": 412198.91400012607,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 138.34350241871311,
+      "y": 205.4741833034177,
+      "timestamp": 412207.8601593185,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 139.558853889425,
+      "y": 208.9393710973252,
+      "timestamp": 412217.3561225159,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 141.43648624191803,
+      "y": 211.9009488211674,
+      "timestamp": 412225.70148619264,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 144.17933867784552,
+      "y": 214.71360510979184,
+      "timestamp": 412236.47689851053,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 147.59019464262224,
+      "y": 218.2129296006646,
+      "timestamp": 412247.87174245476,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 152.7809043414063,
+      "y": 220.45860477626297,
+      "timestamp": 412257.6089148419,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 158.4323374563645,
+      "y": 220.0477309815799,
+      "timestamp": 412267.9129143522,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 163.4639453971771,
+      "y": 217.89616020008032,
+      "timestamp": 412278.43502600427,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 167.3351511992493,
+      "y": 213.9947834838057,
+      "timestamp": 412287.818723049,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 169.7576620650383,
+      "y": 208.87500098199416,
+      "timestamp": 412299.2319978934,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 171.14086361602153,
+      "y": 203.09970437473055,
+      "timestamp": 412308.59452847415,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 172.73875412800578,
+      "y": 197.31568771038212,
+      "timestamp": 412316.3624862695,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 172.51524792793896,
+      "y": 190.91493829191216,
+      "timestamp": 412324.2496658295,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 174.47042988435624,
+      "y": 185.3939918692414,
+      "timestamp": 412332.8982688323,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 176.68322985102475,
+      "y": 180.2467181646564,
+      "timestamp": 412344.16516322084,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 178.0320685742749,
+      "y": 175.08901747795005,
+      "timestamp": 412352.838317208,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 180.82321629322053,
+      "y": 170.8329987697149,
+      "timestamp": 412362.01852335525,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 183.22037471662344,
+      "y": 166.68989087986415,
+      "timestamp": 412371.8399540215,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 186.65055285612027,
+      "y": 163.43727173605413,
+      "timestamp": 412381.31437883334,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 188.51409178649806,
+      "y": 159.35953750913194,
+      "timestamp": 412393.6412551937,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 191.12087648951683,
+      "y": 155.78884652745302,
+      "timestamp": 412403.1906346914,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 194.71305999102123,
+      "y": 153.165848246941,
+      "timestamp": 412414.4396832314,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 198.81098208146074,
+      "y": 151.38970559017002,
+      "timestamp": 412425.24935388676,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 203.19917907157935,
+      "y": 148.7154016299015,
+      "timestamp": 412436.5642385792,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 208.44592955281507,
+      "y": 148.91893432666942,
+      "timestamp": 412445.6400084519,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 213.52768802102662,
+      "y": 151.2118111037621,
+      "timestamp": 412457.52159993345,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 218.80816394180636,
+      "y": 154.09785653431672,
+      "timestamp": 412466.8672562092,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 223.2009283362911,
+      "y": 158.94287970847972,
+      "timestamp": 412475.98333345854,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 228.6865014986621,
+      "y": 162.83335948178325,
+      "timestamp": 412483.6972229222,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 233.31981177186702,
+      "y": 167.7348796752667,
+      "timestamp": 412491.3441186103,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 238.26981114375883,
+      "y": 171.85688547722089,
+      "timestamp": 412500.26033119485,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 241.68785167099992,
+      "y": 176.7767825554916,
+      "timestamp": 412509.72947233915,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 245.42619485096452,
+      "y": 180.48333687002986,
+      "timestamp": 412519.2017824174,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 249.06214072688203,
+      "y": 183.49122874661896,
+      "timestamp": 412529.4674781401,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 253.10034765770013,
+      "y": 185.30706860571286,
+      "timestamp": 412539.52271872,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 255.8883901629721,
+      "y": 188.49647821976544,
+      "timestamp": 412549.20006108074,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 259.3914802490737,
+      "y": 190.76251213466088,
+      "timestamp": 412560.1563887667,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 263.340749817442,
+      "y": 192.60756669326588,
+      "timestamp": 412571.18710720097,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 267.831994219757,
+      "y": 194.13867328061815,
+      "timestamp": 412581.6764262006,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 272.82414439905017,
+      "y": 194.23705738442231,
+      "timestamp": 412593.1210504472,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 277.489271203879,
+      "y": 192.55570222010067,
+      "timestamp": 412605.02592347027,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 281.4140075855578,
+      "y": 189.72174281732293,
+      "timestamp": 412615.460427802,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 284.5342373191688,
+      "y": 185.9787841946415,
+      "timestamp": 412624.87303226866,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 288.0898374391578,
+      "y": 182.20038043502393,
+      "timestamp": 412635.1251426748,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 289.45690967776176,
+      "y": 176.71502520063018,
+      "timestamp": 412646.39911406476,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 290.93009584475504,
+      "y": 171.11966680033504,
+      "timestamp": 412655.137050763,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 292.3884079152807,
+      "y": 165.3761615623713,
+      "timestamp": 412663.8439228726,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 294.18940216782505,
+      "y": 159.72648921991947,
+      "timestamp": 412672.37222079333,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 296.3313049985201,
+      "y": 154.26125226051667,
+      "timestamp": 412682.3048056061,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 297.500552317477,
+      "y": 148.66850512683246,
+      "timestamp": 412688.82387655345,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 298.6067080051099,
+      "y": 143.235745550842,
+      "timestamp": 412697.751921169,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 301.0601654037632,
+      "y": 138.2934772725043,
+      "timestamp": 412707.6060308108,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 304.2909473382176,
+      "y": 133.65388398662324,
+      "timestamp": 412715.31673405983,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 307.0836136612187,
+      "y": 128.8464328742216,
+      "timestamp": 412725.65013053245,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 309.3621684421978,
+      "y": 123.75536026484838,
+      "timestamp": 412735.0463610473,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 311.2173313277535,
+      "y": 118.35552333512175,
+      "timestamp": 412743.39311663393,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 313.4708363565253,
+      "y": 113.07847447474535,
+      "timestamp": 412752.7511322726,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 315.64669597390593,
+      "y": 107.77133504597865,
+      "timestamp": 412760.42489196314,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 318.8286120895141,
+      "y": 103.30405956650912,
+      "timestamp": 412769.4354723007,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 321.83435092424827,
+      "y": 98.86273278272239,
+      "timestamp": 412781.36750224675,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 326.026383219986,
+      "y": 95.86837803762728,
+      "timestamp": 412790.56113986974,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 330.7406963278595,
+      "y": 93.97066495082962,
+      "timestamp": 412802.9158660879,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 335.8575375826215,
+      "y": 93.74347799695073,
+      "timestamp": 412813.14953382977,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 340.82013809213026,
+      "y": 94.3178026568724,
+      "timestamp": 412824.41796963365,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 345.2065380658172,
+      "y": 96.99228392849938,
+      "timestamp": 412834.38232649496,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 349.2121636604752,
+      "y": 99.16920098762284,
+      "timestamp": 412841.50682024035,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 352.94066072470946,
+      "y": 101.42855963631803,
+      "timestamp": 412850.1040124702,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 357.5650730151614,
+      "y": 101.70686217445785,
+      "timestamp": 412859.1521271738,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 361.8081435722278,
+      "y": 103.25301067525345,
+      "timestamp": 412866.3425276186,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 366.40333023001006,
+      "y": 104.85822079034608,
+      "timestamp": 412873.2923257934,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 371.12828490844186,
+      "y": 107.34698953113269,
+      "timestamp": 412882.5334509082,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 377.08549903880476,
+      "y": 108.21964142586666,
+      "timestamp": 412891.118511304,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 382.4812978557825,
+      "y": 111.0082405318189,
+      "timestamp": 412898.99399770424,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 388.3067042172413,
+      "y": 113.15720216408081,
+      "timestamp": 412908.3517666673,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 394.16329913896607,
+      "y": 112.82092184476483,
+      "timestamp": 412919.62720414257,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 399.21107359296525,
+      "y": 111.64862319365955,
+      "timestamp": 412929.4604608527,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 403.26069883687046,
+      "y": 109.6236699867543,
+      "timestamp": 412940.71091294196,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 406.6802115302793,
+      "y": 107.21836961668117,
+      "timestamp": 412952.3939285595,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 409.6975130897715,
+      "y": 104.27246973519479,
+      "timestamp": 412962.18400374183,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 413.00895357141565,
+      "y": 101.10104815400769,
+      "timestamp": 412970.4502722843,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 414.8857660417152,
+      "y": 96.4493460841191,
+      "timestamp": 412978.30342557677,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 417.2648985268704,
+      "y": 91.83630412204911,
+      "timestamp": 412987.3657153254,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 419.37747969084353,
+      "y": 86.9229300244885,
+      "timestamp": 412997.26488959417,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 422.59764486029667,
+      "y": 82.46359605273452,
+      "timestamp": 413007.17208388296,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 425.2647532972767,
+      "y": 77.83259557829479,
+      "timestamp": 413017.6192428872,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 428.2681730472905,
+      "y": 73.94296390406237,
+      "timestamp": 413027.30738538766,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 430.74856554042253,
+      "y": 70.69298134802764,
+      "timestamp": 413038.36497737496,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 434.2794827328082,
+      "y": 68.55950885437426,
+      "timestamp": 413048.8525862592,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 438.09713352346955,
+      "y": 67.58537082426096,
+      "timestamp": 413059.55639842286,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 441.0317630036403,
+      "y": 69.49304415904683,
+      "timestamp": 413068.88259276,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 443.2147165105855,
+      "y": 71.28053350098975,
+      "timestamp": 413077.44395137695,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 445.32919888752895,
+      "y": 72.76194530851029,
+      "timestamp": 413086.7847565322,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 447.590424864213,
+      "y": 74.72655136319733,
+      "timestamp": 413095.0687877912,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 449.70247437256035,
+      "y": 77.87502049650743,
+      "timestamp": 413103.20270995103,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 452.82758060718356,
+      "y": 81.4148989065526,
+      "timestamp": 413112.8821475604,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 456.35852983925884,
+      "y": 85.66577729938018,
+      "timestamp": 413121.5206161688,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 459.22879132982496,
+      "y": 90.95077402891684,
+      "timestamp": 413133.34557855246,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 460.97711698401713,
+      "y": 97.11351079093646,
+      "timestamp": 413142.8819811123,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 464.20528376242385,
+      "y": 102.53218770093531,
+      "timestamp": 413150.62540334964,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 467.2920132533088,
+      "y": 107.80946683950111,
+      "timestamp": 413159.8609253771,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 470.3468504781198,
+      "y": 112.74868998530906,
+      "timestamp": 413168.5851281743,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 473.1153720278244,
+      "y": 117.45142052643553,
+      "timestamp": 413176.1234236992,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 474.519051341196,
+      "y": 122.48333237385611,
+      "timestamp": 413185.5959876073,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 475.7188184055045,
+      "y": 127.53849683495525,
+      "timestamp": 413192.9745920315,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 477.59163203439664,
+      "y": 132.49043963127576,
+      "timestamp": 413197.81688415346,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 479.5313464923935,
+      "y": 137.78315374586018,
+      "timestamp": 413206.87420061795,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 481.91868724520714,
+      "y": 143.35077436212697,
+      "timestamp": 413214.35998589615,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 484.55225403445695,
+      "y": 149.23689311765943,
+      "timestamp": 413224.14962184295,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 488.310525717407,
+      "y": 154.93372264173217,
+      "timestamp": 413231.5897187407,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 491.32554253248577,
+      "y": 160.96183735824445,
+      "timestamp": 413238.45428549906,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 493.8003129132735,
+      "y": 167.0072944486654,
+      "timestamp": 413248.3405615842,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 496.53822937050563,
+      "y": 172.57142687835187,
+      "timestamp": 413255.3633323054,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 498.77191818336064,
+      "y": 177.89365646131205,
+      "timestamp": 413263.8181108049,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 500.9789565571398,
+      "y": 182.82095655218745,
+      "timestamp": 413273.6724292302,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 502.8000503217452,
+      "y": 187.65939025228363,
+      "timestamp": 413282.09115034726,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 504.02501506339536,
+      "y": 192.72696402029726,
+      "timestamp": 413290.3346649071,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 506.29024596341037,
+      "y": 197.50364892460163,
+      "timestamp": 413298.82729193306,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 508.72479500233703,
+      "y": 202.49349449324984,
+      "timestamp": 413308.18942962185,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 510.9273389647951,
+      "y": 207.90498877588152,
+      "timestamp": 413315.8160944773,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 513.5083387781585,
+      "y": 213.31868277826493,
+      "timestamp": 413325.09862473287,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 515.6280552620824,
+      "y": 218.9579292811809,
+      "timestamp": 413334.47144282697,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 519.8386377920986,
+      "y": 223.02292183761745,
+      "timestamp": 413345.9452367375,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 522.1372180089593,
+      "y": 227.61920574572946,
+      "timestamp": 413354.711381487,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 524.9504592988764,
+      "y": 231.06506847150717,
+      "timestamp": 413363.1476527565,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 527.2548114496461,
+      "y": 234.05137342109526,
+      "timestamp": 413373.79421603685,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 529.2801145515474,
+      "y": 236.67694589284088,
+      "timestamp": 413383.6554579616,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 531.6056928706741,
+      "y": 238.78536502717122,
+      "timestamp": 413394.70864653104,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 534.6291710221325,
+      "y": 240.1186372426405,
+      "timestamp": 413405.86977423984,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 538.1668918550462,
+      "y": 239.9098854353773,
+      "timestamp": 413418.23705845204,
+      "event_type": "mousemove",
+      "inside_tunnel": true
+    },
+    {
+      "x": 538.1668918550462,
+      "y": 239.9098854353773,
+      "timestamp": 413428.4945304375,
+      "event_type": "mouseup",
+      "inside_tunnel": true
+    }
+  ]
+}

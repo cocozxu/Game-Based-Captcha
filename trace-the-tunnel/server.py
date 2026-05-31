@@ -22,6 +22,13 @@ EXPERIMENT = None
 # splits in the replay-v1b experiment.
 ALLOWED_SESSIONS = None
 
+# When True, game.js mounts window.__tunnelGame and prints the seed into the
+# session display. Off by default so an in-page agent can't read the centerline
+# straight from JS globals — they have to look at the canvas like a human does.
+# Orchestration harnesses (experiments_replay_v2, experiments_warp, etc.) opt in
+# via --expose-debug.
+EXPOSE_DEBUG = False
+
 # ---------------------------------------------------------------------------
 # Tunnel config: a fixed pool of seeds so humans and agents play the same set
 # ---------------------------------------------------------------------------
@@ -64,7 +71,7 @@ def get_tunnels():
 @app.route("/api/mode", methods=["GET"])
 def get_mode():
     """Lets the harness verify the server is running with the expected experiment."""
-    return jsonify({"experiment": EXPERIMENT})
+    return jsonify({"experiment": EXPERIMENT, "expose_debug": EXPOSE_DEBUG})
 
 @app.route("/api/human_bank/<int:tunnel_id>", methods=["GET"])
 def get_human_bank(tunnel_id):
@@ -171,6 +178,14 @@ if __name__ == "__main__":
     )
     parser.add_argument("--port", type=int, default=5050)
     parser.add_argument(
+        "--expose-debug",
+        action="store_true",
+        help="Mount window.__tunnelGame on the page and print seed in the session "
+             "display. Required by orchestration harnesses that read centerline/"
+             "control_points or call loadTunnel from JS. Off by default so an "
+             "in-page agent cannot bypass the canvas.",
+    )
+    parser.add_argument(
         "--allowed-sessions",
         default=None,
         help="Path to a JSON file containing a list of session_ids. When set, "
@@ -183,6 +198,9 @@ if __name__ == "__main__":
         parser.error("--experiment cannot be 'human' (that folder is reserved for human data)")
 
     EXPERIMENT = args.experiment
+    EXPOSE_DEBUG = args.expose_debug
+    if EXPOSE_DEBUG:
+        print("[debug] --expose-debug ON: window.__tunnelGame is mounted on the page")
 
     if args.allowed_sessions:
         with open(args.allowed_sessions) as f:

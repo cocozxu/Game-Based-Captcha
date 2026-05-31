@@ -1,0 +1,46 @@
+generation:
+  traces_per_test_tunnel: 10
+  models:
+  - opus
+  - sonnet
+  - haiku
+splits:
+- id: split_a
+  demo:
+  - 0
+  - 1
+  - 4
+  test:
+  - 2
+  - 3
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+- id: split_b
+  demo:
+  - 2
+  - 3
+  - 9
+  test:
+  - 0
+  - 1
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+- id: split_c
+  demo:
+  - 1
+  - 8
+  - 9
+  test:
+  - 0
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
