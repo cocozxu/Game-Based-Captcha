@@ -287,7 +287,7 @@ def build_feature_dataframe(base_data_dir):
     df = pd.DataFrame(rows)
     # Add binary label: 0 = human, 1 = agent (any kind)
     if "source" in df.columns:
-        df["is_agent"] = (~df["source"].str.startswith("human")).astype(int)
+        df["is_agent"] = (~df["source"].fillna("human").str.startswith("human")).astype(int)
     return df
 
 

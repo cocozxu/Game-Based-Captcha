@@ -137,6 +137,11 @@
   let tunnelIndex = 0;   // which tunnel we're currently on
   let currentTunnelId = null;
   let exposeDebug = false; // set from /api/mode at startup
+  let dynamicMode = false; // set from /api/mode; each session gets a fresh random seed
+
+  function freshSeed() {
+    return Math.floor(Math.random() * 2147483647) + 1;
+  }
 
   async function fetchTunnelPool() {
     try {
@@ -146,14 +151,18 @@
       ]);
       const tunnelsData = await tunnelsResp.json();
       const modeData = await modeResp.json();
-      tunnelPool = tunnelsData.tunnels || [];
       exposeDebug = !!modeData.expose_debug;
-      console.log(`[tunnel] loaded ${tunnelPool.length} tunnels from server, expose_debug=${exposeDebug}`);
+      dynamicMode = !!modeData.dynamic;
+      if (dynamicMode) {
+        console.log("[tunnel] dynamic mode: fresh seed per session");
+      } else {
+        tunnelPool = tunnelsData.tunnels || [];
+        console.log(`[tunnel] loaded ${tunnelPool.length} tunnels from server, expose_debug=${exposeDebug}`);
+      }
     } catch (e) {
       console.warn("[tunnel] server unavailable, using random seeds");
-      // fallback: generate some random tunnels locally
       for (let i = 0; i < 30; i++) {
-        tunnelPool.push({ tunnel_id: i, seed: Math.floor(Math.random() * 2147483647) });
+        tunnelPool.push({ tunnel_id: i, seed: freshSeed() });
       }
     }
   }
@@ -341,7 +350,7 @@
     statusEl.textContent = msg;
     statusEl.className = "status fail";
     draw();
-    // Auto-retry after a short delay
+    // Auto-retry after a short delay — fresh tunnel in dynamic mode, same tunnel otherwise
     setTimeout(() => {
       sessionId = crypto.randomUUID();
       events = [];
@@ -349,8 +358,14 @@
       boundaryViolations = 0;
       failReason = null;
       state = "ready";
+      if (dynamicMode) {
+        currentTunnelId = null;
+        tunnelSeed = freshSeed();
+      }
       generateTunnel(tunnelSeed);
-      statusEl.textContent = `Ready. Tunnel ${currentTunnelId ?? "?"} of ${tunnelPool.length}. Press the green dot to begin.`;
+      statusEl.textContent = dynamicMode
+        ? "Ready. Press the green dot to begin."
+        : `Ready. Tunnel ${currentTunnelId ?? "?"} of ${tunnelPool.length}. Press the green dot to begin.`;
       statusEl.className = "status ready";
       updateSessionDisplay();
       draw();
@@ -418,19 +433,25 @@
     failReason = null;
     state = "ready";
 
-    // Pick next tunnel from the pool (cycles through)
-    if (tunnelPool.length > 0) {
+    if (dynamicMode) {
+      // Fresh unique tunnel every session
+      currentTunnelId = null;
+      tunnelSeed = freshSeed();
+    } else if (tunnelPool.length > 0) {
+      // Cycle through fixed pool (experiment / research mode)
       const entry = tunnelPool[tunnelIndex % tunnelPool.length];
       currentTunnelId = entry.tunnel_id;
       tunnelSeed = entry.seed;
       tunnelIndex++;
     } else {
       currentTunnelId = null;
-      tunnelSeed = Math.floor(Math.random() * 2147483647);
+      tunnelSeed = freshSeed();
     }
 
     generateTunnel(tunnelSeed);
-    statusEl.textContent = `Ready. Tunnel ${currentTunnelId ?? "?"} of ${tunnelPool.length}. Press the green dot to begin.`;
+    statusEl.textContent = dynamicMode
+      ? "Ready. Press the green dot to begin."
+      : `Ready. Tunnel ${currentTunnelId ?? "?"} of ${tunnelPool.length}. Press the green dot to begin.`;
     statusEl.className = "status ready";
     updateSessionDisplay();
     draw();

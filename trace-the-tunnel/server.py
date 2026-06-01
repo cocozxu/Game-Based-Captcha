@@ -29,6 +29,10 @@ ALLOWED_SESSIONS = None
 # via --expose-debug.
 EXPOSE_DEBUG = False
 
+# When True, /api/mode reports dynamic=True and the client generates a fresh
+# random seed for every session instead of cycling through the fixed pool.
+DYNAMIC = False
+
 # ---------------------------------------------------------------------------
 # Tunnel config: a fixed pool of seeds so humans and agents play the same set
 # ---------------------------------------------------------------------------
@@ -71,7 +75,7 @@ def get_tunnels():
 @app.route("/api/mode", methods=["GET"])
 def get_mode():
     """Lets the harness verify the server is running with the expected experiment."""
-    return jsonify({"experiment": EXPERIMENT, "expose_debug": EXPOSE_DEBUG})
+    return jsonify({"experiment": EXPERIMENT, "expose_debug": EXPOSE_DEBUG, "dynamic": DYNAMIC})
 
 @app.route("/api/human_bank/<int:tunnel_id>", methods=["GET"])
 def get_human_bank(tunnel_id):
@@ -178,6 +182,13 @@ if __name__ == "__main__":
     )
     parser.add_argument("--port", type=int, default=5050)
     parser.add_argument(
+        "--dynamic",
+        action="store_true",
+        help="Generate a fresh random tunnel seed each session instead of cycling "
+             "through the fixed pool. Intended for live deployment where tunnel "
+             "reuse would let attackers pre-compute paths.",
+    )
+    parser.add_argument(
         "--expose-debug",
         action="store_true",
         help="Mount window.__tunnelGame on the page and print seed in the session "
@@ -199,6 +210,9 @@ if __name__ == "__main__":
 
     EXPERIMENT = args.experiment
     EXPOSE_DEBUG = args.expose_debug
+    DYNAMIC = args.dynamic
+    if DYNAMIC:
+        print("[mode] --dynamic ON: each session gets a fresh random tunnel")
     if EXPOSE_DEBUG:
         print("[debug] --expose-debug ON: window.__tunnelGame is mounted on the page")
 

@@ -59,8 +59,8 @@
       "skipped": false,
       "heads": {
         "motor": {
-          "auc": 0.8784032176973353,
-          "std": 0.04986934147485924,
+          "auc": 0.8790819507290095,
+          "std": 0.05020729559004427,
           "n_features": 20
         },
         "mechanism": {
@@ -81,8 +81,8 @@
       "skipped": false,
       "heads": {
         "motor": {
-          "auc": 0.9662494343891403,
-          "std": 0.0421355755773389,
+          "auc": 0.9660231900452487,
+          "std": 0.042029538499466855,
           "n_features": 20
         },
         "mechanism": {
@@ -152,8 +152,8 @@
           "n_features": 20
         },
         "mechanism": {
-          "auc": 0.9408506787330315,
-          "std": 0.03257187449390223,
+          "auc": 0.9406244343891401,
+          "std": 0.03247833056905629,
           "n_features": 5
         },
         "combined": {
@@ -198,6 +198,28 @@
         "mechanism": {
           "auc": 0.998076923076923,
           "std": 0.002803342257137154,
+          "n_features": 5
+        },
+        "combined": {
+          "auc": 1.0,
+          "std": 0.0,
+          "n_features": 25
+        }
+      }
+    },
+    "rl_agent": {
+      "n_human": 129,
+      "n_attack": 28,
+      "skipped": false,
+      "heads": {
+        "motor": {
+          "auc": 1.0,
+          "std": 0.0,
+          "n_features": 20
+        },
+        "mechanism": {
+          "auc": 1.0,
+          "std": 0.0,
           "n_features": 5
         },
         "combined": {

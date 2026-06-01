@@ -74,6 +74,7 @@ ATTACKS = [
     "replay_timed",
     "warp_v1",
     "warp_t1",
+    "rl_agent",
 ]
 
 # Allowlists whose session_ids must be excluded from the held-out human eval set.
