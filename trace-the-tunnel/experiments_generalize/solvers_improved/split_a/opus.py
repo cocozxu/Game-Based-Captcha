@@ -1,13 +1,15 @@
 """Improved opus solver for trace-the-tunnel — split_a.
 
-Two structural fixes versus solvers/split_a/opus.py:
+Three structural fixes versus solvers/split_a/opus.py:
 
-1. Lazy path (not centerline-following).
-   Measured on data/human/: humans deviate from the centerline by
-   ~12 px on average and ~29 px at peak (boundary is 38 px). The
-   original solver's lateral wobble was ±2.5 px — humans look nothing
-   like that. Here the trace cuts the inside of each bend, scaled by
-   local signed curvature, plus a per-trace global lateral bias.
+1. Elastic-band path (not centerline-following).
+   Humans treat the tunnel as a corridor and find the smoothest path
+   through it — they don't track the centerline at all, they just stay
+   inside. We mimic this by iteratively Laplacian-smoothing the
+   centerline while constraining each point to stay within the safe
+   band. Like pulling an elastic band taut inside a curved corridor,
+   the path relaxes toward chords through gentle bends and only bends
+   where the walls force it to.
 
 2. Submovement-based speed (not a single v(s) curve).
    Measured: human speed_mean=0.49, speed_max=1.35 (max/mean=2.77),
@@ -15,6 +17,9 @@ Two structural fixes versus solvers/split_a/opus.py:
    Here position-along-arc is the sum of 6-10 overlapping
    minimum-jerk submovements; velocity is the sum of bell curves and
    naturally produces right-skewed speed with multiple peaks.
+
+3. AR(1) lateral tremor, not pure 8-12Hz sinusoid (avoids
+   tremor_power_8_12hz lighting up).
 """
 
 import math
@@ -105,6 +110,52 @@ def _interp_arr(path, arc, s_vals):
     return path[idx - 1] + (path[idx] - path[idx - 1]) * f
 
 
+def _elastic_band(centerline, half_w, win, n_pass):
+    """Find the smoothest path through the tunnel — like pulling an elastic
+    band taut inside a curved corridor.
+
+    Each pass: (a) box-smooth the whole path with a wide window (shortens
+    the path toward straight lines / chords across gentle bends), (b)
+    project any point that has drifted past the safe band back to the
+    boundary, by snapping toward its nearest centerline point. After 2-3
+    passes the path settles into something close to the shortest route
+    the walls allow: chord-cuts where it can, hugging the boundary only
+    where it must. This is what humans do — pick the easiest line, don't
+    track the centerline.
+
+    The 1-step Laplacian / 3-tap kernel is far too gentle here: with
+    ~1600 dense path points the local neighborhood is essentially
+    straight, so each iteration barely moves anything. A wide box filter
+    (win ~200 = ½ of one bezier segment) attenuates the high-frequency
+    oscillations of the control polygon in a single shot.
+    """
+    safe = float(half_w) - 4.0
+    p = centerline.copy()
+    n = len(p)
+    step = max(1, n // 240)
+    cl_check = centerline[::step]
+
+    for _ in range(n_pass):
+        smoothed = _smooth_2d(p, win)
+        smoothed[0] = centerline[0]
+        smoothed[-1] = centerline[-1]
+
+        diffs = smoothed[:, None, :] - cl_check[None, :, :]
+        d2 = (diffs ** 2).sum(axis=2)
+        j_min = d2.argmin(axis=1)
+        d_min = np.sqrt(d2[np.arange(n), j_min])
+        mask = d_min > safe
+        if mask.any():
+            nearest = cl_check[j_min[mask]]
+            direction = smoothed[mask] - nearest
+            smoothed[mask] = nearest + direction * (safe / d_min[mask])[:, None]
+            smoothed[0] = centerline[0]
+            smoothed[-1] = centerline[-1]
+        p = smoothed
+
+    return p
+
+
 # --- main --------------------------------------------------------------------
 
 def generate(tunnel_spec, seed):
@@ -116,69 +167,56 @@ def generate(tunnel_spec, seed):
     half_w = float(tunnel_spec['tunnel_width'])
 
     path = _build_centerline(cps, n_per_seg=400)
-    arc = _arc_length(path)
-    total_len = float(arc[-1])
-    tangents, kappa = _tangents_and_signed_curvature(path)
-    normals = np.stack([-tangents[:, 1], tangents[:, 0]], axis=1)
-
-    # --- Lazy path: heavy smoothing of the centerline (chord-like shortcut) -
-    # Measured: humans traverse a path only 73-89% of the centerline length.
-    # They straighten bends into chord-like shortcuts rather than tracking
-    # the centerline. Heavy moving-average smoothing of the centerline does
-    # exactly this — it pulls the path toward chords across each bend.
     n_pts = len(path)
-    # Window=200-240 reproduces measured humans (min-dist dev_mean ~12 px,
-    # path ratio 0.77-0.80). Smaller windows hug the centerline; larger
-    # windows can push past the boundary on sharp S-curves (clipped below).
-    laziness_win = int(rng.integers(190, 245))
-    lazy_path = _smooth_2d(path, win=laziness_win)
 
-    # Heavy smoothing also pulls the endpoints inward. Blend back to the
-    # true centerline only over a short tail so mousedown/mouseup land on
-    # the dots — don't over-blend or we undo the smoothing.
-    n_blend = 60
-    blend = np.linspace(0.0, 1.0, n_blend)[:, None]
-    lazy_path[:n_blend] = path[:n_blend] * (1 - blend) + lazy_path[:n_blend] * blend
-    lazy_path[-n_blend:] = (lazy_path[-n_blend:] * blend
-                             + path[-n_blend:] * (1 - blend))
-    lazy_path[0] = path[0]
-    lazy_path[-1] = path[-1]
+    # --- Elastic-band lazy path ---------------------------------------------
+    # Humans don't track the centerline — they just stay in the tunnel and
+    # take the smoothest line they can. Wide box-smooth the centerline to
+    # collapse the control polygon's high-frequency oscillations into a
+    # chord-like path, then project any points outside the safe band back
+    # to the boundary. 2-3 passes typically converges; n_pass and win
+    # vary per-trace so different attempts settle on slightly different
+    # paths through the same tunnel.
+    laziness_win = int(rng.integers(180, 260))
+    n_pass = int(rng.integers(2, 5))
+    lazy_path = _elastic_band(path, half_w, win=laziness_win, n_pass=n_pass)
 
-    # Small per-trace global lateral bias + slow undulation. With the
-    # heavier smoothing window above, most of the deviation comes from
-    # chord-cutting, not from this noise — so keep these small.
-    bias = float(rng.normal(0.0, 2.5))
+    # Slow lateral undulation + per-trace global bias — kept small because
+    # the elastic-band path already carries most of the lateral deviation
+    # via chord-cutting, and humans look fairly steady once committed to a
+    # line. Apply along the lazy path's own normals (not the centerline's,
+    # which still wiggle at high frequency).
+    lazy_arc = _arc_length(lazy_path)
+    lazy_tangents, _ = _tangents_and_signed_curvature(lazy_path)
+    lazy_normals = np.stack([-lazy_tangents[:, 1], lazy_tangents[:, 0]], axis=1)
+
+    bias = float(rng.normal(0.0, 1.8))
     n_modes = 3
     wob_freq = rng.uniform(0.0015, 0.006, n_modes)
-    wob_amp = rng.uniform(0.6, 2.5, n_modes)
+    wob_amp = rng.uniform(0.4, 1.5, n_modes)
     wob_phase = rng.uniform(0.0, 2 * math.pi, n_modes)
     wob = np.zeros(n_pts)
-    for f, a, p in zip(wob_freq, wob_amp, wob_phase):
-        wob += a * np.sin(2 * math.pi * f * arc + p)
+    for f, a, ph in zip(wob_freq, wob_amp, wob_phase):
+        wob += a * np.sin(2 * math.pi * f * lazy_arc + ph)
     lateral = bias + wob
     safe = max(2.0, half_w - 5.0)
     lateral = np.clip(lateral, -safe, safe)
-    # Fade lateral noise to zero at endpoints so we still land on the dots.
+    n_blend = 60
     edge_fade = np.minimum(np.arange(n_pts), np.arange(n_pts)[::-1])
     fade = np.minimum(1.0, edge_fade / max(n_blend, 1))
     lateral = lateral * fade
-    lazy_path = lazy_path + normals * lateral[:, None]
+    lazy_path = lazy_path + lazy_normals * lateral[:, None]
     lazy_path[0] = path[0]
     lazy_path[-1] = path[-1]
 
-    # Safety pass: clamp using true MIN-distance to the centerline (the
-    # metric game.js's isInsideTunnel uses). Index-by-index distance hugely
-    # overestimates: a chord-cutting path point can be 25 px from
-    # centerline-at-its-own-index but ~0 px from centerline at some other
-    # index, which is what game.js actually checks. Pulling toward centerline
-    # by index here would kink the path back into the wiggles we just smoothed
-    # out, defeating the chord-cut.
+    # Final safety pass at full centerline resolution — adding the wobble
+    # may push a few points past the safe band. Clamp using true MIN-distance
+    # to the centerline (the metric game.js actually checks).
     for i in range(n_pts):
         dists = np.sqrt((path[:, 0] - lazy_path[i, 0]) ** 2
                         + (path[:, 1] - lazy_path[i, 1]) ** 2)
         d_min = dists.min()
         if d_min > safe:
-            # Pull this point toward its nearest centerline point.
             j = int(dists.argmin())
             direction = lazy_path[i] - path[j]
             lazy_path[i] = path[j] + direction * (safe / d_min)
@@ -247,6 +285,23 @@ def generate(tunnel_spec, seed):
     for i in range(1, n_evt):
         noise[i] = alpha_tr * noise[i - 1] + rng.normal(0.0, sigma_tr, 2)
     positions = positions + noise
+
+    # AR(1) drift can accumulate to ~15-20 px over a full trace when the
+    # chord-cut path is already sitting near the boundary, occasionally
+    # pushing events outside. Final clip per-event using min-distance to
+    # centerline so every emitted point lands inside the tunnel.
+    clip_margin = max(2.0, float(half_w) - 2.0)
+    cl_step = max(1, n_pts // 400)
+    cl_clip = path[::cl_step]
+    diffs_p = positions[:, None, :] - cl_clip[None, :, :]
+    d2_p = (diffs_p ** 2).sum(axis=2)
+    j_p = d2_p.argmin(axis=1)
+    d_p = np.sqrt(d2_p[np.arange(n_evt), j_p])
+    mask_p = d_p > clip_margin
+    if mask_p.any():
+        near = cl_clip[j_p[mask_p]]
+        direction = positions[mask_p] - near
+        positions[mask_p] = near + direction * (clip_margin / d_p[mask_p])[:, None]
 
     # --- Build event list ---------------------------------------------------
     t0 = float(rng.uniform(100000.0, 600000.0))

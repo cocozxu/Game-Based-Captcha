@@ -1,0 +1,731 @@
+{
+  "experiment": "gen_opus_split_a_improved",
+  "split_id": "split_a",
+  "model": "opus",
+  "demo": [
+    0,
+    1,
+    4
+  ],
+  "test": [
+    2,
+    3,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "traces_per_test_tunnel": 10,
+  "started": 1780272859.849782,
+  "finished": 1780272972.646997,
+  "counts": {
+    "success": 70,
+    "solver_error": 0,
+    "malformed": 0,
+    "captcha_reject": 0
+  },
+  "n_attempts": 70,
+  "attempts": [
+    {
+      "tunnel_id": 2,
+      "seed": 0,
+      "stage": "success",
+      "reason": null,
+      "saved": "53df3d7a-1cdd-45a2-9c5c-52103d1876a5.json",
+      "n_dispatched": 186,
+      "n_events": 186,
+      "duration_s": 1.876
+    },
+    {
+      "tunnel_id": 2,
+      "seed": 1,
+      "stage": "success",
+      "reason": null,
+      "saved": "c84c10a0-0443-402c-b873-d9db74c82577.json",
+      "n_dispatched": 157,
+      "n_events": 157,
+      "duration_s": 1.591
+    },
+    {
+      "tunnel_id": 2,
+      "seed": 2,
+      "stage": "success",
+      "reason": null,
+      "saved": "c2852aca-cafd-47b2-8ebc-b1426231f1ef.json",
+      "n_dispatched": 167,
+      "n_events": 167,
+      "duration_s": 1.676
+    },
+    {
+      "tunnel_id": 2,
+      "seed": 3,
+      "stage": "success",
+      "reason": null,
+      "saved": "58dbd6d8-0ab3-44e2-b4e9-7e1190d1ac02.json",
+      "n_dispatched": 164,
+      "n_events": 164,
+      "duration_s": 1.636
+    },
+    {
+      "tunnel_id": 2,
+      "seed": 4,
+      "stage": "success",
+      "reason": null,
+      "saved": "cb96a999-b76c-416f-bde4-2f710f8ec920.json",
+      "n_dispatched": 158,
+      "n_events": 158,
+      "duration_s": 1.632
+    },
+    {
+      "tunnel_id": 2,
+      "seed": 5,
+      "stage": "success",
+      "reason": null,
+      "saved": "c7303869-ba95-464a-aec0-52ce611bc45b.json",
+      "n_dispatched": 166,
+      "n_events": 166,
+      "duration_s": 1.64
+    },
+    {
+      "tunnel_id": 2,
+      "seed": 6,
+      "stage": "success",
+      "reason": null,
+      "saved": "16d5fd4d-abf8-4f90-b3ae-b7bf271535f7.json",
+      "n_dispatched": 139,
+      "n_events": 139,
+      "duration_s": 1.421
+    },
+    {
+      "tunnel_id": 2,
+      "seed": 7,
+      "stage": "success",
+      "reason": null,
+      "saved": "0266cd0c-f41d-4c79-aeeb-78de4651955f.json",
+      "n_dispatched": 158,
+      "n_events": 158,
+      "duration_s": 1.558
+    },
+    {
+      "tunnel_id": 2,
+      "seed": 8,
+      "stage": "success",
+      "reason": null,
+      "saved": "143974ab-033b-4260-8a7f-0530cf16d6c7.json",
+      "n_dispatched": 148,
+      "n_events": 148,
+      "duration_s": 1.463
+    },
+    {
+      "tunnel_id": 2,
+      "seed": 9,
+      "stage": "success",
+      "reason": null,
+      "saved": "d26a0984-3e5a-4a5a-a144-5c770137fc76.json",
+      "n_dispatched": 140,
+      "n_events": 140,
+      "duration_s": 1.441
+    },
+    {
+      "tunnel_id": 3,
+      "seed": 0,
+      "stage": "success",
+      "reason": null,
+      "saved": "658c1aad-0ad3-43fa-a7c4-86a9a61f9761.json",
+      "n_dispatched": 189,
+      "n_events": 189,
+      "duration_s": 1.871
+    },
+    {
+      "tunnel_id": 3,
+      "seed": 1,
+      "stage": "success",
+      "reason": null,
+      "saved": "0641549e-47d7-401d-8f7b-fb9f8701fdbf.json",
+      "n_dispatched": 157,
+      "n_events": 157,
+      "duration_s": 1.57
+    },
+    {
+      "tunnel_id": 3,
+      "seed": 2,
+      "stage": "success",
+      "reason": null,
+      "saved": "427c1b2b-622b-4851-9d9c-df1d867da446.json",
+      "n_dispatched": 167,
+      "n_events": 167,
+      "duration_s": 1.674
+    },
+    {
+      "tunnel_id": 3,
+      "seed": 3,
+      "stage": "success",
+      "reason": null,
+      "saved": "4586e18c-b738-48cc-8891-18c5755d4489.json",
+      "n_dispatched": 163,
+      "n_events": 163,
+      "duration_s": 1.662
+    },
+    {
+      "tunnel_id": 3,
+      "seed": 4,
+      "stage": "success",
+      "reason": null,
+      "saved": "ae673492-76fb-4c76-9ff9-4220ec7e38ca.json",
+      "n_dispatched": 161,
+      "n_events": 161,
+      "duration_s": 1.643
+    },
+    {
+      "tunnel_id": 3,
+      "seed": 5,
+      "stage": "success",
+      "reason": null,
+      "saved": "7fb8ac91-89c6-4836-b3bc-acc4085bf636.json",
+      "n_dispatched": 165,
+      "n_events": 165,
+      "duration_s": 1.648
+    },
+    {
+      "tunnel_id": 3,
+      "seed": 6,
+      "stage": "success",
+      "reason": null,
+      "saved": "27769976-f78b-4bd8-8d9e-c9716c210f82.json",
+      "n_dispatched": 140,
+      "n_events": 140,
+      "duration_s": 1.428
+    },
+    {
+      "tunnel_id": 3,
+      "seed": 7,
+      "stage": "success",
+      "reason": null,
+      "saved": "da53d6ac-c3b2-4339-9297-a72c95c0f45e.json",
+      "n_dispatched": 158,
+      "n_events": 158,
+      "duration_s": 1.564
+    },
+    {
+      "tunnel_id": 3,
+      "seed": 8,
+      "stage": "success",
+      "reason": null,
+      "saved": "1bebea5f-6251-40d6-b5e0-9b676f995caf.json",
+      "n_dispatched": 150,
+      "n_events": 150,
+      "duration_s": 1.488
+    },
+    {
+      "tunnel_id": 3,
+      "seed": 9,
+      "stage": "success",
+      "reason": null,
+      "saved": "49a34488-c7ac-4ac9-bbd6-c6491eaf0c27.json",
+      "n_dispatched": 140,
+      "n_events": 140,
+      "duration_s": 1.449
+    },
+    {
+      "tunnel_id": 5,
+      "seed": 0,
+      "stage": "success",
+      "reason": null,
+      "saved": "6c466a57-9b3f-42ac-8981-261c67e1bed8.json",
+      "n_dispatched": 188,
+      "n_events": 188,
+      "duration_s": 1.864
+    },
+    {
+      "tunnel_id": 5,
+      "seed": 1,
+      "stage": "success",
+      "reason": null,
+      "saved": "28475cb9-43e2-4f99-b372-eb80a1ceca11.json",
+      "n_dispatched": 157,
+      "n_events": 157,
+      "duration_s": 1.57
+    },
+    {
+      "tunnel_id": 5,
+      "seed": 2,
+      "stage": "success",
+      "reason": null,
+      "saved": "69ad2b69-0bf1-4ffa-b5a3-b4fbc1272e95.json",
+      "n_dispatched": 165,
+      "n_events": 165,
+      "duration_s": 1.658
+    },
+    {
+      "tunnel_id": 5,
+      "seed": 3,
+      "stage": "success",
+      "reason": null,
+      "saved": "d8f58c57-3cd0-4d48-9da8-bc8674cc7612.json",
+      "n_dispatched": 163,
+      "n_events": 163,
+      "duration_s": 1.634
+    },
+    {
+      "tunnel_id": 5,
+      "seed": 4,
+      "stage": "success",
+      "reason": null,
+      "saved": "f7e56acd-6771-4047-be09-0937212ed931.json",
+      "n_dispatched": 161,
+      "n_events": 161,
+      "duration_s": 1.62
+    },
+    {
+      "tunnel_id": 5,
+      "seed": 5,
+      "stage": "success",
+      "reason": null,
+      "saved": "f688a98f-eea7-453f-a534-b137113a7b67.json",
+      "n_dispatched": 165,
+      "n_events": 165,
+      "duration_s": 1.641
+    },
+    {
+      "tunnel_id": 5,
+      "seed": 6,
+      "stage": "success",
+      "reason": null,
+      "saved": "81581652-a890-495f-a3bd-4abe9df02c3b.json",
+      "n_dispatched": 144,
+      "n_events": 144,
+      "duration_s": 1.453
+    },
+    {
+      "tunnel_id": 5,
+      "seed": 7,
+      "stage": "success",
+      "reason": null,
+      "saved": "8e63a77c-a4a9-43e1-a861-66c069d2ab60.json",
+      "n_dispatched": 157,
+      "n_events": 157,
+      "duration_s": 1.554
+    },
+    {
+      "tunnel_id": 5,
+      "seed": 8,
+      "stage": "success",
+      "reason": null,
+      "saved": "d3e5c022-b6f6-42c2-9c05-9ada28610b85.json",
+      "n_dispatched": 150,
+      "n_events": 150,
+      "duration_s": 1.489
+    },
+    {
+      "tunnel_id": 5,
+      "seed": 9,
+      "stage": "success",
+      "reason": null,
+      "saved": "57eaee8e-f609-41a4-8ae3-cc2d88a3bb12.json",
+      "n_dispatched": 139,
+      "n_events": 139,
+      "duration_s": 1.447
+    },
+    {
+      "tunnel_id": 6,
+      "seed": 0,
+      "stage": "success",
+      "reason": null,
+      "saved": "378d60d5-816a-485a-a2e5-24a0a7008604.json",
+      "n_dispatched": 186,
+      "n_events": 186,
+      "duration_s": 1.851
+    },
+    {
+      "tunnel_id": 6,
+      "seed": 1,
+      "stage": "success",
+      "reason": null,
+      "saved": "29e59500-8e53-4526-b17b-60b2cb2d5ede.json",
+      "n_dispatched": 157,
+      "n_events": 157,
+      "duration_s": 1.574
+    },
+    {
+      "tunnel_id": 6,
+      "seed": 2,
+      "stage": "success",
+      "reason": null,
+      "saved": "dc2b5e30-4d40-4b1d-89aa-370610974106.json",
+      "n_dispatched": 167,
+      "n_events": 167,
+      "duration_s": 1.667
+    },
+    {
+      "tunnel_id": 6,
+      "seed": 3,
+      "stage": "success",
+      "reason": null,
+      "saved": "d653b202-8ad0-412d-b85c-60f3d15e5f3a.json",
+      "n_dispatched": 165,
+      "n_events": 165,
+      "duration_s": 1.647
+    },
+    {
+      "tunnel_id": 6,
+      "seed": 4,
+      "stage": "success",
+      "reason": null,
+      "saved": "4d8d16f3-9934-4dc1-8135-402574b5ea79.json",
+      "n_dispatched": 158,
+      "n_events": 158,
+      "duration_s": 1.655
+    },
+    {
+      "tunnel_id": 6,
+      "seed": 5,
+      "stage": "success",
+      "reason": null,
+      "saved": "38afb5a8-2a79-45fa-af87-ed5d3bcc67a6.json",
+      "n_dispatched": 167,
+      "n_events": 167,
+      "duration_s": 1.642
+    },
+    {
+      "tunnel_id": 6,
+      "seed": 6,
+      "stage": "success",
+      "reason": null,
+      "saved": "e5541f59-28a0-4720-a458-17b93c2b23d5.json",
+      "n_dispatched": 139,
+      "n_events": 139,
+      "duration_s": 1.429
+    },
+    {
+      "tunnel_id": 6,
+      "seed": 7,
+      "stage": "success",
+      "reason": null,
+      "saved": "d554ed55-b983-4239-bfc1-efc4384b942c.json",
+      "n_dispatched": 158,
+      "n_events": 158,
+      "duration_s": 1.552
+    },
+    {
+      "tunnel_id": 6,
+      "seed": 8,
+      "stage": "success",
+      "reason": null,
+      "saved": "7de54903-17fa-48ef-8a04-db9fae654ff6.json",
+      "n_dispatched": 150,
+      "n_events": 150,
+      "duration_s": 1.491
+    },
+    {
+      "tunnel_id": 6,
+      "seed": 9,
+      "stage": "success",
+      "reason": null,
+      "saved": "8918ffe4-ca2b-42a9-aeef-910ec49e5086.json",
+      "n_dispatched": 140,
+      "n_events": 140,
+      "duration_s": 1.446
+    },
+    {
+      "tunnel_id": 7,
+      "seed": 0,
+      "stage": "success",
+      "reason": null,
+      "saved": "9ea5c1f3-801e-43d9-8e79-41a3f0c39f9d.json",
+      "n_dispatched": 189,
+      "n_events": 189,
+      "duration_s": 1.87
+    },
+    {
+      "tunnel_id": 7,
+      "seed": 1,
+      "stage": "success",
+      "reason": null,
+      "saved": "40ab28ed-c9c7-4793-8d14-85b031869ac1.json",
+      "n_dispatched": 157,
+      "n_events": 157,
+      "duration_s": 1.562
+    },
+    {
+      "tunnel_id": 7,
+      "seed": 2,
+      "stage": "success",
+      "reason": null,
+      "saved": "fca0e6b8-a05b-4b88-acd3-46e937e6c7a5.json",
+      "n_dispatched": 167,
+      "n_events": 167,
+      "duration_s": 1.666
+    },
+    {
+      "tunnel_id": 7,
+      "seed": 3,
+      "stage": "success",
+      "reason": null,
+      "saved": "d7f0df9d-73a9-4a0e-bb81-901b0b4ef96f.json",
+      "n_dispatched": 165,
+      "n_events": 165,
+      "duration_s": 1.646
+    },
+    {
+      "tunnel_id": 7,
+      "seed": 4,
+      "stage": "success",
+      "reason": null,
+      "saved": "f9c66a1d-c57f-4a4e-9b37-e0a9b7a3fc16.json",
+      "n_dispatched": 162,
+      "n_events": 162,
+      "duration_s": 1.618
+    },
+    {
+      "tunnel_id": 7,
+      "seed": 5,
+      "stage": "success",
+      "reason": null,
+      "saved": "3fd08206-2088-4f83-af7f-fb0bd4929f6d.json",
+      "n_dispatched": 167,
+      "n_events": 167,
+      "duration_s": 1.642
+    },
+    {
+      "tunnel_id": 7,
+      "seed": 6,
+      "stage": "success",
+      "reason": null,
+      "saved": "74928097-a169-4a5b-b2f9-82bf11a69184.json",
+      "n_dispatched": 139,
+      "n_events": 139,
+      "duration_s": 1.419
+    },
+    {
+      "tunnel_id": 7,
+      "seed": 7,
+      "stage": "success",
+      "reason": null,
+      "saved": "0874e6c6-6f8f-48f2-a3bb-16786eda99cc.json",
+      "n_dispatched": 156,
+      "n_events": 156,
+      "duration_s": 1.551
+    },
+    {
+      "tunnel_id": 7,
+      "seed": 8,
+      "stage": "success",
+      "reason": null,
+      "saved": "00e08039-866b-4a90-ac4d-210f8acbe4a0.json",
+      "n_dispatched": 150,
+      "n_events": 150,
+      "duration_s": 1.488
+    },
+    {
+      "tunnel_id": 7,
+      "seed": 9,
+      "stage": "success",
+      "reason": null,
+      "saved": "9d5aa8f0-637b-4d6d-9f4f-97a487593b1a.json",
+      "n_dispatched": 143,
+      "n_events": 143,
+      "duration_s": 1.461
+    },
+    {
+      "tunnel_id": 8,
+      "seed": 0,
+      "stage": "success",
+      "reason": null,
+      "saved": "b210c691-7242-4b55-b661-3fc654b5cc6f.json",
+      "n_dispatched": 187,
+      "n_events": 187,
+      "duration_s": 1.872
+    },
+    {
+      "tunnel_id": 8,
+      "seed": 1,
+      "stage": "success",
+      "reason": null,
+      "saved": "117e9dba-6cc4-4810-8481-a9df365d5f48.json",
+      "n_dispatched": 157,
+      "n_events": 157,
+      "duration_s": 1.565
+    },
+    {
+      "tunnel_id": 8,
+      "seed": 2,
+      "stage": "success",
+      "reason": null,
+      "saved": "e4884085-bb9c-4799-8974-82ac6f357cd9.json",
+      "n_dispatched": 167,
+      "n_events": 167,
+      "duration_s": 1.677
+    },
+    {
+      "tunnel_id": 8,
+      "seed": 3,
+      "stage": "success",
+      "reason": null,
+      "saved": "71eac467-4b4b-4f89-aae3-570db2f9593b.json",
+      "n_dispatched": 164,
+      "n_events": 164,
+      "duration_s": 1.634
+    },
+    {
+      "tunnel_id": 8,
+      "seed": 4,
+      "stage": "success",
+      "reason": null,
+      "saved": "794b90c8-04aa-49e9-9ee9-cfe7d4a73669.json",
+      "n_dispatched": 158,
+      "n_events": 158,
+      "duration_s": 1.598
+    },
+    {
+      "tunnel_id": 8,
+      "seed": 5,
+      "stage": "success",
+      "reason": null,
+      "saved": "112e32ed-d3c5-445c-97fa-941ddc4ca863.json",
+      "n_dispatched": 166,
+      "n_events": 166,
+      "duration_s": 1.637
+    },
+    {
+      "tunnel_id": 8,
+      "seed": 6,
+      "stage": "success",
+      "reason": null,
+      "saved": "cfecb592-59d0-4faf-af6a-2d5a755c27a5.json",
+      "n_dispatched": 144,
+      "n_events": 144,
+      "duration_s": 1.458
+    },
+    {
+      "tunnel_id": 8,
+      "seed": 7,
+      "stage": "success",
+      "reason": null,
+      "saved": "3a7af50c-2b51-4c54-b1f7-14ba9e16a667.json",
+      "n_dispatched": 158,
+      "n_events": 158,
+      "duration_s": 1.572
+    },
+    {
+      "tunnel_id": 8,
+      "seed": 8,
+      "stage": "success",
+      "reason": null,
+      "saved": "eef5f8ae-03fb-40a5-b3a5-89040329cb4a.json",
+      "n_dispatched": 150,
+      "n_events": 150,
+      "duration_s": 1.498
+    },
+    {
+      "tunnel_id": 8,
+      "seed": 9,
+      "stage": "success",
+      "reason": null,
+      "saved": "1a322de5-ea87-4b04-9c58-0ba6bc59ac40.json",
+      "n_dispatched": 141,
+      "n_events": 141,
+      "duration_s": 1.459
+    },
+    {
+      "tunnel_id": 9,
+      "seed": 0,
+      "stage": "success",
+      "reason": null,
+      "saved": "ba9c1b4e-05f2-4cfc-b421-657ce7adae15.json",
+      "n_dispatched": 188,
+      "n_events": 188,
+      "duration_s": 1.885
+    },
+    {
+      "tunnel_id": 9,
+      "seed": 1,
+      "stage": "success",
+      "reason": null,
+      "saved": "3021dea3-ad16-4cee-989d-2ca352e925ba.json",
+      "n_dispatched": 157,
+      "n_events": 157,
+      "duration_s": 1.569
+    },
+    {
+      "tunnel_id": 9,
+      "seed": 2,
+      "stage": "success",
+      "reason": null,
+      "saved": "0cedeba0-520f-409d-8c80-d4e32c6d74da.json",
+      "n_dispatched": 165,
+      "n_events": 165,
+      "duration_s": 1.661
+    },
+    {
+      "tunnel_id": 9,
+      "seed": 3,
+      "stage": "success",
+      "reason": null,
+      "saved": "24566777-9c39-4394-9686-cc5d56f3beeb.json",
+      "n_dispatched": 163,
+      "n_events": 163,
+      "duration_s": 1.622
+    },
+    {
+      "tunnel_id": 9,
+      "seed": 4,
+      "stage": "success",
+      "reason": null,
+      "saved": "734543f8-487b-4cd5-9917-9fbfc9b4c8a6.json",
+      "n_dispatched": 158,
+      "n_events": 158,
+      "duration_s": 1.635
+    },
+    {
+      "tunnel_id": 9,
+      "seed": 5,
+      "stage": "success",
+      "reason": null,
+      "saved": "80f01307-5962-411e-b802-19e93234f39c.json",
+      "n_dispatched": 163,
+      "n_events": 163,
+      "duration_s": 1.641
+    },
+    {
+      "tunnel_id": 9,
+      "seed": 6,
+      "stage": "success",
+      "reason": null,
+      "saved": "d6bc3542-eb88-42cd-b20d-108b43db7340.json",
+      "n_dispatched": 139,
+      "n_events": 139,
+      "duration_s": 1.425
+    },
+    {
+      "tunnel_id": 9,
+      "seed": 7,
+      "stage": "success",
+      "reason": null,
+      "saved": "01ce628e-917b-4f72-a943-6f99e97de1c1.json",
+      "n_dispatched": 156,
+      "n_events": 156,
+      "duration_s": 1.558
+    },
+    {
+      "tunnel_id": 9,
+      "seed": 8,
+      "stage": "success",
+      "reason": null,
+      "saved": "2fc830e4-2214-49b7-b6ca-64d193fc0edb.json",
+      "n_dispatched": 151,
+      "n_events": 151,
+      "duration_s": 1.489
+    },
+    {
+      "tunnel_id": 9,
+      "seed": 9,
+      "stage": "success",
+      "reason": null,
+      "saved": "30262221-92f1-41b8-8338-d16be4ee1108.json",
+      "n_dispatched": 139,
+      "n_events": 139,
+      "duration_s": 1.454
+    }
+  ]
+}

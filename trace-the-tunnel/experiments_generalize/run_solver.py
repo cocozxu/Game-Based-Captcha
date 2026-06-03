@@ -271,13 +271,14 @@ async def run(args):
     split = splits_by_id[args.split]
     traces_per = cfg["generation"]["traces_per_test_tunnel"]
 
-    solver_path = os.path.join(HERE, "solvers", split["id"], f"{args.model}.py")
+    solver_dir = args.solver_dir or "solvers"
+    solver_path = os.path.join(HERE, solver_dir, split["id"], f"{args.model}.py")
     if not os.path.exists(solver_path):
         raise SystemExit(f"missing solver: {solver_path}\nPaste agent output into that path first.")
     solver = load_solver(solver_path)
     print(f"Loaded solver: {solver_path}")
 
-    expected_experiment = f"gen_{args.model}_{split['id']}"
+    expected_experiment = args.experiment or f"gen_{args.model}_{split['id']}"
     info = requests.get(f"{args.server}/api/mode", timeout=5).json()
     if info.get("experiment") != expected_experiment:
         raise SystemExit(
@@ -361,6 +362,8 @@ def main():
     ap.add_argument("--timeout", type=float, default=30.0, help="seconds before a single generate() call is killed")
     ap.add_argument("--headless", action="store_true", default=True)
     ap.add_argument("--headed", dest="headless", action="store_false")
+    ap.add_argument("--solver-dir", default=None, help="subdir under experiments_generalize/ to load solver from (default: solvers)")
+    ap.add_argument("--experiment", default=None, help="override experiment name to match running server (default: gen_<model>_<split>)")
     args = ap.parse_args()
     sys.exit(asyncio.run(run(args)))
 
